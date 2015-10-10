@@ -17,6 +17,7 @@
   <modules>
     <module>processor</module>
     <module>target-class</module>
+    <module>annotations</module>
   </modules>
 
   <dependencyManagement>
