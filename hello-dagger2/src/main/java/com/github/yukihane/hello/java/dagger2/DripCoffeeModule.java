@@ -1,9 +1,8 @@
 package com.github.yukihane.hello.java.dagger2;
 
-import javax.inject.Singleton;
-
 import dagger.Module;
 import dagger.Provides;
+import javax.inject.Singleton;
 
 @Module(includes = PumpModule.class)
 class DripCoffeeModule {

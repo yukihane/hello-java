@@ -11,9 +11,9 @@ public class CoffeeApp {
     public interface Coffee {
         CoffeeMaker maker();
     }
-    //
-    // public static void main(String[] args) {
-    // Coffee coffee = DaggerCoffeeApp_Coffee.builder().build();
-    // coffee.maker().brew();
-    // }
+
+    public static void main(String[] args) {
+        Coffee coffee = DaggerCoffeeApp_Coffee.builder().build();
+        coffee.maker().brew();
+    }
 }
