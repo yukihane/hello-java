@@ -30,4 +30,23 @@
     </dependency>
   </dependencies>
 
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <dependencies>
+          <dependency>
+            <groupId>com.google.dagger</groupId>
+            <artifactId>dagger-compiler</artifactId>
+            <version>${dagger2.version}</version>
+          </dependency>
+        </dependencies>
+        <configuration>
+          <!-- workaround for http://jira.codehaus.org/browse/MCOMPILER-202 -->
+          <forceJavacCompilerUse>true</forceJavacCompilerUse>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
 </project>
