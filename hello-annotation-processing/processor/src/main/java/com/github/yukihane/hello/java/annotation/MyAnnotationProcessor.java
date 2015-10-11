@@ -19,13 +19,15 @@ public class MyAnnotationProcessor extends AbstractProcessor {
         annotations.stream().map(a -> env.getElementsAnnotatedWith(a)).flatMap(e -> e.stream()).forEach(element -> {
             MyAnnotation anno = element.getAnnotation(MyAnnotation.class);
 
-            String msg = "<<@MyAnnotation(\"" + anno.value() + "\")>>\n" + "  Kind : " + element.getKind() + "\n"
-                    + "  SimpleName : " + element.getSimpleName() + "\n" + "  Modifiers : " + element.getModifiers()
-                    + "\n" + "  asType : " + element.asType() + "\n" + "  EnclosedElements : "
-                    + element.getEnclosedElements() + "\n" + "  EnclosingElement : " + element.getEnclosingElement()
-                    + "\n" + "  AnnotationMirrors : " + element.getAnnotationMirrors() + "\n";
+            if (anno != null) {
+                String msg = "<<@MyAnnotation(\"" + anno.value() + "\")>>\n" + "  Kind : " + element.getKind() + "\n"
+                        + "  SimpleName : " + element.getSimpleName() + "\n" + "  Modifiers : " + element.getModifiers()
+                        + "\n" + "  asType : " + element.asType() + "\n" + "  EnclosedElements : "
+                        + element.getEnclosedElements() + "\n" + "  EnclosingElement : " + element.getEnclosingElement()
+                        + "\n" + "  AnnotationMirrors : " + element.getAnnotationMirrors() + "\n";
 
-            System.out.println(msg);
+                System.out.println(msg);
+            }
         });
 
         return true;
