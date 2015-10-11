@@ -18,5 +18,9 @@
       <artifactId>processor</artifactId>
       <scope>provided</scope>
     </dependency>
+    <dependency>
+      <groupId>com.github.yukihane.hello.java.annotation</groupId>
+      <artifactId>annotations</artifactId>
+    </dependency>
   </dependencies>
 </project>
