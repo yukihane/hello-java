@@ -6,16 +6,23 @@ import java.util.Set;
 import javax.annotation.processing.AbstractProcessor;
 import javax.annotation.processing.RoundEnvironment;
 import javax.lang.model.SourceVersion;
+import javax.lang.model.element.Element;
 import javax.lang.model.element.TypeElement;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class MyAnnotationProcessor extends AbstractProcessor {
 
-    private int round = 1;
+    private static final Logger LOGGER = LoggerFactory.getLogger(MyAnnotationProcessor.class);
 
     @Override
     public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment env) {
-        System.out.println("Round : " + (this.round++));
-        annotations.forEach(System.out::println);
+
+        annotations.stream().map(a -> env.getElementsAnnotatedWith(a)).flatMap(e -> e.stream())
+                .filter(e -> e.getAnnotation(Override.class) != null).map(clazz -> "@Override at " + clazz)
+                .forEach(LOGGER::info);
+
         return true;
     }
 
