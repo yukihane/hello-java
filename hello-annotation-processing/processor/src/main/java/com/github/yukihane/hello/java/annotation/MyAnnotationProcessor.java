@@ -8,14 +8,8 @@ import javax.annotation.processing.Messager;
 import javax.annotation.processing.RoundEnvironment;
 import javax.lang.model.SourceVersion;
 import javax.lang.model.element.TypeElement;
-import javax.tools.Diagnostic.Kind;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class MyAnnotationProcessor extends AbstractProcessor {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(MyAnnotationProcessor.class);
 
     @Override
     public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment env) {
