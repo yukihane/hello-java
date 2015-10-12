@@ -1,8 +1,11 @@
 package com.github.yukihane.hello.java.dagger2;
 
+import org.junit.Test;
+
 public class CoffeeTest {
 
-    public static void main(String[] args) {
+    @Test
+    public void testMaker() {
         Coffee coffee = DaggerCoffee.builder().build();
         coffee.maker().brew();
     }
