@@ -19,6 +19,7 @@
   <modules>
     <module>hello-annotation-processing</module>
     <module>hello-dagger2</module>
+    <module>hello-junit</module>
   </modules>
 
   <dependencyManagement>
