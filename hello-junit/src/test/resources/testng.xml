@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Suite1" verbose="5">
+  <test name="Regression1">
+    <classes>
+      <class name="com.github.yukihane.hello.java.TestNgAppTest" />
+    </classes>
+  </test>
+</suite>
+

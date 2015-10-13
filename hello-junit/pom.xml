@@ -37,8 +37,10 @@
         <configuration>
           <includes>
             <include>com/github/yukihane/hello/java/AllTest.java</include>
-            <include>com/github/yukihane/hello/java/TestNgAppTest.java</include>
           </includes>
+          <suiteXmlFiles>
+            <suiteXmlFile>${project.build.testOutputDirectory}/testng.xml</suiteXmlFile>
+          </suiteXmlFiles>
         </configuration>
       </plugin>
     </plugins>
