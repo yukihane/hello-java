@@ -1,0 +1,2 @@
+リファレンス中のコードは
+https://github.com/hibernate/hibernate-validator.git の https://github.com/hibernate/hibernate-validator/tree/master/documentation/src/test/java/org/hibernate/validator/referenceguide[referenceguide]にある。
