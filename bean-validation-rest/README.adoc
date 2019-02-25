@@ -1,0 +1,7 @@
+正常
+
+    curl -X POST "http://localhost:8080/room" -H "accept: application/json;charset=UTF-8" -H "Content-Type: application/json;charset=UTF-8" -d "{ \"id\": 2, \"name\": \"2-1\", \"students\": [ { \"id\": 3, \"name\": \"inoue\" } ]}"
+
+student null:
+
+    curl -X POST "http://localhost:8080/room" -H "accept: application/json;charset=UTF-8" -H "Content-Type: application/json;charset=UTF-8" -d "{ \"id\": 4, \"name\": \"\"}"
