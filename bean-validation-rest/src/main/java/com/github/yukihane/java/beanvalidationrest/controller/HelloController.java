@@ -3,6 +3,7 @@ package com.github.yukihane.java.beanvalidationrest.controller;
 import com.github.yukihane.java.beanvalidationrest.bean.ClassRoom;
 import com.github.yukihane.java.beanvalidationrest.repository.ClassRoomRepository;
 import java.util.List;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,7 +30,7 @@ public class HelloController {
 
     @PostMapping(path = "/room", consumes = { MediaType.APPLICATION_JSON_UTF8_VALUE }, produces = {
             MediaType.APPLICATION_JSON_UTF8_VALUE })
-    public ClassRoom add(@RequestBody final ClassRoom classRoom) {
+    public ClassRoom add(@RequestBody @Valid final ClassRoom classRoom) {
         repository.add(classRoom);
         return classRoom;
     }
