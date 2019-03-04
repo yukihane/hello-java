@@ -1,0 +1,119 @@
+= DBアクセスライブラリ一覧
+
+[options="header"]
+|=======
+|名称|タイプ|キャッチコピー|アクティブ
+
+| Hibernate(等JPA実装)
+| 自動生成指向(アノテーション), タイプセーフクエリ
+|
+| Yes
+
+| 各種JDO実装
+|
+|
+| No?
+
+| 各種 https://spring.io/projects/spring-data[Spring Data] JPA/JDBC
+| 自動生成指向(アノテーション, メソッド名から), リポジトリパターン
+| 
+| Yes
+
+| https://www.jooq.org/[jOOQ]
+| タイプセーフクエリ
+| generates Java code from your database and lets you build type safe SQL queries through its fluent API
+| Yes
+
+| http://www.querydsl.com/[Querydsl]
+| タイプセーフクエリ
+| Unified Queries for Java
+| No
+
+| http://www.mybatis.org/mybatis-3/ja/index.html[MyBatis]
+| SQLテンプレート
+| SQL mapper framework for Java
+| Yes
+
+| https://future-architect.github.io/uroborosql-doc/[uroboroSQL]
+| SQLテンプレート
+| 2way-SQLが利用可能なJavaのシンプルなSQL実行ライブラリ
+| Yes
+
+| https://doma.readthedocs.io/[Doma2]
+| SQLテンプレート
+| DAO oriented database mapping framework for Java 8+
+| Yes
+
+| http://jdbi.org/[jdbi3]
+|
+| designed to provide convenient tabular data access in Java; including templated SQL, parameterized and strongly typed queries, and Streams integration
+| Yes
+
+| http://dbflute.seasar.org/[DBFlute]
+|
+|
+|
+
+| https://github.com/goldmansachs/reladomo[Reladomo]
+|
+|
+|
+
+| https://ebean.io/[Ebean]
+|
+|
+|
+
+| https://github.com/speedment/speedment[Speedment]
+|
+|
+|
+
+| https://github.com/mirage-sql/mirage[Mirage SQL]
+|
+|
+|
+
+| http://www.jinq.org/[Jinq]
+|
+|
+|
+
+| https://github.com/requery/requery[requery]
+|
+|
+|
+
+| https://www.sql2o.org/[sql2o]
+|
+|
+|
+
+| https://cayenne.apache.org/[Apache Cayenne]
+|
+|
+|
+
+| http://db.apache.org/torque/[Torque]
+|
+|
+|
+
+| http://s2dao.seasar.org/ja/index.html[S2Dao]
+|
+|
+| No
+
+| http://s2container.seasar.org/ja/s2jdbc.html[S2JDBC]
+|
+|
+| No
+
+| https://r2dbc.io/[R2DBC], https://spring.io/projects/spring-data-r2dbc[Spring Data R2DBC]
+| JDBCラッパ
+| does not try to be an ORM; an endeavor to bring a reactive programming API to relational data stores.
+| Low
+|=======
+
+* https://commons.apache.org/proper/commons-dbutils/[DButils]
+* https://github.com/cero-t/sqltemplate[Bootiful SQL Template]
