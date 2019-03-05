@@ -1,0 +1,27 @@
+== 問題
+* Spring Data JPA において、 外部制約違反でエンティティをパーシストできない現象について
+** https://qiita.com/kakasak/items/4ad42a53dd9dcb01d750
+
+== 考察
+
+元記事の原因に書かれている「EntityManager#detach を実行することで、user から insert が実行され、正常に order を登録できました。」の意図するところが不明。
+* `userNo` が `null` であることが原因なのであれば、 `User` insert時に主キー制約(主キーが `null`)にひっかかるはず
+* detachすれば、ということは `save` した　`User` に対して `Order` を追加しようとした場合、ということだろうか。
+
+書かれているコードをそのまま実行すると、次の例外が発生する:
+```
+ org.hibernate.DuplicateMappingException: Table [order] contains physical column name [user_no] referred to by multiple physical column names: [user_no], [userNo]
+```
+おそらく実際には `@Column` でカラム名が明示されているのだろう。
+
+実行時次の例外が発生する:
+```
+org.springframework.data.mapping.PropertyReferenceException: No property findOne found for type User!
+```
+`JpaRepository`に備わっている`findOne`メソッドとは引数の型が異なる。ということは実際にはカスタムリポジトリ実装がなされているのであろう。
+
+== 結論
+
+書かれている文章からは何が問題なのか推測できない。
+
+可能な限り再現したコードを添付しているが、特に問題があるようには思えない。
