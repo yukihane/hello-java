@@ -4,23 +4,17 @@
 |=======
 |名称|タイプ|キャッチコピー|アクティブ|Stars
 
+| http://www.mybatis.org/mybatis-3/ja/index.html[MyBatis3]
+| SQLテンプレート
+| SQL mapper framework for Java
+| Yes
+| https://github.com/mybatis/mybatis-3[9,835]
+
 | Hibernate(等JPA実装)
-| 自動生成指向(アノテーション), タイプセーフクエリ
+| タイプセーフクエリ, 独自構文SQL
 |
 | Yes
 | https://github.com/hibernate/hibernate-orm[3,658]
-
-| 各種JDO実装
-|
-|
-| No?
-|
-
-| 各種 https://spring.io/projects/spring-data[Spring Data] JPA/JDBC
-| 自動生成指向(アノテーション, メソッド名から), リポジトリパターン
-| 
-| Yes
-| https://github.com/spring-projects/spring-data-examples[2,629]
 
 | https://www.jooq.org/[jOOQ]
 | タイプセーフクエリ
@@ -28,53 +22,23 @@
 | Yes
 | https://github.com/jOOQ/jOOQ[2,875]
 
+| https://github.com/requery/requery[requery]
+| タイプセーフクエリ
+| modern SQL based query & persistence for Java / Kotlin / Android
+| Yes
+| https://github.com/requery/requery[2,731]
+
+| https://spring.io/projects/spring-data[Spring Data] JPA/JDBC
+| メソッド名から自動生成, JDBCラッパ
+| 
+| Yes
+| https://github.com/spring-projects/spring-data-examples[2,629]
+
 | http://www.querydsl.com/[Querydsl]
 | タイプセーフクエリ
 | Unified Queries for Java
 | No
 | https://github.com/querydsl/querydsl[2,182]
-
-| http://www.mybatis.org/mybatis-3/ja/index.html[MyBatis3]
-| SQLテンプレート
-| SQL mapper framework for Java
-| Yes
-| https://github.com/mybatis/mybatis-3[9,835]
-
-| https://future-architect.github.io/uroborosql-doc/[uroboroSQL]
-| SQLテンプレート
-| 2way-SQLが利用可能なJavaのシンプルなSQL実行ライブラリ
-| Yes
-| https://github.com/future-architect/uroborosql[48]
-
-| https://doma.readthedocs.io/[Doma2]
-| SQLテンプレート
-| DAO oriented database mapping framework for Java 8+
-| Yes
-| https://github.com/domaframework/doma[152]
-
-| http://jdbi.org/[jdbi3]
-|
-| designed to provide convenient tabular data access in Java; including templated SQL, parameterized and strongly typed queries, and Streams integration
-| Yes
-| https://github.com/jdbi/jdbi[1,193]
-
-| http://dbflute.seasar.org/[DBFlute]
-| タイプセーフクエリ, SQLテンプレート
-|
-| Low
-| https://github.com/dbflute/dbflute-core[15]
-
-| https://github.com/goldmansachs/reladomo[Reladomo]
-| タイプセーフクエリ
-|
-| Low
-| https://github.com/goldmansachs/reladomo[235]
-
-| https://ebean.io/[Ebean]
-| タイプセーフクエリ
-|
-| Yes
-| https://github.com/ebean-orm/ebean[819]
 
 | https://github.com/speedment/speedment[Speedment]
 | タイプセーフクエリ
@@ -82,23 +46,17 @@
 | Low?
 | https://github.com/speedment/speedment[1,617]
 
-| https://github.com/mirage-sql/mirage[Mirage SQL]
-| SQLテンプレート
-| the SQL Centric Database Access Library for Java
-| Low
-| https://github.com/mirage-sql/mirage[46]
-
-| http://www.jinq.org/[Jinq]
-| タイプセーフクエリ
-| LINQ-style queries are available for Java!
-| Low
-| https://github.com/my2iu/Jinq[69]
-
-| https://github.com/requery/requery[requery]
-| タイプセーフクエリ
-| modern SQL based query & persistence for Java / Kotlin / Android
+| http://jdbi.org/[jdbi3]
+|
+| designed to provide convenient tabular data access in Java; including templated SQL, parameterized and strongly typed queries, and Streams integration
 | Yes
-| https://github.com/requery/requery[2,731]
+| https://github.com/jdbi/jdbi[1,193]
+
+| https://ebean.io/[Ebean]
+| タイプセーフクエリ
+|
+| Yes
+| https://github.com/ebean-orm/ebean[819]
 
 | https://www.sql2o.org/[sql2o]
 | JDBCラッパ
@@ -106,11 +64,71 @@
 | Low
 | https://github.com/aaberg/sql2o[813]
 
+| https://github.com/goldmansachs/reladomo[Reladomo]
+| タイプセーフクエリ
+|
+| Low
+| https://github.com/goldmansachs/reladomo[235]
+
+| https://r2dbc.io/[R2DBC], https://spring.io/projects/spring-data-r2dbc[Spring Data R2DBC]
+| JDBCラッパ
+| does not try to be an ORM; an endeavor to bring a reactive programming API to relational data stores.
+| Low
+| https://github.com/r2dbc/r2dbc-client[231]
+
+|  https://commons.apache.org/proper/commons-dbutils/[Commons DButils]
+| JDBCラッパ
+| 
+| Low
+| https://github.com/apache/commons-dbutils[183]
+
+| https://doma.readthedocs.io/[Doma2]
+| SQLテンプレート
+| DAO oriented database mapping framework for Java 8+
+| Yes
+| https://github.com/domaframework/doma[152]
+
 | https://cayenne.apache.org/[Apache Cayenne]
 | タイプセーフクエリ(+テンプレートのハイブリッド？)
 | providing object-relational mapping (ORM) and remoting services
 | Yes
 | https://github.com/apache/cayenne[149]
+
+| http://www.jinq.org/[Jinq]
+| タイプセーフクエリ
+| LINQ-style queries are available for Java!
+| Low
+| https://github.com/my2iu/Jinq[69]
+
+| https://future-architect.github.io/uroborosql-doc/[uroboroSQL]
+| SQLテンプレート
+| 2way-SQLが利用可能なJavaのシンプルなSQL実行ライブラリ
+| Yes
+| https://github.com/future-architect/uroborosql[48]
+
+| https://github.com/mirage-sql/mirage[Mirage SQL]
+| SQLテンプレート
+| the SQL Centric Database Access Library for Java
+| Low
+| https://github.com/mirage-sql/mirage[46]
+
+| https://github.com/cero-t/sqltemplate[Bootiful SQL Template]
+| JDBCラッパ
+| simple SQL template engine for Spring Boot Application
+| Low
+| https://github.com/cero-t/sqltemplate[41]
+
+| http://dbflute.seasar.org/[DBFlute]
+| タイプセーフクエリ, SQLテンプレート
+|
+| Low
+| https://github.com/dbflute/dbflute-core[15]
+
+| 各種JDO実装
+|
+|
+| Low?
+|
 
 | http://db.apache.org/torque/[Torque]
 |
@@ -121,43 +139,13 @@
 | http://s2dao.seasar.org/ja/index.html[S2Dao]
 |
 |
-| No
+|
 |
 
 | http://s2container.seasar.org/ja/s2jdbc.html[S2JDBC]
 |
 |
-| No
 |
-
-| https://r2dbc.io/[R2DBC], https://spring.io/projects/spring-data-r2dbc[Spring Data R2DBC]
-| JDBCラッパ
-| does not try to be an ORM; an endeavor to bring a reactive programming API to relational data stores.
-| Low
 |
-
-| https://r2dbc.io/[R2DBC], https://spring.io/projects/spring-data-r2dbc[Spring Data R2DBC]
-| JDBCラッパ
-| does not try to be an ORM; an endeavor to bring a reactive programming API to relational data stores.
-| Low
-|
-
-|  https://commons.apache.org/proper/commons-dbutils/[Commons DButils]
-| JDBCラッパ
-| 
-| Low
-| https://github.com/apache/commons-dbutils[183]
-
-| https://github.com/cero-t/sqltemplate[Bootiful SQL Template]
-| JDBCラッパ
-| simple SQL template engine for Spring Boot Application
-| Low
-| https://github.com/cero-t/sqltemplate[41]
 
 |=======
-
-その他JDBCラッパ:
-
-*
-*
-
