@@ -47,7 +47,7 @@
 | https://github.com/speedment/speedment[1,617]
 
 | http://jdbi.org/[jdbi3]
-|
+| JDBCラッパ
 | designed to provide convenient tabular data access in Java; including templated SQL, parameterized and strongly typed queries, and Streams integration
 | Yes
 | https://github.com/jdbi/jdbi[1,193]
