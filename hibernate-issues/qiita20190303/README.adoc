@@ -1,0 +1,12 @@
+== 実行方法
+
+    mvn spring-boot:run
+
+== これは何？
+
+https://qiita.com/yukihane/items/07549b4f716c033b76c5
+
+* Spring Data JPA の derived delete
+* JPA Criteria
+
+でそれぞれdeleteしてみた。
