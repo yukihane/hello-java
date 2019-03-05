@@ -5,8 +5,11 @@
 == 考察
 
 元記事の原因に書かれている「EntityManager#detach を実行することで、user から insert が実行され、正常に order を登録できました。」の意図するところが不明。
+
 * `userNo` が `null` であることが原因なのであれば、 `User` insert時に主キー制約(主キーが `null`)にひっかかるはず
 * detachすれば、ということは `save` した　`User` に対して `Order` を追加しようとした場合、ということだろうか。
+
+---
 
 書かれているコードをそのまま実行すると、次の例外が発生する:
 ```
@@ -14,11 +17,13 @@
 ```
 おそらく実際には `@Column` でカラム名が明示されているのだろう。
 
+---
+
 実行時次の例外が発生する:
 ```
 org.springframework.data.mapping.PropertyReferenceException: No property findOne found for type User!
 ```
-`JpaRepository`に備わっている`findOne`メソッドとは引数の型が異なる。ということは実際にはカスタムリポジトリ実装がなされているのであろう。
+`JpaRepository` に備わっている `findOne` メソッドとは引数の型が異なる。ということは実際にはカスタムリポジトリ実装がなされているのであろう。
 
 == 結論
 
