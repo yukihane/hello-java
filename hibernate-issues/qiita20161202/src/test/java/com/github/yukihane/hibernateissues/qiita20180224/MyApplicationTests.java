@@ -25,8 +25,8 @@ public class MyApplicationTests {
     @Test
     public void contextLoads() {
         List<Parent> res = repository.findAll();
-        assertEquals(1, res.size());
-        Parent p = res.iterator().next();
+        assertEquals(2, res.size());
+        Parent p = res.stream().filter(e -> e.getId()==1001).findFirst().get();
 
         assertEquals(2, p.getChildren().size());
         Child c1 = p.getChildren().stream().filter(c -> c.getId() == 1).findFirst().get();

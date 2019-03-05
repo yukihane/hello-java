@@ -6,9 +6,25 @@
 == LIE 発生について
 
 === 考察
-joinして1クエリで引いた場合に問題ないということは、`Parent`をクエリした時点でdetachされている。
+joinして1クエリで引いた場合に問題ないということは、 `Parent` をクエリした時点でdetachされている。
 
 === 対策
 
 `@Transaction` 内で実行する。
 
+== n+1問題について
+
+いくつか考えるべき事項があり、解決する方策も複数ある。
+
+* コレクションは本当に `List` 型が妥当なのか。
+** Hibernateでは `Set` と `List` は明確に意味が異なる。エラーメッセージにある通り、 `List` は通常bagのために用いる。 https://docs.jboss.org/hibernate/stable/orm/userguide/html_single/Hibernate_User_Guide.html#collections-entity[2.8.3. Collections of entities]及びこれ以降の節。
+** `Set` であれば解決できる(はず)。参考: https://qiita.com/kakasak/items/654f1f5549c1a27ea42b#%E8%A7%A3%E6%B1%BA%E7%AD%96[Spring Data JPA において MultipleBagFetchException と LazyInitializationException のいずれかの例外が投げられる]
+* join fetch が唯一の n+1問題に対する解決策ではない。
+** https://docs.jboss.org/hibernate/stable/orm/userguide/html_single/Hibernate_User_Guide.html#fetching[11. Fetching]
+* 動的にfetch戦略を考えなければいけない箇所なのか。
+** Spring Data Repositoriesが扱うaggregate root(https://spring.io/projects/spring-data-jdbc[参考])からのfetchで逐次select(要はn+1問題が発生しうるfetch戦略)を行うべき箇所はほぼ無いのでは。
+
+あまりコードの根本的な見直しができない状況でn+1問題を解消する必要がある場合に、経験上、最も汎用的かつ効果的だったのは batch fetch に変更すること。
+SQLとしては逐次SELECTではなく `in` 句で親IDを指定する形になる。
+
+その他の対応としては、今回の場合、おそらく、 https://docs.jboss.org/hibernate/stable/orm/userguide/html_single/Hibernate_User_Guide.html#fetching-LazyCollection[EXTRA Lazy fetch] でも可能で、簡単に対応できる部類になるのではないか。
