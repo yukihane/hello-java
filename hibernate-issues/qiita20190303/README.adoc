@@ -3,19 +3,12 @@
 * Entityのライフサイクルでハマりかけた話
 ** https://qiita.com/yut_arrows/items/e04960d4c7056faea003
 
-== 考察
+== LIE 発生について
 
-* リンク先にかかれているような、エンティティのライフサイクルの話ではない。ライフサイクルは無関係。
+=== 考察
+joinして1クエリで引いた場合に問題ないということは、`Parent`をクエリした時点でdetachされている。
 
-== 結論
+=== 対策
 
-JPAの話ではない。Spring Data JPA の 自動生成クエリ(derived delete query)の仕様の問題。
+`@Transaction` 内で実行する。
 
-https://docs.spring.io/spring-data/jpa/docs/2.1.5.RELEASE/reference/html/#jpa.modifying-queries.derived-delete[リファレンス]より: 
-[quote]
-In fact, a derived delete query is a shortcut for executing the query and then calling CrudRepository.delete(Iterable users) on the result and keeping behavior in sync with the implementations of other delete(…) methods in CrudRepository.
-[quote]
-
-== サンプルコード実行方法
-
-    mvn spring-boot:run
