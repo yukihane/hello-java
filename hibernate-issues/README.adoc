@@ -1,0 +1,31 @@
+= 雑感
+
+便宜上Hibernateと書いていますが、EclipseLink等の別実装を使っている人は適宜それに読み替えること。
+
+== JPAでなくHibernateを使おう
+
+* JPAの1実装がHibernateである、ではなく、JPAの先行版がHibernateである、あるいはHibernateの機能縮小版がJPAである、と捉えよう
+* Hibernate独自アノテーションで目的が達成できるのなら避ける必要はない
+** 縛りプレイをする必要はない
+* Hibernateのリファレンスを読もう
+** 別にHibernateでしか通用しないドキュメントではなく、大半JPAとして読める
+
+== JPQLでなくJPA Criteria を使おう
+
+* JPQLだとタイプセーフの恩恵を受けられない。Hibernate/JPAを使うメリットが半減する。
+
+ちなみにHibernate Criteriaのほうが記述能力が高かったが、Hibernate6で廃止予定…(JPA Criteriaが追いつく、と信じよう。あるいはもう追いついているのかな…？)
+
+== リポジトリパターン(Spring Data Repositoryの思想)とHibernate間でミスマッチがあるのでは
+
+* 発生している問題の理解を誤解しているのは(今のところ)みんなSpring Data JPA経由
+* リポジトリ利用者は、リポジトリのメソッドを呼び、結果が帰ってきた時点で何らかの処理の区切りがついたように錯覚してしまうが、Hibernate的にはそこが何かの境界になっているわけではない
+** (よね？Springよく知らないけど…)
+** エンティティのライフサイクルが〜系の問題の一端になっていると思う
+* 基本 `CrudRepository` のメソッドや derived query を使い、それで対応できなければ `@Query` で… というのが王道であると考えてしまっているのでは
+** JPA Criteria を使う導線が無い。
+
+また別の問題として、JPAとリポジトリパターンを知らずにSpring Data JPAを使うことで、思想に反した使い方をして問題を複雑化してしまっているのではないかという懸念もある。
+Hibernateを単独で使うよりSpring Data JPAを使う方が難易度は高い。
+そしてこの難易度の高さがJPA怖い、につながっている気もする。実際に怖かったのはSpring Data JPAの方であっても。
+
