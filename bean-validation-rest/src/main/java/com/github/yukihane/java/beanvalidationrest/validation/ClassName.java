@@ -18,9 +18,10 @@ import javax.validation.Payload;
 @Constraint(validatedBy = ClassNameValidator.class)
 @Documented
 public @interface ClassName {
-    String message() default "";
+    String message() default "{com.github.yukihane.java.beanvalidationrest.validation.ClassName.message}";
 
     Class<?>[] groups() default {};
+
 
     Class<? extends Payload>[] payload() default {};
 }

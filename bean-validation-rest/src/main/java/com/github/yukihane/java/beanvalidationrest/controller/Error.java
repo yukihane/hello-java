@@ -10,5 +10,6 @@ public class Error {
     private String field;
     private String[] codes;
     private String objectName;
+    private String message;
 
 }

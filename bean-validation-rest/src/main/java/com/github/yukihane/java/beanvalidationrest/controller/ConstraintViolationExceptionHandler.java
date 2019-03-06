@@ -29,9 +29,11 @@ public class ConstraintViolationExceptionHandler extends ResponseEntityException
         LOG.info("AllErrors: {}", br.getAllErrors());
         LOG.info("ErrorCount: {}", br.getErrorCount());
         LOG.info("FieldErrors: {}", br.getFieldErrors());
+        LOG.info("message: {}",
+                br.getAllErrors().stream().map(e -> e.getDefaultMessage()).collect(Collectors.toList()));
 
         final List<Error> errors = br.getFieldErrors().stream()
-                .map(e -> new Error(e.getField(), e.getCodes(), e.getObjectName()))
+                .map(e -> new Error(e.getField(), e.getCodes(), e.getObjectName(), e.getDefaultMessage()))
                 .collect(Collectors.toList());
 
         final ResponseEntity<Object> ret = new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
