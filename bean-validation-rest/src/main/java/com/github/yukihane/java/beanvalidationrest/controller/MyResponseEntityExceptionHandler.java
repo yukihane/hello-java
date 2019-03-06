@@ -17,9 +17,9 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 @RestControllerAdvice
-public class ConstraintViolationExceptionHandler extends ResponseEntityExceptionHandler {
+public class MyResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
 
-    private static final Logger LOG = LoggerFactory.getLogger(ConstraintViolationExceptionHandler.class);
+    private static final Logger LOG = LoggerFactory.getLogger(MyResponseEntityExceptionHandler.class);
 
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(final MethodArgumentNotValidException ex,
