@@ -1,5 +1,6 @@
 package com.github.yukihane.java.beanvalidationrest.bean;
 
+import com.github.yukihane.java.beanvalidationrest.validation.Date;
 import com.github.yukihane.java.beanvalidationrest.validation.Digit;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
@@ -30,8 +31,7 @@ public class Student {
     private String birthMonth;
 
     @NotBlank
-    @Size(min = 2, max = 2)
-    @Digit
+    @Date
     private String birthDate;
 
 }

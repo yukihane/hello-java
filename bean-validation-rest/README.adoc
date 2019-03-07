@@ -18,8 +18,8 @@ student null:
 curl -X POST "http://localhost:8080/room" -H "accept: application/json;charset=UTF-8" -H "Content-Type: application/json;charset=UTF-8" -d "{ \"id\": 4, \"name\": \"\"}"
 ```
 
-誕生日エラー:
+誕生日エラー(Date):
 
 ```
-curl -X POST "http://localhost:8080/room" -H "accept: application/json;charset=UTF-8" -H "Content-Type: application/json;charset=UTF-8" -d "{ \"id\": 5, \"name\": \"2-2\", \"students\": [ { \"id\": 5, \"name\": \"yamada\", \"birthYear\": \"2000\", \"birthMonth\": \"0\", \"birthDate\": \"15\"  } ]}"
+curl -X POST "http://localhost:8080/room" -H "accept: application/json;charset=UTF-8" -H "Content-Type: application/json;charset=UTF-8" -d "{ \"id\": 5, \"name\": \"2-2\", \"students\": [ { \"id\": 5, \"name\": \"yamada\", \"birthYear\": \"2000\", \"birthMonth\": \"10\", \"birthDate\": \"A\"  } ]}"
 ```
