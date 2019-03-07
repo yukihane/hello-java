@@ -5,6 +5,9 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import org.springframework.beans.factory.annotation.Autowired;
 
+/**
+ * {@link ConstraintValidator} 実装の中でも {@link Autowired} が使えることを確認するためのサンプル。
+ */
 public class ClassNameValidator implements ConstraintValidator<ClassName, String> {
 
     @Autowired

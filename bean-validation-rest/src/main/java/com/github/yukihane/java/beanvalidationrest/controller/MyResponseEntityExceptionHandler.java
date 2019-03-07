@@ -32,8 +32,8 @@ public class MyResponseEntityExceptionHandler extends ResponseEntityExceptionHan
         LOG.info("message: {}",
                 br.getAllErrors().stream().map(e -> e.getDefaultMessage()).collect(Collectors.toList()));
 
-        final List<Error> errors = br.getFieldErrors().stream()
-                .map(e -> new Error(e.getField(), e.getCodes(), e.getObjectName(), e.getDefaultMessage()))
+        final List<ConstraintViolationResponse> errors = br.getFieldErrors().stream()
+                .map(e -> new ConstraintViolationResponse(e.getField(), e.getCodes(), e.getObjectName(), e.getDefaultMessage()))
                 .collect(Collectors.toList());
 
         final ResponseEntity<Object> ret = new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);

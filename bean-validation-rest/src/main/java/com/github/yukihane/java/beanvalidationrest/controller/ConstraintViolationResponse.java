@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class Error {
+public class ConstraintViolationResponse {
 
     private String field;
     private String[] codes;

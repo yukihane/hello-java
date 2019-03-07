@@ -13,6 +13,9 @@ import java.lang.annotation.Target;
 import javax.validation.Constraint;
 import javax.validation.Payload;
 
+/**
+ * バリデーション実装 {@link ClassNameValidator} にサービスをインジェクションしたような 制約のサンプル。
+ */
 @Target({ FIELD, METHOD, PARAMETER, ANNOTATION_TYPE, TYPE_USE })
 @Retention(RUNTIME)
 @Constraint(validatedBy = ClassNameValidator.class)
@@ -21,7 +24,6 @@ public @interface ClassName {
     String message() default "{com.github.yukihane.java.beanvalidationrest.validation.ClassName.message}";
 
     Class<?>[] groups() default {};
-
 
     Class<? extends Payload>[] payload() default {};
 }
