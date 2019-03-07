@@ -22,8 +22,6 @@ import javax.validation.constraints.Pattern;
 public @interface Digit {
     String message() default "{com.github.yukihane.java.beanvalidationrest.validation.Digit.message}";
 
-    int value() default Integer.MAX_VALUE;
-
     Class<?>[] groups() default {};
 
     Class<? extends Payload>[] payload() default {};
