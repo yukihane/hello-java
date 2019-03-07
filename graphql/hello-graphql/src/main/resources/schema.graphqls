@@ -1,0 +1,12 @@
+type Query {
+    classRoomByName(name: String): ClassRoom
+}
+
+type ClassRoom {
+    name: String
+    students: [Student]
+}
+
+type Student {
+    name: String
+}
