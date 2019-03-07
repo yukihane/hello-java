@@ -1,5 +1,6 @@
 package com.github.yukihane.java.beanvalidationrest.bean;
 
+import com.github.yukihane.java.beanvalidationrest.validation.Digit;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -20,14 +21,17 @@ public class Student {
 
     @NotBlank
     @Size(min = 4, max = 4)
+    @Digit
     private String birthYear;
 
     @NotBlank
     @Size(min = 2, max = 2)
+    @Digit
     private String birthMonth;
 
     @NotBlank
     @Size(min = 2, max = 2)
+    @Digit
     private String birthDate;
 
 }
