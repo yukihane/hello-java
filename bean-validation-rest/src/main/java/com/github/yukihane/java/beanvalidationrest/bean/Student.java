@@ -2,6 +2,7 @@ package com.github.yukihane.java.beanvalidationrest.bean;
 
 import com.github.yukihane.java.beanvalidationrest.validation.Date;
 import com.github.yukihane.java.beanvalidationrest.validation.Digit;
+import com.github.yukihane.java.beanvalidationrest.validation.YearMonthDay;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -12,6 +13,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@YearMonthDay({ "birthYear", "birthMonth", "birthDayOfMonth" })
 public class Student {
 
     @Min(1)
@@ -32,6 +34,6 @@ public class Student {
 
     @NotBlank
     @Date
-    private String birthDate;
+    private String birthDayOfMonth;
 
 }
