@@ -27,9 +27,13 @@ public class YearMonthDayValidator implements ConstraintValidator<YearMonthDay, 
 
         try {
             final BeanWrapper wrapper = new BeanWrapperImpl(value);
-            final CharSequence yearStr = (CharSequence) wrapper.getPropertyValue(fields[0]);
-            final CharSequence monthStr = (CharSequence) wrapper.getPropertyValue(fields[1]);
-            final CharSequence dayOfMonthStr = (CharSequence) wrapper.getPropertyValue(fields[2]);
+            final boolean known = (boolean) wrapper.getPropertyValue(fields[0]);
+            if (known == false) {
+                return true;
+            }
+            final CharSequence yearStr = (CharSequence) wrapper.getPropertyValue(fields[1]);
+            final CharSequence monthStr = (CharSequence) wrapper.getPropertyValue(fields[2]);
+            final CharSequence dayOfMonthStr = (CharSequence) wrapper.getPropertyValue(fields[3]);
 
             final int year = Integer.valueOf(yearStr.toString()).intValue();
             final int month = Integer.valueOf(monthStr.toString()).intValue();

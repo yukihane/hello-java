@@ -14,16 +14,17 @@ import javax.validation.Constraint;
 import javax.validation.Payload;
 
 /**
- * 相関項目チェックのサンプル
+ * 1項目目が {@code true}, {@code Boolean.TRUE}, 文字列型の場合にはブランクでない,
+ * {@code null}でない場合に 2項目目が {@code null}でなく空文字列でも無いことを検証します。
  */
-@Constraint(validatedBy = YearMonthDayValidator.class)
+@Constraint(validatedBy = { RequireIfNeededBooleanValidator.class })
 @Target({ TYPE, METHOD, CONSTRUCTOR, ANNOTATION_TYPE })
 @Retention(RUNTIME)
 @Documented
-@Repeatable(YearMonthDay.List.class)
-public @interface YearMonthDay {
+@Repeatable(RequireIfNeeded.List.class)
+public @interface RequireIfNeeded {
 
-    String message() default "{com.github.yukihane.java.beanvalidationrest.validation.YearMonthDay.message}";
+    String message() default "{com.github.yukihane.java.beanvalidationrest.validation.RequireIfNeeded.message}";
 
     Class<?>[] groups() default {};
 
@@ -35,6 +36,6 @@ public @interface YearMonthDay {
     @Retention(RUNTIME)
     @Documented
     @interface List {
-        YearMonthDay[] value();
+        RequireIfNeeded[] value();
     }
 }
