@@ -19,8 +19,8 @@ public class ClassRoomRepository {
 
     @PostConstruct
     public void init() {
-        final List<Student> students = Arrays.asList(new Student(1L, "suzuki", "2000", "10", "10"),
-                new Student(2L, "tanaka", "2000", "08", "08"));
+        final List<Student> students = Arrays.asList(new Student(1L, "suzuki", Boolean.FALSE, null, null, null),
+                new Student(2L, "tanaka", Boolean.TRUE, "2000", "08", "08"));
         final ClassRoom room = new ClassRoom(1L, "1-1", students);
         add(room);
     }
