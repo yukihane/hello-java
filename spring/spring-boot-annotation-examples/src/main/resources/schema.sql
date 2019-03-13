@@ -1,0 +1,1 @@
+create table my_entity( id integer not null primary key, name varchar(50) not null);
