@@ -8,6 +8,9 @@ import org.springframework.stereotype.Repository;
 import com.example.springboot.entity.MyEntity;
 import com.example.springboot.mybatis.mapper.MyEntityMapper;
 
+/**
+ * {@link Repository} は、 (DDDで言うところの)
+ */
 @Repository
 public class MyRepositoryImpl implements MyRepository {
 
