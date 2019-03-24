@@ -22,4 +22,6 @@ import com.example.springboot.entity.MyEntity;
 public interface MyEntityMapper {
 
     MyEntity find(long id);
+
+    void insert(MyEntity entity);
 }

@@ -3,7 +3,11 @@
 
 <mapper namespace="com.example.springboot.mybatis.mapper.MyEntityMapper">
 
-    <select id="find" resultType="com.example.springboot.entity.MyEntity">
-        select id, name from my_entity where id = #{id}
-    </select>
+  <select id="find" resultType="com.example.springboot.entity.MyEntity">
+    select id, name from my_entity where id = #{id}
+  </select>
+
+  <insert id="insert">
+    insert into my_entity(id, name) values (#{id}, #{name})
+  </insert>
 </mapper>

@@ -22,4 +22,10 @@ public class MyRepositoryImpl implements MyRepository {
         return Optional.ofNullable(mapper.find(id));
     }
 
+    @Override
+    public MyEntity insert(final MyEntity entity) {
+        mapper.insert(entity);
+        return entity;
+    }
+
 }

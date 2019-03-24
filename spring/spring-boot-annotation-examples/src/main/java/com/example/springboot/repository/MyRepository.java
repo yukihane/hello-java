@@ -8,4 +8,6 @@ public interface MyRepository {
 
     Optional<MyEntity> find(long id);
 
+    MyEntity insert(MyEntity entity);
+
 }
