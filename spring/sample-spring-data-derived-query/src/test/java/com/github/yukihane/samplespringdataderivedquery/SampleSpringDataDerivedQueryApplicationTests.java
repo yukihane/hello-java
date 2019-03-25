@@ -19,4 +19,9 @@ public class SampleSpringDataDerivedQueryApplicationTests {
         repository.findById(1L);
     }
 
+    @Test
+    public void testFindByName() {
+        repository.findByName("noname");
+    }
+
 }
