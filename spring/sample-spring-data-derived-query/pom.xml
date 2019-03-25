@@ -49,6 +49,31 @@
   <build>
     <plugins>
       <plugin>
+        <groupId>net.revelc.code.formatter</groupId>
+        <artifactId>formatter-maven-plugin</artifactId>
+        <version>2.8.1</version>
+        <configuration>
+          <compilerCompliance>${java.version}</compilerCompliance>
+          <compilerSource>${java.version}</compilerSource>
+          <compilerTargetPlatform>${java.version}</compilerTargetPlatform>
+          <configFile>https://raw.githubusercontent.com/yukihane/prefs/master/eclipse/java-format-setting.xml</configFile>
+          <lineEnding>LF</lineEnding>
+          <skipCssFormatting>true</skipCssFormatting>
+          <skipHtmlFormatting>true</skipHtmlFormatting>
+          <skipJavaFormatting>false</skipJavaFormatting>
+          <skipJsFormatting>true</skipJsFormatting>
+          <skipJsonFormatting>true</skipJsonFormatting>
+          <skipXmlFormatting>false</skipXmlFormatting>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>format</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
       </plugin>
