@@ -22,7 +22,7 @@ public class MyResponseEntityExceptionHandler extends ResponseEntityExceptionHan
 
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(final MethodArgumentNotValidException ex,
-            final HttpHeaders headers, final HttpStatus status, final WebRequest request) {
+        final HttpHeaders headers, final HttpStatus status, final WebRequest request) {
 
         final MethodParameter param = ex.getParameter();
         LOG.info("parameterName: {}", param.getParameterName());
@@ -53,8 +53,9 @@ public class MyResponseEntityExceptionHandler extends ResponseEntityExceptionHan
         });
 
         final List<ConstraintViolationResponse> errors = br.getFieldErrors().stream()
-                .map(e -> new ConstraintViolationResponse(e.getField(), e.getCodes(), e.getObjectName(), e.getDefaultMessage()))
-                .collect(Collectors.toList());
+            .map(e -> new ConstraintViolationResponse(e.getField(), e.getCodes(), e.getObjectName(),
+                e.getDefaultMessage()))
+            .collect(Collectors.toList());
 
         final ResponseEntity<Object> ret = new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
         return ret;

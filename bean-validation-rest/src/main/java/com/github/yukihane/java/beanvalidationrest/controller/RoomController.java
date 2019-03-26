@@ -30,7 +30,9 @@ public class RoomController {
         return repository.getById(id).orElse(null);
     }
 
-    @PostMapping(path = "/room", consumes = { MediaType.APPLICATION_JSON_UTF8_VALUE }, produces = {
+    @PostMapping(path = "/room",
+        consumes = { MediaType.APPLICATION_JSON_UTF8_VALUE },
+        produces = {
             MediaType.APPLICATION_JSON_UTF8_VALUE })
     public ClassRoom add(@RequestBody @Valid final ClassRoom classRoom) {
         repository.add(classRoom);

@@ -17,13 +17,13 @@ public class YearMonthDayValidator implements ConstraintValidator<YearMonthDay, 
     public void initialize(final YearMonthDay constraintAnnotation) {
         fields = constraintAnnotation.value();
     }
+
     @Override
     public boolean isValid(final Object value, final ConstraintValidatorContext context) {
 
         if (value == null) {
             return true;
         }
-
 
         try {
             final BeanWrapper wrapper = new BeanWrapperImpl(value);

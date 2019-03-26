@@ -20,14 +20,14 @@ public class ClassRoomRepository {
     @PostConstruct
     public void init() {
         final List<Student> students = Arrays.asList(new Student(1L, "suzuki", Boolean.FALSE, null, null, null),
-                new Student(2L, "tanaka", Boolean.TRUE, "2000", "08", "08"));
+            new Student(2L, "tanaka", Boolean.TRUE, "2000", "08", "08"));
         final ClassRoom room = new ClassRoom(1L, "1-1", students);
         add(room);
     }
 
     public List<ClassRoom> getAll() {
         return classRooms.values().stream().sorted((e1, e2) -> (int) (e1.getId() - e2.getId()))
-                .collect(Collectors.toList());
+            .collect(Collectors.toList());
     }
 
     public Optional<ClassRoom> getById(final long id) {
