@@ -3,52 +3,47 @@ package com.github.yukihane.java.beanvalidationrest.controller;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.MethodParameter;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import org.springframework.web.context.request.WebRequest;
-import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+@Slf4j
 @RestControllerAdvice
-public class MyResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
+public class MyResponseEntityExceptionHandler {
 
-    private static final Logger LOG = LoggerFactory.getLogger(MyResponseEntityExceptionHandler.class);
-
-    @Override
-    protected ResponseEntity<Object> handleMethodArgumentNotValid(final MethodArgumentNotValidException ex,
-        final HttpHeaders headers, final HttpStatus status, final WebRequest request) {
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    protected ResponseEntity<Object> handleMethodArgumentNotValid(final MethodArgumentNotValidException ex) {
 
         final MethodParameter param = ex.getParameter();
-        LOG.info("parameterName: {}", param.getParameterName());
-        LOG.info("parameterType: {}", param.getParameterType());
+        log.info("parameterName: {}", param.getParameterName());
+        log.info("parameterType: {}", param.getParameterType());
 
         final BindingResult br = ex.getBindingResult();
-        LOG.info("Target: {}", br.getTarget());
-        LOG.info("ErrorCount: {}", br.getErrorCount());
+        log.info("Target: {}", br.getTarget());
+        log.info("ErrorCount: {}", br.getErrorCount());
 
-        LOG.info("AllErrors");
+        log.info("AllErrors");
         br.getAllErrors().stream().forEach(e -> {
-            LOG.info("objectName: {}", e.getObjectName());
+            log.info("objectName: {}", e.getObjectName());
             Stream.of(e.getCodes()).forEach(c -> {
-                LOG.info("code: {}", c);
+                log.info("code: {}", c);
             });
             Stream.of(e.getArguments()).forEach(a -> {
-                LOG.info("argument: {}", a);
+                log.info("argument: {}", a);
             });
         });
 
-        LOG.info("fieldErrors");
+        log.info("fieldErrors");
         br.getFieldErrors().stream().forEach(e -> {
-            LOG.info("objectName: {}", e.getObjectName());
-            LOG.info("field: {}", e.getField());
+            log.info("objectName: {}", e.getObjectName());
+            log.info("field: {}", e.getField());
             Stream.of(e.getArguments()).forEach(a -> {
-                LOG.info("argument: {}", a);
+                log.info("argument: {}", a);
             });
         });
 
