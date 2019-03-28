@@ -4,18 +4,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
-    @Configuration
-    public class MyConfig {
+@Configuration
+@Profile("message-properties")
+public class MyConfig {
 
-        @Autowired
-        private MessageSource messageSource;
+    @Autowired
+    private MessageSource messageSource;
 
-        @Bean
+    @Bean
     public LocalValidatorFactoryBean localValidatorFactoryBean() {
-            final LocalValidatorFactoryBean factoryBean = new LocalValidatorFactoryBean();
-            factoryBean.setValidationMessageSource(messageSource);
-            return factoryBean;
-        }
+        final LocalValidatorFactoryBean factoryBean = new LocalValidatorFactoryBean();
+        factoryBean.setValidationMessageSource(messageSource);
+        return factoryBean;
     }
+}
