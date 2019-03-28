@@ -1,5 +1,7 @@
 package com.github.yukihane.java.beanvalidationrest.controller;
 
+import com.github.yukihane.java.beanvalidationrest.controller.response.ConstraintViolationResponse;
+import com.github.yukihane.java.beanvalidationrest.controller.response.ValidationResponse;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -17,7 +19,8 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class MyResponseEntityExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    protected ResponseEntity<Object> handleMethodArgumentNotValid(final MethodArgumentNotValidException ex) {
+    protected ResponseEntity<ValidationResponse> handleMethodArgumentNotValid(
+        final MethodArgumentNotValidException ex) {
 
         final MethodParameter param = ex.getParameter();
         log.info("parameterName: {}", param.getParameterName());
@@ -52,7 +55,11 @@ public class MyResponseEntityExceptionHandler {
                 e.getDefaultMessage()))
             .collect(Collectors.toList());
 
-        final ResponseEntity<Object> ret = new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
+        final ValidationResponse resp = new ValidationResponse();
+        resp.setErrors(errors);
+
+        final ResponseEntity<ValidationResponse> ret = new ResponseEntity<>(resp,
+            HttpStatus.BAD_REQUEST);
         return ret;
     }
 

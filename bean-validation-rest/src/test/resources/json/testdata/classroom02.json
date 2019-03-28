@@ -1,0 +1,13 @@
+{
+  "id": 1,
+  "name": "test-classroom",
+  "students": [
+    {
+      "id": 1,
+      "name": "very very long name",
+      "birthYear": "2010",
+      "birthMonth": "01",
+      "birthDayOfMonth": "31"
+    }
+  ]
+}

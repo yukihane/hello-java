@@ -1,4 +1,4 @@
-package com.github.yukihane.java.beanvalidationrest.controller;
+package com.github.yukihane.java.beanvalidationrest.controller.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
