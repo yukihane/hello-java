@@ -2,12 +2,15 @@ package com.github.yukihane.java.beanvalidationrest.controller;
 
 import com.github.yukihane.java.beanvalidationrest.controller.response.ConstraintViolationResponse;
 import com.github.yukihane.java.beanvalidationrest.controller.response.ValidationResponse;
+import com.github.yukihane.java.beanvalidationrest.validation.AdditionalData;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
+import org.hibernate.validator.engine.HibernateConstraintViolation;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -88,6 +91,13 @@ public class MyResponseEntityExceptionHandler {
         final StringBuilder b = new StringBuilder();
         t.forEach(e -> {
             b.append(e.toString() + "\n");
+            b.append("arguments: " + Arrays.toString(e.getArguments()) + "\n");
+            b.append("defaultMessage: " + e.getDefaultMessage() + "\n");
+            final HibernateConstraintViolation<?> hcv = e.unwrap(HibernateConstraintViolation.class);
+            final AdditionalData payload = hcv.getDynamicPayload(AdditionalData.class);
+            if (payload != null) {
+                b.append("fields: ** " + payload.getFields() + " **\n");
+            }
         });
 
         return b.toString();

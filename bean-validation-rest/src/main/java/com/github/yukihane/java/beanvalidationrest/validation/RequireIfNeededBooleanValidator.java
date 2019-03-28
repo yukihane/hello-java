@@ -1,7 +1,9 @@
 package com.github.yukihane.java.beanvalidationrest.validation;
 
+import java.util.Arrays;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
+import org.hibernate.validator.constraintvalidation.HibernateConstraintValidatorContext;
 import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.BeanWrapperImpl;
 
@@ -20,7 +22,11 @@ public class RequireIfNeededBooleanValidator implements ConstraintValidator<Requ
 
     @Override
     public boolean isValid(final Object value, final ConstraintValidatorContext context) {
+        final HibernateConstraintValidatorContext hContext = context.unwrap(HibernateConstraintValidatorContext.class);
+        final AdditionalData payload = new AdditionalData();
+        payload.setFields(Arrays.asList(fields[1]));
 
+        hContext.withDynamicPayload(payload);
         if (value == null) {
             return true;
         }
