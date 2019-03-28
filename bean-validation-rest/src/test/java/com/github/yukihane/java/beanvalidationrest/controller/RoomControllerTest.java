@@ -51,22 +51,61 @@ public class RoomControllerTest {
     }
 
     @Test
-    public void getHello() throws Exception {
+    public void test01ParentSingleError() throws Exception {
         final HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
 
-        final String body = getJson("json/testdata/classroom01.json");
+        final String body = getJson("json/01parent-single-error/classroom01.json");
         final HttpEntity<String> entity = new HttpEntity<>(body, headers);
 
         final ResponseEntity<ValidationResponse> response = template.postForEntity(url.toURI(), entity,
             ValidationResponse.class);
 
-        final ValidationResponse expected = objectMapper.readValue(getJson("json/expected-result/result01.json"),
+        final ValidationResponse expected = objectMapper.readValue(getJson("json/01parent-single-error/result01.json"),
             ValidationResponse.class);
 
         //        assertEquals(expected, response.getBody());
         final ValidationResponse result = response.getBody();
         assertEquals(1, result.getErrors().size());
+
+    }
+
+    @Test
+    public void test02ChildSingleError() throws Exception {
+        final HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
+
+        final String body = getJson("json/02child-single-error/input.json");
+        final HttpEntity<String> entity = new HttpEntity<>(body, headers);
+
+        final ResponseEntity<ValidationResponse> response = template.postForEntity(url.toURI(), entity,
+            ValidationResponse.class);
+
+    }
+
+    @Test
+    public void test03TwoChildrenErrors() throws Exception {
+        final HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
+
+        final String body = getJson("json/03two-children-errors/input.json");
+        final HttpEntity<String> entity = new HttpEntity<>(body, headers);
+
+        final ResponseEntity<ValidationResponse> response = template.postForEntity(url.toURI(), entity,
+            ValidationResponse.class);
+
+    }
+
+    @Test
+    public void test04RelError() throws Exception {
+        final HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
+
+        final String body = getJson("json/04relerror/input.json");
+        final HttpEntity<String> entity = new HttpEntity<>(body, headers);
+
+        final ResponseEntity<ValidationResponse> response = template.postForEntity(url.toURI(), entity,
+            ValidationResponse.class);
 
     }
 

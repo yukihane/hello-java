@@ -1,0 +1,12 @@
+{
+  "id": 1,
+  "name": "1-2",
+  "students": [
+    {
+      "id": 1,
+      "name": "name1",
+      "knownBirthday": true,
+      "birthYear": "2010"
+    }
+  ]
+}

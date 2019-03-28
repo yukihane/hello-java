@@ -6,10 +6,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -22,26 +26,11 @@ public class MyResponseEntityExceptionHandler {
     protected ResponseEntity<ValidationResponse> handleMethodArgumentNotValid(
         final MethodArgumentNotValidException ex) {
 
-        final MethodParameter param = ex.getParameter();
-        log.info("parameterName: {}", param.getParameterName());
-        log.info("parameterType: {}", param.getParameterType());
-
         final BindingResult br = ex.getBindingResult();
-        log.info("Target: {}", br.getTarget());
-        log.info("ErrorCount: {}", br.getErrorCount());
 
-        log.info("AllErrors");
-        br.getAllErrors().stream().forEach(e -> {
-            log.info("objectName: {}", e.getObjectName());
-            Stream.of(e.getCodes()).forEach(c -> {
-                log.info("code: {}", c);
-            });
-            Stream.of(e.getArguments()).forEach(a -> {
-                log.info("argument: {}", a);
-            });
-        });
+        final String exStr = toString(ex);
+        log.error(exStr);
 
-        log.info("fieldErrors");
         br.getFieldErrors().stream().forEach(e -> {
             log.info("objectName: {}", e.getObjectName());
             log.info("field: {}", e.getField());
@@ -61,6 +50,55 @@ public class MyResponseEntityExceptionHandler {
         final ResponseEntity<ValidationResponse> ret = new ResponseEntity<>(resp,
             HttpStatus.BAD_REQUEST);
         return ret;
+    }
+
+    private static String toString(final MethodArgumentNotValidException ex) {
+        final StringBuilder b = new StringBuilder();
+
+        final String message = ex.getMessage();
+        b.append("message: " + message + "\n");
+        b.append("[MethodParameter]\n");
+        b.append(toString(ex.getParameter()));
+        b.append("[BindingResult]\n");
+        b.append(toString(ex.getBindingResult()));
+
+        return b.toString();
+    }
+
+    private static Object toString(final BindingResult t) {
+        final StringBuilder b = new StringBuilder();
+
+        b.append("objectName: " + t.getObjectName() + "\n");
+        b.append("nestedPath: " + t.getNestedPath() + "\n");
+        b.append("errorCount: " + t.getErrorCount() + "\n");
+        b.append("allErrors:\n" + toString(t.getAllErrors()) + "\n");
+        b.append("globalErrorCount: " + t.getGlobalErrorCount() + "\n");
+        b.append("globalErrors:\n" + toString(t.getGlobalErrors()) + "\n");
+        b.append("fieldErrorCount: " + t.getFieldErrorCount() + "\n");
+        b.append("fieldErrors:\n" + toString(t.getFieldErrors()) + "\n");
+
+        b.append("target: " + t.getTarget() + "\n");
+        b.append("model: " + t.getModel() + "\n");
+        b.append("suppressedFields: " + t.getSuppressedFields());
+
+        return b.toString();
+    }
+
+    private static String toString(final List<? extends ObjectError> t) {
+        final StringBuilder b = new StringBuilder();
+        t.forEach(e -> {
+            b.append(e.toString() + "\n");
+        });
+
+        return b.toString();
+    }
+
+    private static String toString(final MethodParameter t) {
+        final StringBuilder b = new StringBuilder();
+        b.append("executable: " + t.getExecutable().getName() + "\n");
+        b.append("parameter: " + t.getParameterName() + "\n");
+
+        return b.toString();
     }
 
 }
