@@ -1,21 +1,18 @@
 package com.github.yukihane.java.beanvalidationrest.controller;
 
-import com.github.yukihane.java.beanvalidationrest.controller.response.ConstraintViolationResponse;
+import com.github.yukihane.java.beanvalidationrest.controller.response.ValidationError;
 import com.github.yukihane.java.beanvalidationrest.controller.response.ValidationResponse;
 import com.github.yukihane.java.beanvalidationrest.validation.AdditionalData;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
 import org.hibernate.validator.engine.HibernateConstraintViolation;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -29,26 +26,33 @@ public class MyResponseEntityExceptionHandler {
     protected ResponseEntity<ValidationResponse> handleMethodArgumentNotValid(
         final MethodArgumentNotValidException ex) {
 
-        final BindingResult br = ex.getBindingResult();
-
         final String exStr = toString(ex);
-        log.error(exStr);
+        //        log.error(exStr);
 
-        br.getFieldErrors().stream().forEach(e -> {
-            log.info("objectName: {}", e.getObjectName());
-            log.info("field: {}", e.getField());
-            Stream.of(e.getArguments()).forEach(a -> {
-                log.info("argument: {}", a);
-            });
+        final List<ValidationError> errors = new ArrayList<>();
+        ex.getBindingResult().getFieldErrors().forEach(e -> {
+            final HibernateConstraintViolation<?> cv = e.unwrap(HibernateConstraintViolation.class);
+            final AdditionalData ad = cv.getDynamicPayload(AdditionalData.class);
+
+            final List<String> paths;
+            if (ad != null) {
+                //                paths = ad.getFields().stream().map(f -> e.getCode() + "." + f)
+                //                    .collect(Collectors.toList());
+                paths = ad.getFields().stream().map(f -> e.getField() + "." + f).collect(Collectors.toList());
+
+            } else {
+                paths = Arrays.asList(e.getField());
+            }
+            final String code = e.getCode();
+
+            final String message = e.getDefaultMessage();
+
+            errors.add(new ValidationError(paths, code, message));
         });
-
-        final List<ConstraintViolationResponse> errors = br.getFieldErrors().stream()
-            .map(e -> new ConstraintViolationResponse(e.getField(), e.getCodes(), e.getObjectName(),
-                e.getDefaultMessage()))
-            .collect(Collectors.toList());
 
         final ValidationResponse resp = new ValidationResponse();
         resp.setErrors(errors);
+        log.error("{}", resp);
 
         final ResponseEntity<ValidationResponse> ret = new ResponseEntity<>(resp,
             HttpStatus.BAD_REQUEST);

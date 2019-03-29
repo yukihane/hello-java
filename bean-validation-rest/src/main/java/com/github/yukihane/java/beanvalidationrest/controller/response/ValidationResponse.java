@@ -6,5 +6,5 @@ import lombok.Data;
 @Data
 public class ValidationResponse {
 
-    private List<ConstraintViolationResponse> errors;
+    private List<ValidationError> errors;
 }

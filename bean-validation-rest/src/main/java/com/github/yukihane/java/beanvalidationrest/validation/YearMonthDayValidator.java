@@ -1,8 +1,10 @@
 package com.github.yukihane.java.beanvalidationrest.validation;
 
 import java.time.LocalDate;
+import java.util.Arrays;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
+import org.hibernate.validator.constraintvalidation.HibernateConstraintValidatorContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanWrapper;
@@ -20,6 +22,11 @@ public class YearMonthDayValidator implements ConstraintValidator<YearMonthDay, 
 
     @Override
     public boolean isValid(final Object value, final ConstraintValidatorContext context) {
+
+        final HibernateConstraintValidatorContext hContext = context.unwrap(HibernateConstraintValidatorContext.class);
+        final AdditionalData payload = new AdditionalData();
+        payload.setFields(Arrays.asList(fields[1], fields[2], fields[3]));
+        hContext.withDynamicPayload(payload);
 
         if (value == null) {
             return true;
@@ -41,7 +48,7 @@ public class YearMonthDayValidator implements ConstraintValidator<YearMonthDay, 
 
             LocalDate.of(year, month, dayOfMonth);
         } catch (final Exception e) {
-            LOG.info("year-month-day format error", e);
+            //            LOG.info("year-month-day format error", e);
             return false;
         }
         return true;
