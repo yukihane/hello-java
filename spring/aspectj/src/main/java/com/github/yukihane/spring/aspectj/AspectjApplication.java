@@ -1,5 +1,7 @@
 package com.github.yukihane.spring.aspectj;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -9,16 +11,26 @@ import org.springframework.stereotype.Component;
 @SpringBootApplication
 public class AspectjApplication implements CommandLineRunner {
 
-    @Autowired
-    private MyComponent myComponent;
-
     public static void main(final String[] args) {
         SpringApplication.run(AspectjApplication.class, args);
     }
 
     @Override
     public void run(final String... args) throws Exception {
-        System.out.println("Hello, " + myComponent.getName());
+        System.out.println(new MyPojo().getText());
+    }
+
+    public static class MyPojo {
+        @Autowired
+        private MyComponent myComponent;
+
+        @Getter
+        @Setter
+        private String greetingText = "Hello, ";
+
+        public String getText() {
+            return getGreetingText() + myComponent.getName();
+        }
     }
 
     @Component
