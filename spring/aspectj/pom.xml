@@ -55,16 +55,45 @@
         <version>1.12.1</version>
         <executions>
           <execution>
+            <id>default-compile</id>
+            <phase>process-classes</phase>
             <goals>
-              <goal>compile</goal>       <!-- use this goal to weave all your main classes -->
-              <goal>test-compile</goal>  <!-- use this goal to weave all your test classes -->
+              <goal>compile</goal>
             </goals>
+            <configuration>
+              <weaveDirectories>
+                <weaveDirectory>${project.build.directory}/classes</weaveDirectory>
+              </weaveDirectories>
+            </configuration>
+          </execution>
+          <execution>
+            <id>default-testCompile</id>
+            <phase>process-test-classes</phase>
+            <goals>
+              <goal>test-compile</goal>
+            </goals>
+            <configuration>
+              <weaveDirectories>
+                <weaveDirectory>${project.build.directory}/test-classes</weaveDirectory>
+              </weaveDirectories>
+            </configuration>
           </execution>
         </executions>
         <configuration>
           <source>${java.version}</source>
           <target>${java.version}</target>
           <complianceLevel>${java.version}</complianceLevel>
+          <excludes>
+            <exclude>**/*.java</exclude>
+          </excludes>
+          <forceAjcCompile>true</forceAjcCompile>
+          <sources />
+          <aspectLibraries>
+            <aspectLibrary>
+              <groupId>org.springframework</groupId>
+              <artifactId>spring-aspects</artifactId>
+            </aspectLibrary>
+          </aspectLibraries>
         </configuration>
       </plugin>
       <plugin>
