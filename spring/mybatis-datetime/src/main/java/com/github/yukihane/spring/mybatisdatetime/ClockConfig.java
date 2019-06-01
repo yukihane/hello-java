@@ -4,6 +4,7 @@ import java.time.Clock;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.time.ZoneOffset;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -18,5 +19,11 @@ public class ClockConfig {
         final Clock clock = Clock.fixed(fixedInstant, tokyo);
 
         return clock;
+    }
+
+    @Bean
+    public ZoneOffset zoneOffset() {
+        // 日本の +09:00
+        return ZoneOffset.ofHours(9);
     }
 }
