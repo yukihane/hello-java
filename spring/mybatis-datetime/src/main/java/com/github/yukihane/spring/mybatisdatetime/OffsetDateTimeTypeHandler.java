@@ -10,9 +10,7 @@ import java.time.ZoneOffset;
 import org.apache.ibatis.type.BaseTypeHandler;
 import org.apache.ibatis.type.JdbcType;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Configurable;
 
-@Configurable
 public class OffsetDateTimeTypeHandler extends BaseTypeHandler<OffsetDateTime> {
 
     @Autowired
