@@ -64,6 +64,7 @@
               <weaveDirectories>
                 <weaveDirectory>${project.build.directory}/classes</weaveDirectory>
               </weaveDirectories>
+              <Xlint>warning</Xlint>
             </configuration>
           </execution>
           <execution>
