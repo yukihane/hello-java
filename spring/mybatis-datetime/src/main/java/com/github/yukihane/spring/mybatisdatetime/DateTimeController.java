@@ -21,10 +21,12 @@ public class DateTimeController {
 
         final OffsetDateTime now = OffsetDateTime.now(clock);
         mapper.update(now);
+        mapper.updateTz(now);
 
         final OffsetDateTime selectedDatetime = mapper.select();
+        final OffsetDateTime selectedDatetimeTz = mapper.selectTz();
 
-        return "Persisted Time: " + selectedDatetime;
+        return "Persisted Time: " + selectedDatetime + " TZ: " + selectedDatetimeTz;
     }
 
     @Mapper
@@ -35,5 +37,11 @@ public class DateTimeController {
 
         @Update("update my_datetime set col_timestamp = #{now} where id = 1")
         void update(OffsetDateTime now);
+
+        @Select("select col_timestamptz from my_datetime")
+        OffsetDateTime selectTz();
+
+        @Update("update my_datetime set col_timestamptz = #{now} where id = 1")
+        void updateTz(OffsetDateTime now);
     }
 }
