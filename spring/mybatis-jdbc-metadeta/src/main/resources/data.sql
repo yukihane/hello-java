@@ -1,0 +1,1 @@
+insert into my_data(zipcode,name) values('1112222','山田太郎')
