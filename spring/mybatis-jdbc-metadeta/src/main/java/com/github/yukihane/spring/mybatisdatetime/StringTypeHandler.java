@@ -5,7 +5,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import org.apache.ibatis.type.JdbcType;
+import org.apache.ibatis.type.MappedJdbcTypes;
+import org.apache.ibatis.type.MappedTypes;
 
+//@MappedTypes({ String.class })
+@MappedJdbcTypes({ JdbcType.VARCHAR, JdbcType.CHAR })
 public class StringTypeHandler extends org.apache.ibatis.type.StringTypeHandler {
 
     @Override
