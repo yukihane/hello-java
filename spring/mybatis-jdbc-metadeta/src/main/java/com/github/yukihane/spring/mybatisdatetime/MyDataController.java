@@ -17,10 +17,10 @@ public class MyDataController {
 
     @GetMapping
     public String data() {
-        mapper.selectZipcode();
-        mapper.selectName();
+        final String zipCode = mapper.selectZipcode();
+        final String name = mapper.selectName();
 
-        return "";
+        return "zip: " + zipCode + ", name: " + name;
     }
 
     @Mapper
@@ -30,6 +30,6 @@ public class MyDataController {
         String selectZipcode();
 
         @Select("select name from my_data")
-        OffsetDateTime selectName();
+        String selectName();
     }
 }
