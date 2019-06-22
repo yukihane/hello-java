@@ -4,7 +4,6 @@ import com.example.mybatisassociation.entity.Person;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -20,7 +19,6 @@ public class PersonRepositoryImpl implements PersonRepository {
 
     @Mapper
     interface PersonMapper {
-        @Select("select * from person where id = #{id}")
         Optional<Person> findById(long id);
     }
 
