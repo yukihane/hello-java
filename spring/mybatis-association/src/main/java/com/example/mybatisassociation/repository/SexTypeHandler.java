@@ -9,10 +9,8 @@ import java.sql.SQLException;
 import java.util.Optional;
 import org.apache.ibatis.type.BaseTypeHandler;
 import org.apache.ibatis.type.JdbcType;
-import org.apache.ibatis.type.MappedJdbcTypes;
 import org.springframework.context.ApplicationContext;
 
-@MappedJdbcTypes(value = JdbcType.NUMERIC)
 public class SexTypeHandler extends BaseTypeHandler<Sex> {
 
     @Override
