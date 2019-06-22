@@ -3,7 +3,6 @@ package com.example.mybatisassociation.repository;
 import static java.util.Comparator.comparingLong;
 
 import com.example.mybatisassociation.entity.Sex;
-import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -11,15 +10,13 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
 @Repository
 @RequiredArgsConstructor
-public class SexRepositoryImpl implements SexMapper {
+public class SexRepositoryImpl implements SexRepository {
 
-    private final InnerMapper mapper;
+    private final SexMapper mapper;
 
     @Getter(lazy = true)
     private final Map<Long, Sex> cache = cache();
@@ -38,13 +35,5 @@ public class SexRepositoryImpl implements SexMapper {
     public List<Sex> findAll() {
         return getCache().values().stream()
             .sorted(comparingLong(Sex::getId)).collect(Collectors.toList());
-    }
-
-    @Mapper
-    interface InnerMapper {
-
-        @Select("select * from sex")
-        Collection<Sex> findAll();
-
     }
 }
