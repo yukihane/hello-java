@@ -1,7 +1,7 @@
-package com.github.yukihane.mybatisassociation;
+package com.example.mybatisassociation;
 
-import com.github.yukihane.mybatisassociation.entity.Person;
-import com.github.yukihane.mybatisassociation.repository.PersonRepository;
+import com.example.mybatisassociation.entity.Person;
+import com.example.mybatisassociation.repository.PersonRepository;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;

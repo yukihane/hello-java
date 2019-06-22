@@ -1,4 +1,4 @@
-package com.github.yukihane.mybatisassociation;
+package com.example.mybatisassociation;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;

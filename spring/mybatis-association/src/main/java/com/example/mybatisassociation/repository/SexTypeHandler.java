@@ -1,7 +1,7 @@
-package com.github.yukihane.mybatisassociation.repository;
+package com.example.mybatisassociation.repository;
 
-import com.github.yukihane.mybatisassociation.ApplicationContextProvider;
-import com.github.yukihane.mybatisassociation.entity.Sex;
+import com.example.mybatisassociation.ApplicationContextProvider;
+import com.example.mybatisassociation.entity.Sex;
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

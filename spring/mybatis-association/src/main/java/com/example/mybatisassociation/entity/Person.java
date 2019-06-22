@@ -1,4 +1,4 @@
-package com.github.yukihane.mybatisassociation.entity;
+package com.example.mybatisassociation.entity;
 
 import lombok.Data;
 

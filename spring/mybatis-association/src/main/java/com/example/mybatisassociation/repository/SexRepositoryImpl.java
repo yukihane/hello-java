@@ -1,8 +1,8 @@
-package com.github.yukihane.mybatisassociation.repository;
+package com.example.mybatisassociation.repository;
 
 import static java.util.Comparator.comparingLong;
 
-import com.github.yukihane.mybatisassociation.entity.Sex;
+import com.example.mybatisassociation.entity.Sex;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;

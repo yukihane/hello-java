@@ -1,6 +1,6 @@
-package com.github.yukihane.mybatisassociation.repository;
+package com.example.mybatisassociation.repository;
 
-import com.github.yukihane.mybatisassociation.entity.Person;
+import com.example.mybatisassociation.entity.Person;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.apache.ibatis.annotations.Mapper;
