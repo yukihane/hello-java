@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 @RequiredArgsConstructor
 public class PersonRepositoryImpl implements PersonRepository {
 
-    private final InnerMapper mapper;
+    private final PersonMapper mapper;
 
     @Override
     public Optional<Person> findById(final long id) {
@@ -19,7 +19,7 @@ public class PersonRepositoryImpl implements PersonRepository {
     }
 
     @Mapper
-    interface InnerMapper {
+    interface PersonMapper {
         @Select("select * from person where id = #{id}")
         Optional<Person> findById(long id);
     }

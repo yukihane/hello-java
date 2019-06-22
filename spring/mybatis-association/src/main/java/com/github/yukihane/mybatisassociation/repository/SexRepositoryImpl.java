@@ -17,7 +17,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 @RequiredArgsConstructor
-public class SexRepositoryImpl implements SexRepository {
+public class SexRepositoryImpl implements SexMapper {
 
     private final InnerMapper mapper;
 
