@@ -6,7 +6,10 @@
   <settings>
     <setting name="logImpl" value="STDOUT_LOGGING" />
   </settings>
+  <!--
   <typeHandlers>
-    <typeHandler handler="com.example.mybatisassociation.repository.SexTypeHandler" javaType="com.example.mybatisassociation.entity.Sex" />
+    <typeHandler handler="com.example.mybatisassociation.repository.SexTypeHandler"
+      javaType="com.example.mybatisassociation.entity.Sex" />
   </typeHandlers>
+  -->
 </configuration>
