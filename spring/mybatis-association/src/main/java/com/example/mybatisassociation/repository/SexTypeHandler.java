@@ -31,7 +31,7 @@ public class SexTypeHandler extends BaseTypeHandler<Sex> {
 
     private Sex findSex(final long id) {
         final ApplicationContext context = ApplicationContextProvider.getApplicationContext();
-        final SexMapper sexMapper = context.getBean(SexMapper.class);
+        final SexRepository sexMapper = context.getBean(SexRepository.class);
         final Optional<Sex> sex = sexMapper.findById(id);
         return sex.get();
     }
