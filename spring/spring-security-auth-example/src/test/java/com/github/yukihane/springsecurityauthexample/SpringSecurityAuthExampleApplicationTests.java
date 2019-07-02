@@ -35,7 +35,8 @@ public class SpringSecurityAuthExampleApplicationTests {
     public void authrized() throws Exception {
         final HttpHeaders headers = new HttpHeaders();
         final List<String> authHeader = new ArrayList<>();
-        authHeader.add("Basic bXluYW1lOmVl");
+        // echo -n 'user1:password1'|base64
+        authHeader.add("Basic dXNlcjE6cGFzc3dvcmQx");
         headers.put("Authorization", authHeader);
         final HttpEntity<String> entity = new HttpEntity<>("", headers);
 
