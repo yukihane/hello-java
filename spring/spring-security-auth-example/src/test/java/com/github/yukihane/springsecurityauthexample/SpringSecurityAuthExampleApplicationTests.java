@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.test.web.client.TestRestTemplate;
@@ -26,11 +27,12 @@ public class SpringSecurityAuthExampleApplicationTests {
     @LocalServerPort
     private int port;
 
+    @Autowired
     private TestRestTemplate restTemplate;
 
-    @DisplayName("未認証の場合401になる")
+    @DisplayName("認証OK")
     @Test
-    public void unauthrized() throws Exception {
+    public void authrized() throws Exception {
         final HttpHeaders headers = new HttpHeaders();
         final List<String> authHeader = new ArrayList<>();
         authHeader.add("Basic bXluYW1lOmVl");
@@ -40,17 +42,17 @@ public class SpringSecurityAuthExampleApplicationTests {
         final URI url = new URL("http://localhost:" + port + "/hello").toURI();
         final ResponseEntity<String> ret = this.restTemplate.exchange(url, HttpMethod.GET, entity,
             String.class);
-        assertThat(ret.getStatusCode()).isEqualTo(HttpStatus.UNAUTHORIZED);
+        assertThat(ret.getStatusCode()).isEqualTo(HttpStatus.OK);
     }
 
-    @DisplayName("認証OK")
+    @DisplayName("未認証の場合401になる")
     @Test
-    public void authorized() throws MalformedURLException, URISyntaxException {
+    public void unauthorized() throws MalformedURLException, URISyntaxException {
         final HttpEntity<String> entity = new HttpEntity<>("");
         final URI url = new URL("http://localhost:" + port + "/hello").toURI();
         final ResponseEntity<String> ret = this.restTemplate.exchange(url, HttpMethod.GET, entity,
             String.class);
-        assertThat(ret.getStatusCode()).isEqualTo(HttpStatus.OK);
+        assertThat(ret.getStatusCode()).isEqualTo(HttpStatus.UNAUTHORIZED);
     }
 
 }
