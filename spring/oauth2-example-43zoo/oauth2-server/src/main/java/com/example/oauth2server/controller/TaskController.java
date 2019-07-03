@@ -11,8 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.oauth2server.entity.Task;
-import com.example.oauth2server.repository.TaskRepository;
-
+import com.example.oauth2server.service.TaskFindService;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -20,16 +19,16 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/api/tasks")
 public class TaskController {
 
-    private final TaskRepository taskRepository;
+    private final TaskFindService taskService;
 
     @GetMapping
     public List<Task> tasks() {
-        return taskRepository.findAll();
+        return taskService.findAll();
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Task> task(@PathVariable("id") final Long id) {
-        final Optional<Task> res = taskRepository.findById(id);
+        final Optional<Task> res = Optional.ofNullable(taskService.findById(id));
 
         return res.map(e -> new ResponseEntity<>(e, HttpStatus.OK))
             .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
