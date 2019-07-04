@@ -25,6 +25,6 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
             .secret(secret)
             .scopes("read")
             .authorizedGrantTypes("authorization_code")
-            .redirectUris("http://localhost:8081/oauth/login/client-app");
+            .redirectUris("http://localhost:8081/client/tasks");
     }
 }
