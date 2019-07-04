@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Task List</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css" type="text/css"
+          th:href="@{/webjars/bootstrap/css/bootstrap.css}"/>
+    <style type="text/css">
+        .strike {
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <table id="todoList" class="table table-hover" th:if="${not #lists.isEmpty(taskList)}">
+
+        <tr>
+            <th>Tasks</th>
+        </tr>
+
+        <tr th:each="task : ${taskList}">
+            <td th:text="${task}"></td>
+        </tr>
+
+    </table>
+
+</div>
+</body>
+</html>
