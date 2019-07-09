@@ -4,11 +4,8 @@ import java.util.Arrays;
 
 import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
-import org.springframework.stereotype.Component;
 
-@Component
 public class MyBasicAuthFilter extends BasicAuthenticationFilter {
-
 
     public MyBasicAuthFilter(final MyAuthenticationProvider provider) {
         super(new ProviderManager(Arrays.asList(provider)));

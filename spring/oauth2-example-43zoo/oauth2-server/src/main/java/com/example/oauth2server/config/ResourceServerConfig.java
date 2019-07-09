@@ -12,8 +12,5 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
         http
             .authorizeRequests()
             .antMatchers("/api/**").access("#oauth2.hasScope('read')");
-
-        // ↓を行うとログイン画面に行くのに認証が必要になってしまう
-        //            .anyRequest().authenticated();
     }
 }
