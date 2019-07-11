@@ -19,3 +19,11 @@ kazuki43zooさんの認可サーバ/リソースサーバ/クライアント実�
 1. Basic認証を求められるので id:pw を yamada:pwyamada あるいは suzuki:pwsuzuki で入力
 1. 認証が通ると認可画面になるので認可。
 1. リソースが表示される。
+
+# 要調査TODO
+
+- 認可コード、アクセストークン、リフレッシュトークン、クライントデータ等をDBに永続化する
+  - http://terasolunaorg.github.io/guideline/5.5.1.RELEASE/ja/Security/OAuth.html
+  - https://stackoverflow.com/a/45698964/4506703
+- OAuth認証時、複数の認証方法を選べるようにする(認証エンドポイントを複数作れるようにする)
+- 直接ログイン時の認証とOAuthの認証を別方式にする
