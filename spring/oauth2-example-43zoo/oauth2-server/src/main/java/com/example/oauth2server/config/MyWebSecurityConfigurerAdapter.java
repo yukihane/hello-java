@@ -21,6 +21,8 @@ public class MyWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter
 
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
+        http.cors().disable();
+        http.headers().frameOptions().disable();
         http
             .requestMatcher(new NotOAuthResourceRequestMatcher())
             .authorizeRequests()
@@ -37,7 +39,7 @@ public class MyWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter
         public boolean matches(final HttpServletRequest request) {
 
             final String requestPath = getRequestPath(request);
-            return !requestPath.startsWith("/api");
+            return !requestPath.startsWith("/api") && !requestPath.startsWith("/h2-console");
         }
 
         private String getRequestPath(final HttpServletRequest request) {
