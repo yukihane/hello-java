@@ -16,13 +16,13 @@ public class TaskServiceImpl implements TaskFindService {
     private final TaskRepository taskRepository;
 
     @Override
-    public List<Task> findAll() {
-        return taskRepository.findAll();
+    public List<Task> findByName(final String name) {
+        return taskRepository.findByUserName(name);
     }
 
     @Override
-    public Task findById(final Long id) {
-        return taskRepository.findById(id).orElse(null);
+    public Task findByNameAndId(final String name, final Long id) {
+        return taskRepository.findByIdAndUserName(id, name).orElse(null);
     }
 
 }

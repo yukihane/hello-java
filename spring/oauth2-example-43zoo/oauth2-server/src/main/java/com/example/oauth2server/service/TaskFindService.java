@@ -6,8 +6,8 @@ import com.example.oauth2server.entity.Task;
 
 public interface TaskFindService {
 
-    List<Task> findAll();
+    List<Task> findByName(String name);
 
-    Task findById(Long id);
+    Task findByNameAndId(String name, Long id);
 
 }
