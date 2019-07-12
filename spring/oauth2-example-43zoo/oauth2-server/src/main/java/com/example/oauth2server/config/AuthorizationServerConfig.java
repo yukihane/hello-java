@@ -47,7 +47,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
             .withClient("first-client")
             .secret(secret)
             .scopes("read")
-            .authorizedGrantTypes("authorization_code")
+            .authorizedGrantTypes("authorization_code", "refresh_token")
             .redirectUris("http://localhost:8081/client/tasks");
     }
 
