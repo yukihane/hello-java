@@ -3,7 +3,4 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-  <typeHandlers>
-    <typeHandler handler="com.github.yukihane.spring.mybatisdatetime.OffsetDateTimeTypeHandler" />
-  </typeHandlers>
 </configuration>

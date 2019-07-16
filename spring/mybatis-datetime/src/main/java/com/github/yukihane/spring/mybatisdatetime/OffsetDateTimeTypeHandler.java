@@ -7,21 +7,16 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
-import lombok.AccessLevel;
-import lombok.Getter;
+
 import org.apache.ibatis.type.BaseTypeHandler;
 import org.apache.ibatis.type.JdbcType;
-import org.springframework.context.ApplicationContext;
 
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
 public class OffsetDateTimeTypeHandler extends BaseTypeHandler<OffsetDateTime> {
 
-    @Getter(value = AccessLevel.PRIVATE, lazy = true)
-    private final ZoneOffset offset = offset();
-
-    private ZoneOffset offset() {
-        final ApplicationContext ctx = ApplicationContextProvider.getApplicationContext();
-        return ctx.getBean(ZoneOffset.class);
-    }
+    private final ZoneOffset offset;
 
     @Override
     public void setNonNullParameter(final PreparedStatement ps, final int i, final OffsetDateTime parameter,
@@ -49,6 +44,6 @@ public class OffsetDateTimeTypeHandler extends BaseTypeHandler<OffsetDateTime> {
         if (timestamp == null) {
             return null;
         }
-        return timestamp.toInstant().atOffset(getOffset());
+        return timestamp.toInstant().atOffset(offset);
     }
 }
