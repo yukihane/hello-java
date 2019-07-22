@@ -1,5 +1,6 @@
 package com.example.oauth2server.config;
 
+import java.util.stream.Stream;
 import javax.sql.DataSource;
 
 import org.springframework.context.annotation.Bean;
@@ -22,6 +23,17 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
     private final DataSource dataSource;
 
+    private static final String[] PATHS = {
+        "/oauth/authorize",
+        "/oauth/check_token",
+        "/oauth/confirm_access",
+        "/oauth/error",
+        "/oauth/token",
+        "/oauth/token_key",
+    };
+
+    private static final String PREFIX = "/v1";
+
     @Bean
     public TokenStore tokenStore() {
         return new JdbcTokenStore(dataSource);
@@ -39,6 +51,9 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
     @Override
     public void configure(final AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
+
+        Stream.of(PATHS).forEach(path -> endpoints.pathMapping(path, PREFIX + path));
+
         endpoints
             .tokenStore(tokenStore())
             .reuseRefreshTokens(false)
