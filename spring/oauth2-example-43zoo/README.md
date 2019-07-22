@@ -22,8 +22,5 @@ kazuki43zooさんの認可サーバ/リソースサーバ/クライアント実�
 
 # 要調査TODO
 
-- 認可コード、アクセストークン、リフレッシュトークン、クライントデータ等をDBに永続化する
-  - http://terasolunaorg.github.io/guideline/5.5.1.RELEASE/ja/Security/OAuth.html
-  - https://stackoverflow.com/a/45698964/4506703
 - OAuth認証時、複数の認証方法を選べるようにする(認証エンドポイントを複数作れるようにする)
 - 直接ログイン時の認証とOAuthの認証を別方式にする
