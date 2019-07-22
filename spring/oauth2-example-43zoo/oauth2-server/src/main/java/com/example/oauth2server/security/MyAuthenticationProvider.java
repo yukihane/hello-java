@@ -60,7 +60,7 @@ public class MyAuthenticationProvider implements AuthenticationProvider {
 
     @Override
     public boolean supports(final Class<?> authentication) {
-        return true;
+        return UsernamePasswordAuthenticationToken.class.equals(authentication);
     }
 
 }
