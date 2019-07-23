@@ -10,8 +10,10 @@ public class HelloAuthenticationProvider implements AuthenticationProvider {
     @Override
     public Authentication authenticate(final Authentication authentication) throws AuthenticationException {
         final UsernamePasswordAuthenticationToken auth = (UsernamePasswordAuthenticationToken) authentication;
-        auth.setAuthenticated(true);
-        return auth;
+        final MyPrincipal principal = new MyPrincipal(auth.getName());
+        final MyCredentials credentials = new MyCredentials();
+
+        return new MyAuthentication(principal, credentials);
     }
 
     @Override

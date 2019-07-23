@@ -1,5 +1,6 @@
 package com.example.customloginpage.config;
 
+import com.example.customloginpage.security.HelloAuthenticationProvider;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -19,6 +20,8 @@ public class MyWebSecurityConfig extends WebSecurityConfigurerAdapter {
             .loginPage("/login/hello")
             .loginProcessingUrl("/login/hello_processing")
             .permitAll();
+
+        http.authenticationProvider(new HelloAuthenticationProvider());
     }
 
 }

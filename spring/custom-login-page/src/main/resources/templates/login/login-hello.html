@@ -5,8 +5,8 @@
 </head>
 <body>
 	<form action="#" th:action="@{/login/hello_processing}"
-		th:object="${loginForm}" method="post">
-		<input type="text" th:field="*{name}" />
+		 method="post">
+		<input type="text" name="username" />
 	</form>
 </body>
 </html>
