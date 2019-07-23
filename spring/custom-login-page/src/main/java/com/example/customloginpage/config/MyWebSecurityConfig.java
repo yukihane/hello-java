@@ -17,8 +17,9 @@ public class MyWebSecurityConfig extends WebSecurityConfigurerAdapter {
             .antMatchers("/hello/**")
             .and()
             .authorizeRequests()
-            .antMatchers("/hello/**").authenticated()
-            .and()
+            .antMatchers("/hello/**").authenticated();
+
+        http
             .requestMatchers()
             .antMatchers("/login/**")
             .and()
