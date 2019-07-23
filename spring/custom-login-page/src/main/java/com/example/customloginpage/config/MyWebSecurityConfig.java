@@ -16,7 +16,8 @@ public class MyWebSecurityConfig extends WebSecurityConfigurerAdapter {
             .anyRequest().authenticated()
             .and()
             .formLogin()
-            .loginPage("/login")
+            .loginPage("/login/hello")
+            .loginProcessingUrl("/login/hello_processing")
             .permitAll();
     }
 

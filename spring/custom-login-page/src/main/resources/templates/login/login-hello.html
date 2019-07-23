@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<title>Login Hello</title>
+</head>
+<body>
+	<form action="#" th:action="@{/login/hello_processing}"
+		th:object="${loginForm}" method="post">
+		<input type="text" th:field="*{name}" />
+	</form>
+</body>
+</html>
