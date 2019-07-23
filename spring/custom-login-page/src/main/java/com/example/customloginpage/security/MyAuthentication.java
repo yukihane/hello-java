@@ -1,7 +1,8 @@
 package com.example.customloginpage.security;
 
 import java.util.Collection;
-import java.util.Collections;
+import java.util.EnumSet;
+import java.util.Set;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
@@ -17,6 +18,8 @@ public class MyAuthentication implements Authentication {
 
     private final MyCredentials credentials;
 
+    private final Set<Authority> authorities = EnumSet.noneOf(Authority.class);
+
     private boolean authenticated = true;
 
     @Override
@@ -26,11 +29,15 @@ public class MyAuthentication implements Authentication {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.emptyList();
+        return EnumSet.copyOf(authorities);
     }
 
     @Override
     public Object getDetails() {
         return null;
+    }
+
+    public void addAuthority(final Authority auth) {
+        authorities.add(auth);
     }
 }

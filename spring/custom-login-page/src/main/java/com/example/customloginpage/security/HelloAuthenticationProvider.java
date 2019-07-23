@@ -13,7 +13,9 @@ public class HelloAuthenticationProvider implements AuthenticationProvider {
         final MyPrincipal principal = new MyPrincipal(auth.getName());
         final MyCredentials credentials = new MyCredentials();
 
-        return new MyAuthentication(principal, credentials);
+        final MyAuthentication ret = new MyAuthentication(principal, credentials);
+        ret.addAuthority(Authority.HELLO);
+        return ret;
     }
 
     @Override
