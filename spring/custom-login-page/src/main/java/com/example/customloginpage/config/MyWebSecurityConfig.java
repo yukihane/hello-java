@@ -13,15 +13,22 @@ public class MyWebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
         http
-            .authorizeRequests()
-            .anyRequest().authenticated()
+            .requestMatchers()
+            .antMatchers("/hello/**")
             .and()
+            .authorizeRequests()
+            .antMatchers("/hello/**").authenticated()
+            .and()
+            .requestMatchers()
+            .antMatchers("/login/**")
+            .and()
+            .authenticationProvider(new HelloAuthenticationProvider())
             .formLogin()
             .loginPage("/login/hello")
             .loginProcessingUrl("/login/hello_processing")
-            .permitAll();
-
-        http.authenticationProvider(new HelloAuthenticationProvider());
+            .permitAll()
+            .and()
+            .authenticationProvider(new HelloAuthenticationProvider());
     }
 
 }
