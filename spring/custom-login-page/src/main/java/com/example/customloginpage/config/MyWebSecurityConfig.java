@@ -17,7 +17,7 @@ public class MyWebSecurityConfig extends WebSecurityConfigurerAdapter {
             .antMatchers("/hello/**")
             .and()
             .authorizeRequests()
-            .antMatchers("/hello/**").authenticated();
+            .antMatchers("/hello/**").hasAuthority("HELLO");
 
         http
             .requestMatchers()
