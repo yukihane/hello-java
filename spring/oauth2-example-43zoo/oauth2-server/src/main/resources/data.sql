@@ -20,7 +20,7 @@ values
   'authorization_code,refresh_token',
   'http://localhost:8081/client/tasks',
   null,
-  60,
+  6,
   6000000,
   null,
   'read'
