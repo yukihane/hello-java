@@ -1,23 +1,21 @@
 package com.example.oauth2server.config;
 
+import com.example.oauth2server.repository.UserRepository;
+import com.example.oauth2server.security.MyBasicAuthFilter;
 import javax.servlet.http.HttpServletRequest;
-
+import lombok.RequiredArgsConstructor;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.util.matcher.RequestMatcher;
 
-import com.example.oauth2server.security.MyBasicAuthProvider;
-
-import lombok.RequiredArgsConstructor;
-
 @EnableWebSecurity
 @RequiredArgsConstructor
 @Order(2)
 public class MyWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter {
 
-    private final MyBasicAuthProvider authProvider;
+    private final UserRepository userRepository;
 
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
@@ -31,7 +29,7 @@ public class MyWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter
             .and()
             .httpBasic()
             .and()
-            .authenticationProvider(authProvider);
+            .addFilter(new MyBasicAuthFilter(userRepository));
     }
 
     private static class NotOAuthResourceRequestMatcher implements RequestMatcher {

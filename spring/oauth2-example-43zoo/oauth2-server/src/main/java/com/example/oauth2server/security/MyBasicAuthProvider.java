@@ -1,25 +1,19 @@
 package com.example.oauth2server.security;
 
+import com.example.oauth2server.entity.User;
+import com.example.oauth2server.repository.UserRepository;
 import java.sql.SQLException;
 import java.util.Collections;
 import java.util.Objects;
-
 import javax.persistence.EntityNotFoundException;
-
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.stereotype.Component;
 
-import com.example.oauth2server.entity.User;
-import com.example.oauth2server.repository.UserRepository;
-
-import lombok.RequiredArgsConstructor;
-
-@Component
 @RequiredArgsConstructor
 public class MyBasicAuthProvider implements AuthenticationProvider {
 
