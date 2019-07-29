@@ -8,7 +8,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.util.matcher.RequestMatcher;
 
-import com.example.oauth2server.security.MyAuthenticationProvider;
+import com.example.oauth2server.security.MyBasicAuthProvider;
 
 import lombok.RequiredArgsConstructor;
 
@@ -17,7 +17,7 @@ import lombok.RequiredArgsConstructor;
 @Order(2)
 public class MyWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter {
 
-    private final MyAuthenticationProvider authProvider;
+    private final MyBasicAuthProvider authProvider;
 
     @Override
     protected void configure(final HttpSecurity http) throws Exception {

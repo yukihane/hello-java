@@ -21,7 +21,7 @@ import lombok.RequiredArgsConstructor;
 
 @Component
 @RequiredArgsConstructor
-public class MyAuthenticationProvider implements AuthenticationProvider {
+public class MyBasicAuthProvider implements AuthenticationProvider {
 
     private final UserRepository userRepository;
 

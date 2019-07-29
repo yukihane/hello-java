@@ -7,7 +7,7 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
 
 public class MyBasicAuthFilter extends BasicAuthenticationFilter {
 
-    public MyBasicAuthFilter(final MyAuthenticationProvider provider) {
+    public MyBasicAuthFilter(final MyBasicAuthProvider provider) {
         super(new ProviderManager(Arrays.asList(provider)));
     }
 
