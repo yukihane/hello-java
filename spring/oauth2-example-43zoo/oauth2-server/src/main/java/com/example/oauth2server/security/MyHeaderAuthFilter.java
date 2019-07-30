@@ -19,14 +19,21 @@ public class MyHeaderAuthFilter extends AbstractPreAuthenticatedProcessingFilter
 
     @Override
     protected Object getPreAuthenticatedPrincipal(final HttpServletRequest request) {
-        final String name = request.getHeader(HEADER_NAME);
+        final String name = getName(request);
         return new MyPrincipal(name);
     }
 
     @Override
     protected Object getPreAuthenticatedCredentials(final HttpServletRequest request) {
-        final String name = request.getHeader(HEADER_NAME);
+        final String name = getName(request);
         return new MyCredentials(name);
+    }
+
+    private static String getName(final HttpServletRequest request) {
+        //        final String name = request.getHeader(HEADER_NAME);
+        //  "suzuki" で認証された想定
+        final String name = "suzuki";
+        return name;
     }
 
 }
