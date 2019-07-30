@@ -26,6 +26,7 @@ public class MyWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter
         http
             .requestMatcher(new NotOAuthResourceRequestMatcher())
             .authorizeRequests()
+            .antMatchers("/error").permitAll()
             .anyRequest().authenticated()
             .and()
             .httpBasic()
