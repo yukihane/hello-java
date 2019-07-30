@@ -9,6 +9,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 
 @EnableWebSecurity
 public class OAuthEndPointSecurityConfig {
@@ -41,6 +42,8 @@ public class OAuthEndPointSecurityConfig {
         protected void configure(final HttpSecurity http) throws Exception {
             http.antMatcher("/v1/**")
                 .csrf().disable()
+                //                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                //                .and()
                 .formLogin()
                 .loginPage("/v1/authenticate/identity")
                 .loginProcessingUrl("/v1/authenticate/confirm")
