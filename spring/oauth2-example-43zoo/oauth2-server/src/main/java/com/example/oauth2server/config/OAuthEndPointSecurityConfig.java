@@ -40,6 +40,7 @@ public class OAuthEndPointSecurityConfig {
         @Override
         protected void configure(final HttpSecurity http) throws Exception {
             http.antMatcher("/v1/**")
+                .csrf().disable()
                 .formLogin()
                 .loginPage("/v1/authenticate/identity")
                 .loginProcessingUrl("/v1/authenticate/confirm")
