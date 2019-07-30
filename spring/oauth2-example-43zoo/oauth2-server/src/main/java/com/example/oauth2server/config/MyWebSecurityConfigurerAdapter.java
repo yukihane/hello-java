@@ -12,7 +12,7 @@ import org.springframework.security.web.util.matcher.RequestMatcher;
 
 @EnableWebSecurity
 @RequiredArgsConstructor
-@Order(2)
+@Order(-1)
 public class MyWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter {
 
     private final UserRepository userRepository;
@@ -38,7 +38,9 @@ public class MyWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter
         public boolean matches(final HttpServletRequest request) {
 
             final String requestPath = getRequestPath(request);
-            return !requestPath.startsWith("/api") && !requestPath.startsWith("/h2-console");
+            return !requestPath.startsWith("/v1")
+                && !requestPath.startsWith("/api")
+                && !requestPath.startsWith("/h2-console");
         }
 
         private String getRequestPath(final HttpServletRequest request) {
