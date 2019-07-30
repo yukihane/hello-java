@@ -10,7 +10,7 @@ public class HeaderAuthController {
 
     @GetMapping("/signin")
     public String signin() {
-        return "/v1/oauth/authorize";
+        return "forward:/v1/oauth/authorize";
     }
 
 }
