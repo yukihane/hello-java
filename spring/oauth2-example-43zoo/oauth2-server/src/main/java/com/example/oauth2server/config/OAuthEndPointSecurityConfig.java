@@ -1,6 +1,7 @@
 package com.example.oauth2server.config;
 
 import com.example.oauth2server.repository.UserRepository;
+import com.example.oauth2server.security.MyFormAuthFilter;
 import com.example.oauth2server.security.MyHeaderAuthFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
@@ -31,7 +32,10 @@ public class OAuthEndPointSecurityConfig {
 
     @Configuration
     @Order(2)
+    @RequiredArgsConstructor
     public static class FormAuthConfig extends WebSecurityConfigurerAdapter {
+
+        private final UserRepository userRepository;
 
         @Override
         protected void configure(final HttpSecurity http) throws Exception {
@@ -40,6 +44,7 @@ public class OAuthEndPointSecurityConfig {
                 .loginPage("/v1/authenticate/identity")
                 .loginProcessingUrl("/v1/authenticate/confirm")
                 .and()
+                .addFilter(new MyFormAuthFilter(userRepository))
                 .authorizeRequests()
                 .antMatchers("/v1/authenticate/identity").permitAll()
                 .antMatchers("/v1/oauth/error").permitAll()
