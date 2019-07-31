@@ -1,33 +1,34 @@
 package com.example.oauth2server.controller;
 
-import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
-import org.springframework.security.web.savedrequest.SavedRequest;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.util.UriComponentsBuilder;
 
 @Controller
 @RequestMapping("/v1/authenticate")
 public class FormLoginController {
 
-    @GetMapping("/identity")
-    public String identity(final HttpServletRequest request, final HttpServletResponse response, final Model model) {
-        final UriComponentsBuilder builder = UriComponentsBuilder.fromPath("/v1/authenticate/signin");
-        // https://docs.spring.io/spring-security/site/docs/5.1.5.RELEASE/reference/html/overall-architecture.html#exceptiontranslationfilter
-        // https://stackoverflow.com/a/44170176/4506703
-        final SavedRequest savedRequest = new HttpSessionRequestCache().getRequest(request, response);
-        if (savedRequest != null) {
-            final Map<String, String[]> params = savedRequest.getParameterMap();
-            params.entrySet().stream().forEach(e -> builder.queryParam(e.getKey(), e.getValue()));
-        }
-        final String uri = builder.build().toUriString();
+    @Data
+    @NoArgsConstructor
+    public static class Client {
+        private String client_id;
+        private String redirect_uri;
+        private String response_type;
+        private String scope;
+        private String state;
+    }
 
-        model.addAttribute("link", uri);
+    @RequestMapping("/identity")
+    public String identity(final HttpServletRequest request, @ModelAttribute final Client client) {
+        client.setClient_id(request.getParameter("client_id"));
+        client.setRedirect_uri(request.getParameter("redirect_uri"));
+        client.setResponse_type(request.getParameter("response_type"));
+        client.setScope(request.getParameter("scope"));
+        client.setState(request.getParameter("state"));
+
         return "/v1/authenticate/login";
     }
 }

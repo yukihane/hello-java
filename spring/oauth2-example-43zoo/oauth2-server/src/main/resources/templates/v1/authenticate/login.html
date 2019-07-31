@@ -2,11 +2,16 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
 
-<form action="/v1/authenticate/confirm" method="POST">
+<form th:object="${client}" th:action="@{/v1/authenticate/confirm}" method="POST">
 <input type="text" name="name">
+<input type="hidden" th:field="*{client_id}">
+<input type="hidden" th:field="*{redirect_uri}">
+<input type="hidden" th:field="*{response_type}">
+<input type="hidden" th:field="*{scope}">
+<input type="hidden" th:field="*{state}">
 <input type="submit">
 </form>
 <p>
-<a th:href="${link}">header authorization</a>
+<a th:object="${client}" th:href="@{/v1/authenticate/signin(client_id=*{client_id},redirect_uri=*{redirect_uri},response_type=*{response_type},scope=*{scope},state=*{state})}">header authorization</a>
 </body>
 </html>
