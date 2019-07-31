@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint;
 
 @EnableWebSecurity
 public class OAuthEndPointSecurityConfig {
@@ -24,6 +25,8 @@ public class OAuthEndPointSecurityConfig {
         @Override
         protected void configure(final HttpSecurity http) throws Exception {
             http.antMatcher("/v1/authenticate/signin")
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
                 .authorizeRequests()
                 .anyRequest().authenticated()
                 .and()
@@ -41,19 +44,24 @@ public class OAuthEndPointSecurityConfig {
         @Override
         protected void configure(final HttpSecurity http) throws Exception {
             http.antMatcher("/v1/**")
-                .csrf().disable()
-                //                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                //                .and()
-                .formLogin()
-                .loginPage("/v1/authenticate/identity")
-                .loginProcessingUrl("/v1/authenticate/confirm")
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .addFilter(new MyFormAuthFilter(userRepository))
+                .exceptionHandling()
+                .authenticationEntryPoint(new MyLoginUrlAuthenticationEntryPoint())
+                .and()
                 .authorizeRequests()
                 .antMatchers("/v1/authenticate/identity").permitAll()
                 .antMatchers("/v1/oauth/error").permitAll()
                 .antMatchers("/v1/oauth/authorize").authenticated()
                 .anyRequest().denyAll();
+        }
+    }
+
+    public static class MyLoginUrlAuthenticationEntryPoint extends LoginUrlAuthenticationEntryPoint {
+        public MyLoginUrlAuthenticationEntryPoint() {
+            super("/v1/authenticate/identity");
+            setUseForward(true);
         }
     }
 }
