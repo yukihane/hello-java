@@ -51,7 +51,7 @@ public class SpringTestConnectionSizeApplicationTests {
     public void contextLoads() {
         final List<Connection> conns = new ArrayList<>();
         // デフォルトのコネクションプール数は10なので失敗する
-        for (int i = 0; i < 1; i++) {
+        for (int i = 0; i < 2000; i++) {
             final Connection c = DataSourceUtils.getConnection(dataSource);
             conns.add(c);
             System.out.println(c);

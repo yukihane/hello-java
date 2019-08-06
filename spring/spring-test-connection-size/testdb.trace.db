@@ -1,0 +1,180 @@
+2019-08-07 01:35:17 database: could not close the database
+java.lang.IllegalStateException: Transaction was illegally transitioned from CLOSED to ROLLED_BACK [1.4.199/103]
+	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:883)
+	at org.h2.mvstore.tx.Transaction.setStatus(Transaction.java:222)
+	at org.h2.mvstore.tx.Transaction.rollback(Transaction.java:444)
+	at org.h2.engine.Session.rollbackTo(Session.java:827)
+	at org.h2.engine.Session.rollback(Session.java:797)
+	at org.h2.engine.Session.close(Session.java:891)
+	at org.h2.engine.Database.closeAllSessionsException(Database.java:1400)
+	at org.h2.engine.Database.closeImpl(Database.java:1454)
+	at org.h2.engine.Database.close(Database.java:1417)
+	at org.h2.engine.OnExitDatabaseCloser.onShutdown(OnExitDatabaseCloser.java:85)
+	at org.h2.engine.OnExitDatabaseCloser.run(OnExitDatabaseCloser.java:114)
+	Suppressed: java.lang.IllegalStateException: Transaction was illegally transitioned from CLOSED to CLOSED [1.4.199/103]
+		at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:883)
+		at org.h2.mvstore.tx.Transaction.setStatus(Transaction.java:222)
+		at org.h2.mvstore.tx.Transaction.closeIt(Transaction.java:507)
+		at org.h2.mvstore.tx.TransactionStore.endTransaction(TransactionStore.java:549)
+		at org.h2.mvstore.tx.Transaction.rollback(Transaction.java:454)
+		... 8 more
+2019-08-07 01:35:17 database: flush
+org.h2.message.DbException: 一般エラー: "java.lang.IllegalStateException: The file is locked: nio:/home/yuki/Documents/repos/java/hello-java/spring/spring-test-connection-size/testdb.mv.db [1.4.199/7]"
+General error: "java.lang.IllegalStateException: The file is locked: nio:/home/yuki/Documents/repos/java/hello-java/spring/spring-test-connection-size/testdb.mv.db [1.4.199/7]" [50000-199]
+	at org.h2.message.DbException.get(DbException.java:194)
+	at org.h2.message.DbException.convert(DbException.java:347)
+	at org.h2.mvstore.db.MVTableEngine$1.uncaughtException(MVTableEngine.java:90)
+	at org.h2.mvstore.MVStore.handleException(MVStore.java:2787)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:441)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:404)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:3343)
+	at org.h2.mvstore.db.MVTableEngine$Store.open(MVTableEngine.java:162)
+	at org.h2.mvstore.db.MVTableEngine.init(MVTableEngine.java:95)
+	at org.h2.engine.Database.getPageStore(Database.java:2739)
+	at org.h2.engine.Database.open(Database.java:769)
+	at org.h2.engine.Database.openDatabase(Database.java:319)
+	at org.h2.engine.Database.<init>(Database.java:313)
+	at org.h2.engine.Engine.openSession(Engine.java:69)
+	at org.h2.engine.Engine.openSession(Engine.java:201)
+	at org.h2.engine.Engine.createSessionAndValidate(Engine.java:178)
+	at org.h2.engine.Engine.createSession(Engine.java:161)
+	at org.h2.server.TcpServerThread.run(TcpServerThread.java:160)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: org.h2.jdbc.JdbcSQLNonTransientException: 一般エラー: "java.lang.IllegalStateException: The file is locked: nio:/home/yuki/Documents/repos/java/hello-java/spring/spring-test-connection-size/testdb.mv.db [1.4.199/7]"
+General error: "java.lang.IllegalStateException: The file is locked: nio:/home/yuki/Documents/repos/java/hello-java/spring/spring-test-connection-size/testdb.mv.db [1.4.199/7]" [50000-199]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:502)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:427)
+	... 19 more
+Caused by: java.lang.IllegalStateException: The file is locked: nio:/home/yuki/Documents/repos/java/hello-java/spring/spring-test-connection-size/testdb.mv.db [1.4.199/7]
+	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:883)
+	at org.h2.mvstore.FileStore.open(FileStore.java:166)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:390)
+	... 13 more
+Caused by: java.nio.channels.OverlappingFileLockException
+	at sun.nio.ch.SharedFileLockTable.checkList(FileLockTable.java:255)
+	at sun.nio.ch.SharedFileLockTable.add(FileLockTable.java:152)
+	at sun.nio.ch.FileChannelImpl.tryLock(FileChannelImpl.java:1113)
+	at org.h2.store.fs.FileNio.tryLock(FilePathNio.java:121)
+	at java.nio.channels.FileChannel.tryLock(FileChannel.java:1155)
+	at org.h2.mvstore.FileStore.open(FileStore.java:163)
+	... 14 more
+2019-08-07 01:35:24 database: flush
+org.h2.message.DbException: 一般エラー: "java.lang.IllegalStateException: The file is locked: nio:/home/yuki/Documents/repos/java/hello-java/spring/spring-test-connection-size/testdb.mv.db [1.4.199/7]"
+General error: "java.lang.IllegalStateException: The file is locked: nio:/home/yuki/Documents/repos/java/hello-java/spring/spring-test-connection-size/testdb.mv.db [1.4.199/7]" [50000-199]
+	at org.h2.message.DbException.get(DbException.java:194)
+	at org.h2.message.DbException.convert(DbException.java:347)
+	at org.h2.mvstore.db.MVTableEngine$1.uncaughtException(MVTableEngine.java:90)
+	at org.h2.mvstore.MVStore.handleException(MVStore.java:2787)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:441)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:404)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:3343)
+	at org.h2.mvstore.db.MVTableEngine$Store.open(MVTableEngine.java:162)
+	at org.h2.mvstore.db.MVTableEngine.init(MVTableEngine.java:95)
+	at org.h2.engine.Database.getPageStore(Database.java:2739)
+	at org.h2.engine.Database.open(Database.java:769)
+	at org.h2.engine.Database.openDatabase(Database.java:319)
+	at org.h2.engine.Database.<init>(Database.java:313)
+	at org.h2.engine.Engine.openSession(Engine.java:69)
+	at org.h2.engine.Engine.openSession(Engine.java:201)
+	at org.h2.engine.Engine.createSessionAndValidate(Engine.java:178)
+	at org.h2.engine.Engine.createSession(Engine.java:161)
+	at org.h2.server.TcpServerThread.run(TcpServerThread.java:160)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: org.h2.jdbc.JdbcSQLNonTransientException: 一般エラー: "java.lang.IllegalStateException: The file is locked: nio:/home/yuki/Documents/repos/java/hello-java/spring/spring-test-connection-size/testdb.mv.db [1.4.199/7]"
+General error: "java.lang.IllegalStateException: The file is locked: nio:/home/yuki/Documents/repos/java/hello-java/spring/spring-test-connection-size/testdb.mv.db [1.4.199/7]" [50000-199]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:502)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:427)
+	... 19 more
+Caused by: java.lang.IllegalStateException: The file is locked: nio:/home/yuki/Documents/repos/java/hello-java/spring/spring-test-connection-size/testdb.mv.db [1.4.199/7]
+	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:883)
+	at org.h2.mvstore.FileStore.open(FileStore.java:166)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:390)
+	... 13 more
+Caused by: java.nio.channels.OverlappingFileLockException
+	at sun.nio.ch.SharedFileLockTable.checkList(FileLockTable.java:255)
+	at sun.nio.ch.SharedFileLockTable.add(FileLockTable.java:152)
+	at sun.nio.ch.FileChannelImpl.tryLock(FileChannelImpl.java:1113)
+	at org.h2.store.fs.FileNio.tryLock(FilePathNio.java:121)
+	at java.nio.channels.FileChannel.tryLock(FileChannel.java:1155)
+	at org.h2.mvstore.FileStore.open(FileStore.java:163)
+	... 14 more
+2019-08-07 01:37:03 database: flush
+org.h2.message.DbException: 一般エラー: "java.lang.IllegalStateException: The file is locked: nio:/home/yuki/Documents/repos/java/hello-java/spring/spring-test-connection-size/testdb.mv.db [1.4.199/7]"
+General error: "java.lang.IllegalStateException: The file is locked: nio:/home/yuki/Documents/repos/java/hello-java/spring/spring-test-connection-size/testdb.mv.db [1.4.199/7]" [50000-199]
+	at org.h2.message.DbException.get(DbException.java:194)
+	at org.h2.message.DbException.convert(DbException.java:347)
+	at org.h2.mvstore.db.MVTableEngine$1.uncaughtException(MVTableEngine.java:90)
+	at org.h2.mvstore.MVStore.handleException(MVStore.java:2787)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:441)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:404)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:3343)
+	at org.h2.mvstore.db.MVTableEngine$Store.open(MVTableEngine.java:162)
+	at org.h2.mvstore.db.MVTableEngine.init(MVTableEngine.java:95)
+	at org.h2.engine.Database.getPageStore(Database.java:2739)
+	at org.h2.engine.Database.open(Database.java:769)
+	at org.h2.engine.Database.openDatabase(Database.java:319)
+	at org.h2.engine.Database.<init>(Database.java:313)
+	at org.h2.engine.Engine.openSession(Engine.java:69)
+	at org.h2.engine.Engine.openSession(Engine.java:201)
+	at org.h2.engine.Engine.createSessionAndValidate(Engine.java:178)
+	at org.h2.engine.Engine.createSession(Engine.java:161)
+	at org.h2.server.TcpServerThread.run(TcpServerThread.java:160)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: org.h2.jdbc.JdbcSQLNonTransientException: 一般エラー: "java.lang.IllegalStateException: The file is locked: nio:/home/yuki/Documents/repos/java/hello-java/spring/spring-test-connection-size/testdb.mv.db [1.4.199/7]"
+General error: "java.lang.IllegalStateException: The file is locked: nio:/home/yuki/Documents/repos/java/hello-java/spring/spring-test-connection-size/testdb.mv.db [1.4.199/7]" [50000-199]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:502)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:427)
+	... 19 more
+Caused by: java.lang.IllegalStateException: The file is locked: nio:/home/yuki/Documents/repos/java/hello-java/spring/spring-test-connection-size/testdb.mv.db [1.4.199/7]
+	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:883)
+	at org.h2.mvstore.FileStore.open(FileStore.java:166)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:390)
+	... 13 more
+Caused by: java.nio.channels.OverlappingFileLockException
+	at sun.nio.ch.SharedFileLockTable.checkList(FileLockTable.java:255)
+	at sun.nio.ch.SharedFileLockTable.add(FileLockTable.java:152)
+	at sun.nio.ch.FileChannelImpl.tryLock(FileChannelImpl.java:1113)
+	at org.h2.store.fs.FileNio.tryLock(FilePathNio.java:121)
+	at java.nio.channels.FileChannel.tryLock(FileChannel.java:1155)
+	at org.h2.mvstore.FileStore.open(FileStore.java:163)
+	... 14 more
+2019-08-07 01:37:29 database: flush
+org.h2.message.DbException: 一般エラー: "java.lang.IllegalStateException: The file is locked: nio:/home/yuki/Documents/repos/java/hello-java/spring/spring-test-connection-size/testdb.mv.db [1.4.199/7]"
+General error: "java.lang.IllegalStateException: The file is locked: nio:/home/yuki/Documents/repos/java/hello-java/spring/spring-test-connection-size/testdb.mv.db [1.4.199/7]" [50000-199]
+	at org.h2.message.DbException.get(DbException.java:194)
+	at org.h2.message.DbException.convert(DbException.java:347)
+	at org.h2.mvstore.db.MVTableEngine$1.uncaughtException(MVTableEngine.java:90)
+	at org.h2.mvstore.MVStore.handleException(MVStore.java:2787)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:441)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:404)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:3343)
+	at org.h2.mvstore.db.MVTableEngine$Store.open(MVTableEngine.java:162)
+	at org.h2.mvstore.db.MVTableEngine.init(MVTableEngine.java:95)
+	at org.h2.engine.Database.getPageStore(Database.java:2739)
+	at org.h2.engine.Database.open(Database.java:769)
+	at org.h2.engine.Database.openDatabase(Database.java:319)
+	at org.h2.engine.Database.<init>(Database.java:313)
+	at org.h2.engine.Engine.openSession(Engine.java:69)
+	at org.h2.engine.Engine.openSession(Engine.java:201)
+	at org.h2.engine.Engine.createSessionAndValidate(Engine.java:178)
+	at org.h2.engine.Engine.createSession(Engine.java:161)
+	at org.h2.server.TcpServerThread.run(TcpServerThread.java:160)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: org.h2.jdbc.JdbcSQLNonTransientException: 一般エラー: "java.lang.IllegalStateException: The file is locked: nio:/home/yuki/Documents/repos/java/hello-java/spring/spring-test-connection-size/testdb.mv.db [1.4.199/7]"
+General error: "java.lang.IllegalStateException: The file is locked: nio:/home/yuki/Documents/repos/java/hello-java/spring/spring-test-connection-size/testdb.mv.db [1.4.199/7]" [50000-199]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:502)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:427)
+	... 19 more
+Caused by: java.lang.IllegalStateException: The file is locked: nio:/home/yuki/Documents/repos/java/hello-java/spring/spring-test-connection-size/testdb.mv.db [1.4.199/7]
+	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:883)
+	at org.h2.mvstore.FileStore.open(FileStore.java:166)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:390)
+	... 13 more
+Caused by: java.nio.channels.OverlappingFileLockException
+	at sun.nio.ch.SharedFileLockTable.checkList(FileLockTable.java:255)
+	at sun.nio.ch.SharedFileLockTable.add(FileLockTable.java:152)
+	at sun.nio.ch.FileChannelImpl.tryLock(FileChannelImpl.java:1113)
+	at org.h2.store.fs.FileNio.tryLock(FilePathNio.java:121)
+	at java.nio.channels.FileChannel.tryLock(FileChannel.java:1155)
+	at org.h2.mvstore.FileStore.open(FileStore.java:163)
+	... 14 more
