@@ -1,0 +1,61 @@
+= LINEリッチメニューサンプル
+
+== 参考
+
+* https://developers.line.biz/ja/docs/messaging-api/using-rich-menus/[リッチメニューを使う]
+* https://developers.line.biz/ja/reference/messaging-api/#rich-menu-object[Messaging APIリファレンス > リッチメニューオブジェクト]
+
+以下で行っていることはこれらのリンク先そのままです。
+
+== メニューの作成と登録
+
+=== メニューを登録する
+
+----
+curl -v -X POST https://api.line.me/v2/bot/richmenu \
+-H 'Authorization: Bearer {channel access token}' \
+-H 'Content-Type:application/json' \
+-d \
+'{
+  "size": {
+    "width": 800,
+    "height": 270
+  },
+  "selected": false,
+  "name": "my-sample-richmenu",
+  "chatBarText": "Tap me!",
+  "areas": [
+    {
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "width": 800,
+        "height": 270
+      },
+      "action": {
+        "type": "postback",
+        "data": "the-postback-action"
+      }
+    }
+  ]
+}'
+----
+
+=== メニューの画像を登録する
+
+省略できるかな、と思っていたのですが必須でした。画像登録せずに次の「デフォルトメニューに設定する」をすると画像登録が必要である旨のエラーが返ってきました。
+
+----
+curl -v -X POST https://api.line.me/v2/bot/richmenu/{richMenuId}/content \
+-H "Authorization: Bearer {channel access token}" \
+-H "Content-Type: image/jpeg" \
+-T image.jpg
+----
+
+
+=== デフォルトメニューに設定する
+
+----
+curl -v -X POST https://api.line.me/v2/bot/user/all/richmenu/{richMenuId} \
+-H "Authorization: Bearer {channel access token}"
+----
