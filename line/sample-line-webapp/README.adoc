@@ -2,7 +2,9 @@
 
 == これは何？
 
-Spring Boot で https://developers.line.biz/ja/docs/line-login/[LINEログイン] を使ってみるサンプルコードです。
+https://himeji-cs.jp/blog2/blog/2019/08/line-login-sample.html[LINEログイン機能を試してみる] で実装したコードです。
+
+Spring Boot で https://developers.line.biz/ja/docs/line-login/[LINEログイン] 機能をためすためのものです。
 
 == 準備
 
