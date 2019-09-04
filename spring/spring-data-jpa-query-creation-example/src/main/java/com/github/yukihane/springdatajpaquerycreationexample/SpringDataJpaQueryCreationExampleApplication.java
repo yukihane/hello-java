@@ -16,6 +16,7 @@ public class SpringDataJpaQueryCreationExampleApplication implements CommandLine
     @Override
     public void run(final String... args) throws Exception {
         repository.findById("MY_ID");
+        repository.deleteByMyEntityIdAndAltIdNot("ID", "ALT_ID");
     }
 
     public static void main(final String[] args) {
