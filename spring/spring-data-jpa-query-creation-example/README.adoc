@@ -1,0 +1,3 @@
+== これは何？
+
+Spring Data JPAの https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#repositories.query-methods.details[メソッド名からクエリを導出する] 機能を試すためのプロジェクトです。
