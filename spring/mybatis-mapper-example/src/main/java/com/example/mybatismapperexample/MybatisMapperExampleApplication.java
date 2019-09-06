@@ -27,6 +27,14 @@ public class MybatisMapperExampleApplication implements CommandLineRunner {
 
         final long count = mapper.deleteByMessage(Message.of("Hello!"));
         System.out.println("Deleted: " + count);
+
+        final Greeting obj = new Greeting();
+        obj.setId("10");
+        obj.setMessage(Message.of("Bye!"));
+        mapper.insert(obj);
+
+        final long delCount = mapper.deleteByMessage(Message.of("Bye!"));
+        System.out.println("Deleted: " + delCount);
     }
 
 }
