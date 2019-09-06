@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mybatismapperexample.GreetingMapper">
+  <sql id="findEntities">
+<![CDATA[
+select
+    id,
+    message
+from 
+    greeting
+]]>
+  </sql>
+
+  <select id="findById" resultType="com.example.mybatismapperexample.Greeting">
+    <include refid="findEntities"></include>
+    where id = #{id}
+  </select>
+
+  <select id="findByMessage" resultType="com.example.mybatismapperexample.Greeting">
+    <include refid="findEntities"></include>
+    where message = #{message}
+  </select>
+
+  <insert id="insert">
+    insert into greeting(id,message) values (#{id}, #{message})
+  </insert>
+  <delete id="deleteByMessage">
+    delete from greeting where message = #{message}
+  </delete>
+</mapper>
