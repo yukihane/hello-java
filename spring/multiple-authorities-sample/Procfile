@@ -1,0 +1,2 @@
+web: java -Dserver.port=$PORT -jar target/sample-line-webapp-0.0.1-SNAPSHOT.jar
+
