@@ -6,6 +6,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.authority.AuthorityUtils;
 
 @EnableWebSecurity
 public class MyWebSecurityConfig {
@@ -19,7 +20,7 @@ public class MyWebSecurityConfig {
                 //                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 //                .and()
                 .authorizeRequests()
-                .anyRequest().authenticated()
+                .anyRequest().hasAuthority("linelogin")
                 .and().oauth2Login();
         }
     }
@@ -48,7 +49,10 @@ public class MyWebSecurityConfig {
                 //                .and()
                 .authorizeRequests()
                 .anyRequest().authenticated()
-                .and().oauth2Login();
+                .and().oauth2Login()
+                .userInfoEndpoint()
+                .userAuthoritiesMapper(
+                    authorities -> AuthorityUtils.createAuthorityList("linelogin"));
         }
     }
 
