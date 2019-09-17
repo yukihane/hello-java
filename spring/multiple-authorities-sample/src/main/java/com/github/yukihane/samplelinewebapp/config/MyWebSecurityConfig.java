@@ -1,5 +1,6 @@
 package com.github.yukihane.samplelinewebapp.config;
 
+import com.github.yukihane.samplelinewebapp.security.MyBasicAuthProvider;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -52,7 +53,22 @@ public class MyWebSecurityConfig {
     }
 
     @Configuration
-    @Order(4)
+    @Order(5)
+    public static class BasicAuthConfig extends WebSecurityConfigurerAdapter {
+        @Override
+        protected void configure(final HttpSecurity http) throws Exception {
+            http.antMatcher("/**")
+                .authorizeRequests()
+                .anyRequest().authenticated()
+                .and()
+                .httpBasic()
+                .and()
+                .authenticationProvider(new MyBasicAuthProvider());
+        }
+    }
+
+    @Configuration
+    @Order(6)
     public static class AllDenyConfig extends WebSecurityConfigurerAdapter {
         @Override
         protected void configure(final HttpSecurity http) throws Exception {
