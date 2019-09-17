@@ -59,7 +59,7 @@ public class MyWebSecurityConfig {
         protected void configure(final HttpSecurity http) throws Exception {
             http.antMatcher("/**")
                 .authorizeRequests()
-                .anyRequest().authenticated()
+                .anyRequest().hasAuthority("basicauth")
                 .and()
                 .httpBasic()
                 .and()
