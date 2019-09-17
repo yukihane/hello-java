@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class MyController {
 
-    @RequestMapping("/")
+    @RequestMapping("/line")
     public OAuth2User welcome(@AuthenticationPrincipal final OAuth2User user) {
         return user;
     }
