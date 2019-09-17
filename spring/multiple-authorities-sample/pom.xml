@@ -9,10 +9,9 @@
     <relativePath /> <!-- lookup parent from repository -->
   </parent>
   <groupId>com.github.yukihane</groupId>
-  <artifactId>sample-line-webapp</artifactId>
+  <artifactId>multiple-authorities</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <name>sample-line-webapp</name>
-  <description>Demo project for Spring Boot</description>
+  <name>multiple-authorities</name>
 
   <properties>
     <java.version>11</java.version>
