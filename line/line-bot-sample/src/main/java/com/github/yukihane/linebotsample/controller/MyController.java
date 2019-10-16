@@ -3,8 +3,10 @@ package com.github.yukihane.linebotsample.controller;
 import com.linecorp.bot.model.action.Action;
 import com.linecorp.bot.model.action.PostbackAction;
 import com.linecorp.bot.model.action.URIAction;
+import com.linecorp.bot.model.event.FollowEvent;
 import com.linecorp.bot.model.event.MessageEvent;
 import com.linecorp.bot.model.event.PostbackEvent;
+import com.linecorp.bot.model.event.UnfollowEvent;
 import com.linecorp.bot.model.event.message.TextMessageContent;
 import com.linecorp.bot.model.message.Message;
 import com.linecorp.bot.model.message.TemplateMessage;
@@ -17,8 +19,10 @@ import java.net.URI;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoField;
 import java.util.List;
+import lombok.extern.slf4j.Slf4j;
 
 @LineMessageHandler
+@Slf4j
 public class MyController {
 
     @EventMapping
@@ -60,5 +64,17 @@ public class MyController {
         }
 
         return new TextMessage("PostBackEvent受信: " + data);
+    }
+
+    @EventMapping
+    public void handleFollwEvent(final FollowEvent event) {
+        log.info("Recieved follow event: " + event.toString());
+        System.out.println("Recieved follow event: " + event.toString());
+    }
+
+    @EventMapping
+    public void handleUnfollowEvent(final UnfollowEvent event) {
+        log.info("Recieved unfollow event: " + event.toString());
+        System.out.println("Recieved unfollow event: " + event.toString());
     }
 }
