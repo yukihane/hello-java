@@ -13,6 +13,7 @@ import com.linecorp.bot.model.message.template.ButtonsTemplate;
 import com.linecorp.bot.model.message.template.Template;
 import com.linecorp.bot.spring.boot.annotation.EventMapping;
 import com.linecorp.bot.spring.boot.annotation.LineMessageHandler;
+import java.net.URI;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoField;
 import java.util.List;
@@ -34,7 +35,7 @@ public class MyController {
             final LocalDateTime now = LocalDateTime.now();
             final int sec = now.get(ChronoField.SECOND_OF_MINUTE);
 
-            final Action a1 = new URIAction("link", "https://qiita.com/settings/account", null);
+            final Action a1 = new URIAction("link", new URI("https://qiita.com/settings/account"), null);
 
             if (sec % 2 == 0) {
                 final List<Action> actions = List.of(a1);
