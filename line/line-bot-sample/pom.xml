@@ -10,7 +10,7 @@
   </parent>
   <groupId>com.github.yukihane</groupId>
   <artifactId>line-bot-sample</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.0.2-SNAPSHOT</version>
   <name>line-bot-sample</name>
   <description>Demo project for Spring Boot</description>
 
