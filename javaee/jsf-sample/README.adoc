@@ -1,1 +1,5 @@
+== これは何？
+
+JSFを利用するための最小プロジェクトサンプル。
+
 https://yukihane.github.io/posts/202004/06/hello-jsf/
