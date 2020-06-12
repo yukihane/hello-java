@@ -4,6 +4,8 @@ import java.util.List;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,9 +28,12 @@ public class UserController {
 
     @PostMapping("/sign-up")
     public void signUp(@RequestBody final UserForm form) {
+
+        final PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+
         final ApplicationUser user = new ApplicationUser(
             form.getUsername(),
-            form.getPassword());
+            passwordEncoder.encode(form.getPassword()));
 
         final ApplicationUser saved = applicationUserRepository.save(user);
 
