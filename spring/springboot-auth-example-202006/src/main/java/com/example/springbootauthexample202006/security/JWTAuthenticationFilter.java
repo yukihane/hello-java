@@ -1,6 +1,10 @@
 package com.example.springbootauthexample202006.security;
 
 import static com.auth0.jwt.algorithms.Algorithm.HMAC512;
+import static com.example.springbootauthexample202006.security.SecurityConstants.EXPIRATION_TIME;
+import static com.example.springbootauthexample202006.security.SecurityConstants.HEADER_STRING;
+import static com.example.springbootauthexample202006.security.SecurityConstants.SECRET;
+import static com.example.springbootauthexample202006.security.SecurityConstants.TOKEN_PREFIX;
 
 import com.auth0.jwt.JWT;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -17,11 +21,6 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
-
-    private static final String SECRET = "SecretKeyToGenJWTs";
-    private static final long EXPIRATION_TIME = 864_000_000; // 10 days
-    private static final String TOKEN_PREFIX = "Bearer ";
-    private static final String HEADER_STRING = "Authorization";
 
     private final ObjectMapper objectMpper = new ObjectMapper();
 
