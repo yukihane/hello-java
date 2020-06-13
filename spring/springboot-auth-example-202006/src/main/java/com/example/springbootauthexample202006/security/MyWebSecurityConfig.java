@@ -36,5 +36,6 @@ public class MyWebSecurityConfig extends WebSecurityConfigurerAdapter {
         final AuthenticationManager manager = new ProviderManager(Arrays.asList(provider));
 
         http.addFilter(new JWTAuthenticationFilter(manager));
+        http.addFilterAfter(new JWTAuthorizationFilter(), JWTAuthenticationFilter.class);
     }
 }
