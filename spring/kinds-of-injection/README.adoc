@@ -1,0 +1,7 @@
+= 3種類のインジェクション方式
+
+`mvn spring-boot:run` で実行。
+
+* fieldインジェクション: http://localhost:8080/field
+* setterインジェクション: http://localhost:8080/setter
+* constructorインジェクション: http://localhost:8080/constructor
