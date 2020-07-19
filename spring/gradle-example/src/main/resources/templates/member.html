@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Member管理</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  </head>
+  <body>
+    <form
+      action="member.html"
+      th:attr="action=@{/member}"
+      th:object="${memberRegistrationForm}"
+      method="POST"
+    >
+      <fieldset>
+        <input type="text" name="name" th:field="*{name}" />
+        <input type="number" name="age" th:field="*{age}" />
+        <input type="submit" value="登録" />
+      </fieldset>
+    </form>
+    <table>
+      <thead>
+        <tr>
+          <th>名前</th>
+          <th>年齢</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="m : ${members}">
+          <td th:text="${m.name}">山田太郎</td>
+          <td th:text="${m.age}">24</td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
