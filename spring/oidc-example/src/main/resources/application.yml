@@ -1,0 +1,19 @@
+server:
+  port: 8081
+
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          mykeycloak:
+            client-id: myclient
+            client-secret: 4a608a23-63a6-416d-a442-fd53e8791a26
+            authorization-grant-type: authorization_code
+            redirect-uri: "{baseUrl}/authorized/mykeycloak"
+        provider:
+          mykeycloak:
+            # https://www.keycloak.org/docs/latest/securing_apps/index.html#endpoints-2
+            # http://localhost:8080/auth/realms/myrealm/.well-known/openid-configuration
+            authorization-uri: http://localhost:8080/auth/realms/myrealm/protocol/openid-connect/auth
+            token-uri: http://localhost:8080/auth/realms/myrealm/protocol/openid-connect/token
