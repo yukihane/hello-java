@@ -36,6 +36,12 @@ dependencies {
 	}
 }
 
+compileJava {
+    options.compilerArgs = [
+        '-Amapstruct.defaultComponentModel=spring'
+    ]
+}
+
 test {
 	useJUnitPlatform()
 }
