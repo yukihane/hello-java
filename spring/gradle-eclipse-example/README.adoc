@@ -1,0 +1,5 @@
+== これは何？
+
+Gradle形式で作成したSpring BootアプリケーションでMapStructを利用するための設定検討・サンプル。
+
+* https://yukihane.github.io/blog/202007/26/spring-boot-gradle-eclipse/
