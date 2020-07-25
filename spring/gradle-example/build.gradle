@@ -3,7 +3,10 @@ plugins {
 	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
 	id 'java'
   id 'eclipse'
+  id "com.diffplug.eclipse.apt" version "3.23.0"
 }
+
+// apply plugin: 'com.diffplug.eclipse.apt'
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
