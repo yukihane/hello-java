@@ -37,9 +37,11 @@ dependencies {
 }
 
 compileJava {
-    options.compilerArgs = [
-        '-Amapstruct.defaultComponentModel=spring'
-    ]
+    aptOptions {
+        processorArgs = [
+            'mapstruct.defaultComponentModel': 'spring'
+        ]
+    }
 }
 
 test {
