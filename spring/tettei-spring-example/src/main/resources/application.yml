@@ -1,6 +1,0 @@
-mybatis:
-  config-location: classpath:mybatis-config.xml
-
-logging:
-  level:
-    com.example.tetteispringexample.user.repository.UserRepository: DEBUG
