@@ -1,5 +1,9 @@
 package com.example.tetteispringexample.room.domain;
 
-public class MeetingRoom {
+import lombok.Data;
 
+@Data
+public class MeetingRoom {
+    private Integer roomId;
+    private String roomName;
 }
