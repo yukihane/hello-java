@@ -1,12 +1,7 @@
 package com.example.tetteispringexample.user.repository;
 
 import com.example.tetteispringexample.user.domain.User;
-import java.util.Optional;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-@Mapper
-public interface UserRepository {
-    @Select("select * from usr where user_id = #{username}")
-    Optional<User> findById(String username);
+public interface UserRepository extends JpaRepository<User, String> {
 }

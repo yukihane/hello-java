@@ -1,8 +1,7 @@
 package com.example.tetteispringexample.room.repository;
 
-import org.apache.ibatis.annotations.Mapper;
+import com.example.tetteispringexample.room.domain.MeetingRoom;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-@Mapper
-public interface MeetingRoomRepository {
-
+public interface MeetingRoomRepository extends JpaRepository<MeetingRoom, Integer> {
 }
