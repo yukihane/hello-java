@@ -1,0 +1,7 @@
+logging:
+  level:
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+
+spring.h2.console.enabled: true
+spring.datasource.generate-unique-name: false
