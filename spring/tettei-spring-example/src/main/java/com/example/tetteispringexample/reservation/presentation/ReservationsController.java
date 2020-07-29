@@ -1,9 +1,11 @@
 package com.example.tetteispringexample.reservation.presentation;
 
 import com.example.tetteispringexample.reservation.domain.ReservationService;
+import com.example.tetteispringexample.room.domain.AlreadyReservedException;
 import com.example.tetteispringexample.room.domain.ReservableRoom;
 import com.example.tetteispringexample.room.domain.ReservableRoomId;
 import com.example.tetteispringexample.room.domain.RoomService;
+import com.example.tetteispringexample.room.domain.UnavailableReservationException;
 import com.example.tetteispringexample.security.UserAuthentication.Principal;
 import com.example.tetteispringexample.user.domain.RoleName;
 import com.example.tetteispringexample.user.domain.User;

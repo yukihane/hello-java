@@ -1,11 +1,11 @@
 package com.example.tetteispringexample.reservation.domain;
 
-import com.example.tetteispringexample.reservation.presentation.AlreadyReservedException;
 import com.example.tetteispringexample.reservation.presentation.Reservation;
-import com.example.tetteispringexample.reservation.presentation.UnavailableReservationException;
 import com.example.tetteispringexample.reservation.repository.ReservationRepository;
+import com.example.tetteispringexample.room.domain.AlreadyReservedException;
 import com.example.tetteispringexample.room.domain.ReservableRoom;
 import com.example.tetteispringexample.room.domain.ReservableRoomId;
+import com.example.tetteispringexample.room.domain.UnavailableReservationException;
 import com.example.tetteispringexample.room.repository.ReservableRoomRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
