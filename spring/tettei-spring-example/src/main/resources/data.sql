@@ -1,5 +1,8 @@
-INSERT INTO usr (user_id, first_name, last_name, role_name, password)
-VALUES ('taro-yamada', '太郎', '山田', 'USER', '{noop}yamada');
+INSERT INTO usr (user_id, first_name, last_name, role_name, password) VALUES 
+('taro-yamada', '太郎', '山田', 'USER', '{noop}yamada'),
+('aaaa', 'Aaa', 'Aaa', 'USER', '{noop}demo'),
+('bbbb', 'Bbb', 'Bbb', 'USER', '{noop}bbbb'),
+('cccc', 'Ccc', 'Ccc', 'ADMIN', '{noop}cccc');
 
 INSERT INTO meeting_room (room_id, room_name) VALUES
 (1, '新木場'),
