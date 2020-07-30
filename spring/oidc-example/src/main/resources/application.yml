@@ -5,15 +5,20 @@ spring:
   security:
     oauth2:
       client:
-        registration:
-          mykeycloak:
-            client-id: myclient
-            client-secret: 4a608a23-63a6-416d-a442-fd53e8791a26
-            authorization-grant-type: authorization_code
-            redirect-uri: "{baseUrl}/authorized/mykeycloak"
         provider:
           mykeycloak:
             # https://www.keycloak.org/docs/latest/securing_apps/index.html#endpoints-2
             # http://localhost:8080/auth/realms/myrealm/.well-known/openid-configuration
+            issuer-uri: http://localhost:8080/auth/realms/myrealm
             authorization-uri: http://localhost:8080/auth/realms/myrealm/protocol/openid-connect/auth
             token-uri: http://localhost:8080/auth/realms/myrealm/protocol/openid-connect/token
+            jwk-set-uri: http://localhost:8080/auth/realms/myrealm/protocol/openid-connect/certs
+            user-info-uri: http://localhost:8080/auth/realms/myrealm/protocol/openid-connect/userinfo
+            user-name-attribute: preferred_username
+        registration:
+          myspring:
+            provider: mykeycloak
+            client-id: myclient
+            client-secret: 50200bc7-7a3e-4505-a2de-7677511ba10e
+            authorization-grant-type: authorization_code
+            # redirect-uri: "{baseUrl}/authorized/{registrationId}"
