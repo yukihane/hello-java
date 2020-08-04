@@ -9,7 +9,10 @@ spring:
           mykeycloak:
             # https://www.keycloak.org/docs/latest/securing_apps/index.html#endpoints-2
             # http://localhost:8080/auth/realms/myrealm/.well-known/openid-configuration
-            issuer-uri: http://localhost:8080/auth/realms/myrealm
+            authorization-uri: http://localhost:8080/auth/realms/myrealm/protocol/openid-connect/auth
+            token-uri: http://localhost:8080/auth/realms/myrealm/protocol/openid-connect/token
+            user-info-uri: http://localhost:8080/auth/realms/myrealm/protocol/openid-connect/userinfo
+            jwk-set-uri: http://localhost:8080/auth/realms/myrealm/protocol/openid-connect/certs
             # https://www.keycloak.org/docs/11.0/securing_apps/index.html
             user-name-attribute: preferred_username
         registration:
@@ -20,4 +23,5 @@ spring:
             # keycloakに登録したidと対応するsecret
             # http://localhost:8080/auth/admin/master/console/#/realms/myrealm/clients
             client-id: myclient
-            client-secret: 50200bc7-7a3e-4505-a2de-7677511ba10e
+            client-secret: e3b8886b-5b6e-49a7-91c2-c28caadf0a2b
+            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
