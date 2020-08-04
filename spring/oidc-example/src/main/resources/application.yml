@@ -10,6 +10,7 @@ spring:
             # https://www.keycloak.org/docs/latest/securing_apps/index.html#endpoints-2
             # http://localhost:8080/auth/realms/myrealm/.well-known/openid-configuration
             issuer-uri: http://localhost:8080/auth/realms/myrealm
+            # https://www.keycloak.org/docs/11.0/securing_apps/index.html
             user-name-attribute: preferred_username
         registration:
           myspring:
