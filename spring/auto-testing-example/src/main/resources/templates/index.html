@@ -7,6 +7,17 @@
   </head>
 
   <body>
-    Hello!
+    <table>
+      <tbody>
+        <tr>
+          <td>起動時刻</td>
+          <td th:text="${boot}">2020-10-10T00:00:00</td>
+        </tr>
+        <tr>
+          <td>現在時刻</td>
+          <td th:text="${now}">2020-10-10T00:00:00</td>
+        </tr>
+      </tbody>
+    </table>
   </body>
 </html>

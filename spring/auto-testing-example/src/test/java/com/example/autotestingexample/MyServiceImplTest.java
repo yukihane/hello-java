@@ -26,8 +26,8 @@ class MyServiceImplTest {
 
     @Test
     void testGetToday() {
-        final String res = sut.getToday();
-        assertThat(res).isEqualTo("2010-08-15");
+        final String res = sut.getNow();
+        assertThat(res).isEqualTo("2010-08-15T00:00:00");
     }
 
 }
