@@ -35,30 +35,6 @@ configurations {
     realEnvTestRuntimeOnly.extendsFrom inContainerTestRuntimeOnly
 }
 
-task inContainerTest(type: Test) {
-    useJUnitPlatform()
-    description = 'Runs in-container tests.'
-    group = 'verification'
-
-    testClassesDirs = sourceSets.inContainerTest.output.classesDirs
-    classpath = sourceSets.inContainerTest.runtimeClasspath
-    shouldRunAfter test
-}
-
-check.dependsOn inContainerTest
-
-task realEnvTest(type: Test) {
-    useJUnitPlatform()
-    description = 'Runs real environment tests.'
-    group = 'verification'
-
-    testClassesDirs = sourceSets.realEnvTest.output.classesDirs
-    classpath = sourceSets.realEnvTest.runtimeClasspath
-    shouldRunAfter inContainerTest
-}
-
-check.dependsOn realEnvTest
-
 repositories {
     mavenCentral()
 }
@@ -85,3 +61,27 @@ dependencies {
 test {
     useJUnitPlatform()
 }
+
+task inContainerTest(type: Test) {
+    useJUnitPlatform()
+    description = 'Runs in-container tests.'
+    group = 'verification'
+
+    testClassesDirs = sourceSets.inContainerTest.output.classesDirs
+    classpath = sourceSets.inContainerTest.runtimeClasspath
+    shouldRunAfter test
+}
+
+check.dependsOn inContainerTest
+
+task realEnvTest(type: Test) {
+    useJUnitPlatform()
+    description = 'Runs real environment tests.'
+    group = 'verification'
+
+    testClassesDirs = sourceSets.realEnvTest.output.classesDirs
+    classpath = sourceSets.realEnvTest.runtimeClasspath
+    shouldRunAfter inContainerTest
+}
+
+check.dependsOn realEnvTest
