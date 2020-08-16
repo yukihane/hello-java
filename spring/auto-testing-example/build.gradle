@@ -78,12 +78,8 @@ dependencies {
     testCompileOnly 'org.projectlombok:lombok'
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-        exclude group: 'org.springframework.boot', module: 'spring-boot-test'
-        exclude group: 'org.springframework.boot', module: 'spring-boot-test-autoconfigure'
     }
-    inContainerTestImplementation 'org.springframework.boot:spring-boot-test'
-    inContainerTestImplementation 'org.springframework.boot:spring-boot-test-autoconfigure'
-    inContainerTestImplementation 'org.springframework.security:spring-security-test'
+    testImplementation 'org.springframework.security:spring-security-test'
 }
 
 test {
