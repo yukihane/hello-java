@@ -25,8 +25,12 @@ configurations {
     compileOnly {
         extendsFrom annotationProcessor
     }
+    inContainerTestCompileOnly.extendsFrom testCompileOnly
+    inContainerTestAnnotationProcessor.extendsFrom testAnnotationProcessor
     inContainerTestImplementation.extendsFrom testImplementation
     inContainerTestRuntimeOnly.extendsFrom testRuntimeOnly
+    realEnvTestCompileOnly.extendsFrom inContainerTestCompileOnly
+    realEnvTestAnnotationProcessor.extendsFrom inContainerTestAnnotationProcessor
     realEnvTestImplementation.extendsFrom inContainerTestImplementation
     realEnvTestRuntimeOnly.extendsFrom inContainerTestRuntimeOnly
 }
