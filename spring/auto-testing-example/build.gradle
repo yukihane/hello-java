@@ -29,10 +29,10 @@ configurations {
     inContainerTestAnnotationProcessor.extendsFrom testAnnotationProcessor
     inContainerTestImplementation.extendsFrom testImplementation
     inContainerTestRuntimeOnly.extendsFrom testRuntimeOnly
-    realEnvTestCompileOnly.extendsFrom inContainerTestCompileOnly
-    realEnvTestAnnotationProcessor.extendsFrom inContainerTestAnnotationProcessor
-    realEnvTestImplementation.extendsFrom inContainerTestImplementation
-    realEnvTestRuntimeOnly.extendsFrom inContainerTestRuntimeOnly
+    realEnvTestCompileOnly.extendsFrom testCompileOnly
+    realEnvTestAnnotationProcessor.extendsFrom testAnnotationProcessor
+    realEnvTestImplementation.extendsFrom testImplementation
+    realEnvTestRuntimeOnly.extendsFrom testRuntimeOnly
 }
 
 repositories {
