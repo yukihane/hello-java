@@ -1,2 +1,9 @@
+spring:
+  datasource:
+      url: jdbc:mysql://127.0.0.1:3306/sample_sql
+      username: root
+      password: root
+      initialization-mode: always
+
 mybatis:
-    config-location: classpath:mybatis-config.xml
+  config-location: classpath:mybatis-config.xml
