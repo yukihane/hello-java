@@ -4,6 +4,6 @@ import lombok.Data;
 
 @Data
 public class MyTable {
-    private int id;
+    private Long id;
     private String message;
 }
