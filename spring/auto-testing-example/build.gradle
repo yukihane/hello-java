@@ -52,7 +52,7 @@ dependencies {
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     runtimeOnly 'mysql:mysql-connector-java'
-    // runtimeOnly 'com.h2database:h2'
+    runtimeOnly 'com.h2database:h2'
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
     annotationProcessor 'org.projectlombok:lombok'
     testAnnotationProcessor 'org.projectlombok:lombok'
@@ -69,6 +69,7 @@ test {
 }
 
 task inContainerTest(type: Test) {
+//    environment "VAR", "val"
     useJUnitPlatform()
     description = 'Runs in-container tests.'
     group = 'verification'

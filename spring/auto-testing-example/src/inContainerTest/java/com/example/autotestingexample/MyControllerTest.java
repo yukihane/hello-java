@@ -33,6 +33,7 @@ class MyControllerTest {
     void ログイン済み() throws Exception {
         when(myService.getNow()).thenReturn("2020-01-01T10:10:10");
         final MyTable obj = new MyTable();
+        obj.setId(10L);
         obj.setMessage("2020-02-02T02:02:02");
         when(myMapper.select()).thenReturn(obj);
 
