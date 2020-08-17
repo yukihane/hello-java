@@ -1,5 +1,6 @@
-package com.example.autotestingexample;
+package com.example.autotestingexample.repository;
 
+import com.example.autotestingexample.entity.MyTable;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;

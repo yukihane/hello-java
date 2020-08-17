@@ -1,7 +1,8 @@
-package com.example.autotestingexample;
+package com.example.autotestingexample.repository;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import com.example.autotestingexample.entity.MyTable;
 import java.util.regex.Pattern;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

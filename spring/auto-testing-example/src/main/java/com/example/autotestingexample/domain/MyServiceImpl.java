@@ -1,4 +1,4 @@
-package com.example.autotestingexample;
+package com.example.autotestingexample.domain;
 
 import static java.time.temporal.ChronoField.HOUR_OF_DAY;
 import static java.time.temporal.ChronoField.MINUTE_OF_HOUR;

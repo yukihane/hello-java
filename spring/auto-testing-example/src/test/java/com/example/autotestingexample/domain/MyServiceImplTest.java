@@ -1,4 +1,4 @@
-package com.example.autotestingexample;
+package com.example.autotestingexample.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

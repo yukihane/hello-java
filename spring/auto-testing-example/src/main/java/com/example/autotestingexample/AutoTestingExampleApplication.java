@@ -1,5 +1,8 @@
 package com.example.autotestingexample;
 
+import com.example.autotestingexample.domain.MyService;
+import com.example.autotestingexample.entity.MyTable;
+import com.example.autotestingexample.repository.MyMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;

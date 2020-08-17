@@ -1,5 +1,7 @@
-package com.example.autotestingexample;
+package com.example.autotestingexample.presentation;
 
+import com.example.autotestingexample.domain.MyService;
+import com.example.autotestingexample.repository.MyMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

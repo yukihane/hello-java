@@ -1,4 +1,4 @@
-package com.example.autotestingexample;
+package com.example.autotestingexample.domain;
 
 public interface MyService {
 

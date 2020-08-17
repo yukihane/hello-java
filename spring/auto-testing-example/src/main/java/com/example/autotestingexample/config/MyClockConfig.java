@@ -1,4 +1,4 @@
-package com.example.autotestingexample;
+package com.example.autotestingexample.config;
 
 import java.time.Clock;
 import org.springframework.context.annotation.Bean;

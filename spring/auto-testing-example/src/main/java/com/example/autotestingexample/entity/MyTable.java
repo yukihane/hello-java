@@ -1,4 +1,4 @@
-package com.example.autotestingexample;
+package com.example.autotestingexample.entity;
 
 import lombok.Data;
 
