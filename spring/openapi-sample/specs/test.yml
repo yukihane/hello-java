@@ -1,12 +1,37 @@
-openapi: "3.0.2"
+openapi: "3.0.3"
 info:
-  title: API Title
+  title: OpenAPI Sample Project
   version: "1.0"
 servers:
   - url: http://localhost:8080
+
 paths:
-  /test:
+  /books:
     get:
+      description: books listing
       responses:
         "200":
-          description: OK
+          description: list of books
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/BookList"
+
+components:
+  schemas:
+    BookList:
+      properties:
+        books:
+          type: array
+          items:
+            $ref: "#/components/schemas/Book"
+    Book:
+      type: object
+      properties:
+        author:
+          type: string
+        title:
+          type: string
+        series:
+          type: integer
