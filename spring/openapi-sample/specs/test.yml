@@ -16,17 +16,17 @@ paths:
             application/json:
               schema:
                 type: object
-                $ref: "#/components/schemas/BookList"
+                $ref: "#/components/schemas/BookListModel"
 
 components:
   schemas:
-    BookList:
+    BookListModel:
       properties:
         books:
           type: array
           items:
-            $ref: "#/components/schemas/Book"
-    Book:
+            $ref: "#/components/schemas/BookModel"
+    BookModel:
       type: object
       properties:
         author:
