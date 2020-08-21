@@ -3,11 +3,18 @@ plugins {
     id 'io.spring.dependency-management' version '1.0.10.RELEASE'
     id 'java'
     id 'org.openapi.generator' version '4.3.1'
+    id 'eclipse'
 }
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
+
+ext {
+    openApiOutputDir = "$rootDir/build/generated/openapi"
+}
+
+sourceSets.main.java.srcDirs += ["$openApiOutputDir/src/main/java"]
 
 configurations {
     compileOnly {
@@ -21,6 +28,9 @@ repositories {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.openapitools:jackson-databind-nullable:0.2.1'
+    compileOnly 'io.swagger:swagger-annotations:1.6.2'
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
@@ -37,13 +47,14 @@ test {
 openApiGenerate {
     //    configFile = "$rootDir/specs/config.json"
     generatorName = 'spring'
-    inputSpec = "$rootDir/specs/test.yml".toString()
-    //    outputDir = "$buildDir/generated".toString()
-    //    apiPackage = "org.openapi.example.api"
+    inputSpec = "$rootDir/specs/test.yml"
+    outputDir = "$openApiOutputDir"
+    apiPackage = 'org.openapi.example.api'
+    modelPackage = 'org.openapi.example.model'
     //    invokerPackage = "org.openapi.example.invoker"
-    //    modelPackage = "org.openapi.example.model"
     configOptions = [
         dateLibrary: 'java8',
-        interfaceOnly: 'true'
+        interfaceOnly: 'true',
+        skipDefaultInterface: 'true',
     ]
 }
