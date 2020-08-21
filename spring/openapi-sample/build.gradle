@@ -2,6 +2,7 @@ plugins {
     id 'org.springframework.boot' version '2.3.3.RELEASE'
     id 'io.spring.dependency-management' version '1.0.10.RELEASE'
     id 'java'
+    id "com.diffplug.eclipse.apt" version "3.24.0"
     id 'org.openapi.generator' version '4.3.1'
     id 'eclipse'
 }
@@ -11,6 +12,7 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
 ext {
+    mapstructVersion = '1.4.0.Beta3'
     openApiOutputDir = "$rootDir/build/generated/openapi"
 }
 
@@ -30,15 +32,25 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation "org.mapstruct:mapstruct:${mapstructVersion}"
     implementation 'org.openapitools:jackson-databind-nullable:0.2.1'
     compileOnly 'io.swagger:swagger-annotations:1.6.2'
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     runtimeOnly 'com.h2database:h2'
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+    annotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+}
+
+compileJava {
+    aptOptions {
+        processorArgs = [
+            'mapstruct.defaultComponentModel': 'spring'
+        ]
     }
 }
 
