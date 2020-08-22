@@ -39,6 +39,24 @@ paths:
               schema:
                 type: object
                 $ref: "#/components/schemas/BookModel"
+  /books/{id}:
+    get:
+      description: books listing
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: book
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/BookModel"
 
 components:
   schemas:

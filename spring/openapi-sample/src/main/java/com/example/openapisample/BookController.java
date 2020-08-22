@@ -1,6 +1,7 @@
 package com.example.openapisample;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import javax.validation.Valid;
@@ -34,6 +35,15 @@ public class BookController implements BooksApi {
         final BookListModel output = new BookListModel();
         output.books(res);
         return new ResponseEntity<>(output, HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<BookModel> booksIdGet(final Long id) {
+        final Optional<BookModel> book = bookRepository.findById(id.longValue())
+            .map(bookMapper::entityToModel);
+
+        return book.map(b -> new ResponseEntity<>(b, HttpStatus.OK))
+            .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @Override
