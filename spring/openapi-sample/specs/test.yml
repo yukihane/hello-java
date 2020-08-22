@@ -17,6 +17,23 @@ paths:
               schema:
                 type: object
                 $ref: "#/components/schemas/BookListModel"
+    post:
+      description: bookを登録する(description)
+      summary: book登録(summary)
+      requestBody:
+        required: true
+        content:
+          "application/json":
+            schema:
+              $ref: "#/components/schemas/BookModel"
+      responses:
+        "200":
+          description: "登録したbook"
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/BookModel"
 
 components:
   schemas:
