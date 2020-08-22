@@ -2,6 +2,7 @@ package com.example.openapisample;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.openapi.example.api.BooksApi;
@@ -19,9 +20,17 @@ public class BookController implements BooksApi {
     private final BookMapper bookMapper;
 
     @Override
-    public ResponseEntity<BookListModel> booksGet() {
+    public ResponseEntity<BookListModel> booksGet(@Valid final Integer max) {
         final List<Book> books = bookRepository.findAll();
-        final List<BookModel> res = books.stream().map(bookMapper::entityToModel).collect(Collectors.toList());
+
+        Stream<Book> stream = books.stream();
+        if (max != null) {
+            stream = stream.limit(max.longValue());
+        }
+        final List<BookModel> res = stream
+            .map(bookMapper::entityToModel)
+            .collect(Collectors.toList());
+
         final BookListModel output = new BookListModel();
         output.books(res);
         return new ResponseEntity<>(output, HttpStatus.OK);

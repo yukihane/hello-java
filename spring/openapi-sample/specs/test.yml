@@ -9,6 +9,11 @@ paths:
   /books:
     get:
       description: books listing
+      parameters:
+        - name: max
+          in: query
+          schema:
+            type: integer
       responses:
         "200":
           description: list of books
