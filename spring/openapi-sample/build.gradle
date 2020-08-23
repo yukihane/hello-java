@@ -73,3 +73,4 @@ openApiGenerate {
         // performBeanValidation: 'true',
     ]
 }
+compileJava.dependsOn tasks.openApiGenerate
