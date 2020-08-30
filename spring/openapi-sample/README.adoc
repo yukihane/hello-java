@@ -1,0 +1,18 @@
+== これは何？
+
+https://openapi-generator.tech/[`openapi-generator`] を利用して Spring Boot の `RestController` 用インタフェースを自動生成して見るサンプルプロジェクトです。
+
+== 使い方
+
+[soruce]
+----
+gradle clean build
+----
+で `build/generated/openapi/` ディレクトリにコードが自動生成されます。
+
+`BookController` が自動生成されたインタフェース `BooksApi` を実装しています。
+
+== 解説
+
+* https://yukihane.github.io/blog/202008/23/openapi-generator/[openapi generator を Spring Boot で利用してみる]
+* https://yukihane.github.io/blog/202008/30/openapi-spring-mvc-handler-args/[openapi-generaterで生成したcontrollerにカスタム引数を追加する]
