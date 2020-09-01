@@ -15,7 +15,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         // https://yukihane.github.io/blog/202007/21/hello-oidc-with-keycloak/
         // OAuth2WebSecurityConfiguration 設定をそのままコピー
-        http.authorizeRequests((requests) -> requests.anyRequest().authenticated());
+        http.authorizeRequests((requests) -> requests.antMatchers("/api/**").authenticated());
         http.oauth2Login(Customizer.withDefaults());
         http.oauth2Client();
 
