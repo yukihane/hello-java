@@ -1,0 +1,20 @@
+spring:
+  security:
+    oauth2:
+      client:
+        provider:
+          mykeycloak:
+            # https://www.keycloak.org/docs/latest/securing_apps/index.html#endpoints-2
+            # http://localhost:8081/auth/realms/myrealm/.well-known/openid-configuration
+            issuer-uri: http://localhost:8081/auth/realms/myrealm
+            # https://www.keycloak.org/docs/11.0/securing_apps/index.html
+            user-name-attribute: preferred_username
+        registration:
+          myspring:
+            authorization-grant-type: authorization_code
+            # 上で定義しているprovider名
+            provider: mykeycloak
+            # keycloakに登録したidと対応するsecret
+            # http://localhost:8081/auth/admin/master/console/#/realms/myrealm/clients
+            client-id: myclient
+            client-secret: e3b8886b-5b6e-49a7-91c2-c28caadf0a2b
