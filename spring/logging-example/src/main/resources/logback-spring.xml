@@ -9,6 +9,11 @@
     </encoder>
     -->
     <encoder class="net.logstash.logback.encoder.LogstashEncoder" />
+    <!-- 
+    <layout>
+      <Pattern>%X{requestId} %X{user} - %m%n</Pattern>
+    </layout>
+    -->
   </appender>
   <root level="DEBUG">
     <appender-ref ref="STDOUT" />
