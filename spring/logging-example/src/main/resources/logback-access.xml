@@ -1,7 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <configuration>
   <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
-    <encoder>
-      <pattern>common</pattern>
+    <encoder class="net.logstash.logback.encoder.AccessEventCompositeJsonEncoder">
+      <providers>
+        <timestamp />
+        <requestedUrl />
+        <statusCode />
+        <remoteUser />
+      </providers>
     </encoder>
   </appender>
   <appender-ref ref="CONSOLE" />
