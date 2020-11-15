@@ -1,0 +1,8 @@
+== これは何？
+
+Spring Boot のログ出力バリエーションの検討です。
+
+* Conntrollerのインターセプタでハンドラのアクセスをログ出力
+* `@RestControllerAdvice` で例外をキャッチしてログ出力
+* `logstash-logback-encoder` を利用してJSON形式でログ出力
+* `logback-access` を利用してアクセスログ出力
