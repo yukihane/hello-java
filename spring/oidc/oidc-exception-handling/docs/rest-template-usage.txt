@@ -1,0 +1,13 @@
+./oauth2/oauth2-resource-server/src/main/java/org/springframework/security/oauth2/server/resource/introspection/NimbusOpaqueTokenIntrospector.java
+./oauth2/oauth2-client/src/main/java/org/springframework/security/oauth2/client/web/reactive/function/client/ServletOAuth2AuthorizedClientExchangeFilterFunction.java
+./oauth2/oauth2-client/src/main/java/org/springframework/security/oauth2/client/endpoint/DefaultPasswordTokenResponseClient.java
+./oauth2/oauth2-client/src/main/java/org/springframework/security/oauth2/client/endpoint/DefaultRefreshTokenTokenResponseClient.java
+./oauth2/oauth2-client/src/main/java/org/springframework/security/oauth2/client/endpoint/DefaultAuthorizationCodeTokenResponseClient.java
+./oauth2/oauth2-client/src/main/java/org/springframework/security/oauth2/client/endpoint/DefaultClientCredentialsTokenResponseClient.java
+./oauth2/oauth2-client/src/main/java/org/springframework/security/oauth2/client/userinfo/CustomUserTypesOAuth2UserService.java
+./oauth2/oauth2-client/src/main/java/org/springframework/security/oauth2/client/userinfo/DefaultOAuth2UserService.java
+./oauth2/oauth2-client/src/main/java/org/springframework/security/oauth2/client/registration/ClientRegistrations.java
+./oauth2/oauth2-jose/src/test/java/org/springframework/security/oauth2/jwt/NimbusJwtDecoderJwkSupportTests.java
+./oauth2/oauth2-jose/src/main/java/org/springframework/security/oauth2/jwt/NimbusJwtDecoder.java
+./oauth2/oauth2-jose/src/main/java/org/springframework/security/oauth2/jwt/JwtDecoderProviderConfigurationUtils.java
+./saml2/saml2-service-provider/src/main/java/org/springframework/security/saml2/provider/service/registration/OpenSamlRelyingPartyRegistrationBuilderHttpMessageConverter.java
