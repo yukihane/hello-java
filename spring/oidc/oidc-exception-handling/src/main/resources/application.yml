@@ -1,3 +1,10 @@
+server:
+  servlet:
+    session:
+      timeout: 60
+logging:
+  level:
+    ROOT: debug
 spring:
   security:
     oauth2:
