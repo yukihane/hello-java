@@ -8,6 +8,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.session.MapSessionRepository;
 import org.springframework.session.config.annotation.web.http.EnableSpringHttpSession;
+import org.springframework.session.web.http.CookieSerializer;
+import org.springframework.session.web.http.DefaultCookieSerializer;
 
 @EnableWebSecurity
 @EnableSpringHttpSession
@@ -16,10 +18,17 @@ public class MyConfig extends WebSecurityConfigurerAdapter {
 
     // 明示的にセッション管理用cookieにSameSiteを設定したいのでSpring Sessionを利用
     // https://docs.spring.io/spring-session/docs/current/reference/html5/#api-enablespringhttpsession
-    // https://docs.spring.io/spring-session/docs/current/reference/html5/#api-cookieserializer-customization
     @Bean
     public MapSessionRepository sessionRepository() {
         return new MapSessionRepository(new ConcurrentHashMap<>());
+    }
+
+    // https://docs.spring.io/spring-session/docs/current/reference/html5/#api-cookieserializer-bean
+    @Bean
+    public CookieSerializer cookieSerializer() {
+        final DefaultCookieSerializer serializer = new DefaultCookieSerializer();
+        serializer.setSameSite("Lax");
+        return serializer;
     }
 
     @Override
