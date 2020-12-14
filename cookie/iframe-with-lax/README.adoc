@@ -1,0 +1,27 @@
+== これは何？
+
+cookieの属性 https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Set-Cookie/SameSite[`SameSite`] を確認するためのサンプルコードです。
+
+== 設定
+
+`thirdparty` ディレクトリをherokuにdeployします。deploy方法は次のページなどを参考にしてください。
+
+* https://himeji-cs.jp/blog2/blog/2019/08/hello-heroku-with-springboot.html[HerokuでSpringBootアプリを動かしてみる]
+
+その後、`firstparty` ディレクトリ以下をapacheなどにpushlishします。 `iframe` の `src` 指定は適宜変更してください。
+
+== 確認方法
+
+heroku にデプロイしたページへ直接アクセスするとカウントアップされていきますが、 `firstparty` 経由だと常に `0` が表示されます。
+
+DevTools では、 `SameSite=Lax` であるためクッキーを拒否した旨が出力されていることが確認できるでしょう。
+(ChromeではNetworkタブで、FirefoxではConsoleで確認できました。)
+
+== サンプルサイト
+
+* firstparty: https://himeji-cs.jp/firstparty/index.html
+* thirdparty: https://thirdparty-cookie-example.herokuapp.com/
+
+前述の通り、 `thirdpaty` はherokuにあるため、初回アクセス時はスピンアップに時間がかかります。
+
+注: 本サンプルは予告なく削除されます。
