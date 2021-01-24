@@ -25,3 +25,27 @@ Spring Security OAuth 2.0 Login のデフォルト実装では、次の2種類�
 * Cookieを使うとセッションを共有してしまうので、Cookieを使わないセッション管理を実現する
 
 いずれにせよ、クライアントはJavaScriptの介入が必要であるように思われます。
+
+== 検討
+
+対策案に記載したもののうち、後者「Cookieを使わないセッション管理を実現する」を検討します。
+
+Spring Session を使うことで、CookieでなくヘッダにセッションIDを付与することができるようになります:
+
+* https://docs.spring.io/spring-session/docs/current/reference/html5/#httpsession-rest[5.6. HttpSession and RESTful APIs]
+
+----
+@Configuration
+@EnableRedisHttpSession
+public class HttpSessionConfig {
+    // ...
+
+	@Bean
+	public HttpSessionIdResolver httpSessionIdResolver() {
+		return HeaderHttpSessionIdResolver.xAuthToken();
+	}
+}
+----
+
+ヘッダにセッションIDを付与するようにしたので、JavaScriptで通信するように変更します。
+
