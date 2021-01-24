@@ -14,5 +14,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests((requests) -> requests.antMatchers("/secure/**").authenticated())
             .oauth2Login(withDefaults());
         http.headers().frameOptions().disable();
+        http.cors(withDefaults());
     }
 }
