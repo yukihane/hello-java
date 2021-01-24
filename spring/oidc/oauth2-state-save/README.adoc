@@ -1,0 +1,27 @@
+== 解決したい問題
+
+1ページの中に `iframe` を複数含めます。それぞれの `iframe` の `src` は OIDC 認証が必要です。
+
+このような状況では、 Spring Security OAuth 2.0 Login のデフォルト実装ではうまく動作しません。
+
+この問題を解決したいです。
+
+== 原因
+
+Spring Security OAuth 2.0 Login のデフォルト実装では、次の2種類の情報をセッションで持っています。
+
+* リクエスト時の情報(エンドポイントやクエリパラメータ)。 `HttpSessionRequestCache` に `SavedRequest` として保持される。
+* `https://openid-foundation-japan.github.io/rfc6749.ja.html#code-authz-req[`state`] の保持。 `HttpSessionOAuth2AuthorizationRequestRepository` で実装されている。
+
+このセッションへ保持する処理について、どうも今回のように並行処理することを想定していないように見えます。ただし後者の `state` 保持については、
+
+* https://github.com/spring-projects/spring-security/issues/5110[HttpSessionOAuth2AuthorizationRequestRepository handle multiple OAuth2AuthorizationRequest per session #5110]
+
+で考慮はされているようですので、問題には関わっていないかも知れません(…が、スレッドセーフではないように見えます。 https://stackoverflow.com/q/65866376/4506703[参考] )
+
+== 対策案
+
+* 完全にステートレスで OAuth 2.0 Login を実現する
+* Cookieを使うとセッションを共有してしまうので、Cookieを使わないセッション管理を実現する
+
+いずれにせよ、クライアントはJavaScriptの介入が必要であるように思われます。
