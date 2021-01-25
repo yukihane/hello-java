@@ -1,0 +1,3 @@
+* https://yukihane.github.io/blog/202009/04/oidc-add-claim-and-scope/[claimとscopeを追加して取得してみる] - 発火後忘失
+
+で説明している、カスタムclaim & scope を利用してみるためのRPサンプル実装です。
