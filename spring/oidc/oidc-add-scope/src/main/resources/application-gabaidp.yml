@@ -1,0 +1,21 @@
+spring:
+  security:
+    oauth2:
+      client:
+        provider:
+          mykeycloak:
+            authorization-uri: http://localhost:8082/gabaidp/auth
+            token-uri: http://localhost:8082/gabaidp/token
+            user-info-uri: http://localhost:8082/gabaidp/userinfo
+            jwk-set-uri: http://localhost:8082/gabaidp/certs
+            user-name-attribute: preferred_username
+        registration:
+          myspring:
+            authorization-grant-type: authorization_code
+            provider: mykeycloak
+            client-id: myclient
+            client-secret: e3b8886b-5b6e-49a7-91c2-c28caadf0a2b
+            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
+            scope:
+            - openid
+            - extrainfo
