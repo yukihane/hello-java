@@ -49,3 +49,12 @@ public class HttpSessionConfig {
 
 ヘッダにセッションIDを付与するようにしたので、JavaScriptで通信するように変更します。
 
+そうすると、いくつかのポイントでCORSエラーが発生する可能性が出てくるので、これに対処する必要があります。
+* (`iframe src` が別originの場合) `src` 自身へのリクエスト
+* 認可サーバへのリクエスト
+
+前者はSpring Bootの設定でCORSを許可することで通るようになります(link:https://stackoverflow.com/a/65867566/4506703[参考])。
+
+後者はIdP側の設定になりますが、Keycloakではそのような設定は不可能なようでした(参考: https://issues.redhat.com/browse/KEYCLOAK-13077[KEYCLOAK-13077])。
+
+(Keycloakで試せないことが分かったので一旦ここで中断しています)
