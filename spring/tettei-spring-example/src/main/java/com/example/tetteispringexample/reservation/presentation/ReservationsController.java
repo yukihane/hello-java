@@ -56,7 +56,7 @@ public class ReservationsController {
         model.addAttribute("room", roomService.findMeetingRoom(roomId));
         model.addAttribute("reservations", reservations);
         model.addAttribute("timeList", timeList);
-        return "reservation/reserveForm";
+        return "reservation/reservationForm";
     }
 
     private User dummyUser() {
