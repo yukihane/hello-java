@@ -19,6 +19,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -53,9 +54,14 @@ public class ReservationsController {
         final List<Reservation> reservations = reservationService.findReservations(reservableRoomId);
         final List<LocalTime> timeList = Stream.iterate(LocalTime.of(0, 0), t -> t.plusMinutes(30)).limit(24 * 2)
             .collect(Collectors.toList());
+
+        String userId = SecurityContextHolder.getContext().getAuthentication().getName();
+        User user = userRepository.findById(userId).get();
+
         model.addAttribute("room", roomService.findMeetingRoom(roomId));
         model.addAttribute("reservations", reservations);
         model.addAttribute("timeList", timeList);
+        model.addAttribute("user", user);
         return "reservation/reservationForm";
     }
 
@@ -93,7 +99,8 @@ public class ReservationsController {
     }
 
     @RequestMapping(method = RequestMethod.POST, params = "cancel")
-    String cancel(@RequestParam("reservationId") final Integer reservationId, @PathVariable("roomId") final Integer roomId,
+    String cancel(@RequestParam("reservationId") final Integer reservationId,
+        @PathVariable("roomId") final Integer roomId,
         @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) @PathVariable("date") final LocalDate date, final Model model) {
         try {
             final Reservation reservation = reservationService.findOne(reservationId);

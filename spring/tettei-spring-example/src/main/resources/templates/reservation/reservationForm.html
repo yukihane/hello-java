@@ -6,7 +6,7 @@
 <title
     th:text="|${#temporals.format(date, 'yyyy/M/d')}の${room.roomName}|">2016/5/20の豊洲</title>
 </head>
-<body th:with="user=${#authentication.principal.user}">
+<body>
     <div>
         <a th:href="@{'/rooms/' + ${date}}">会議室一覧へ</a>
     </div>
