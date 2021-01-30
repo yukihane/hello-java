@@ -3,4 +3,4 @@
 で説明している、カスタムclaim & scope を利用してみるためのRPサンプル実装です。
 
 
-`gabaidp` プロファイルを有効にすると、 link:../../../gabaidp/[ガバガバIdP]に接続するための設定で起動します。
+`gavaidp` プロファイルを有効にすると、 https://github.com/yukihane/gava-idp[`gava-idp`; ガバガバIdP]に接続するための設定で起動します。

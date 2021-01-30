@@ -4,10 +4,10 @@ spring:
       client:
         provider:
           mykeycloak:
-            authorization-uri: http://localhost:8082/gabaidp/auth
-            token-uri: http://localhost:8082/gabaidp/token
-            user-info-uri: http://localhost:8082/gabaidp/userinfo
-            jwk-set-uri: http://localhost:8082/gabaidp/certs
+            authorization-uri: http://localhost:8082/gavaidp/auth
+            token-uri: http://localhost:8082/gavaidp/token
+            user-info-uri: http://localhost:8082/gavaidp/userinfo
+            jwk-set-uri: http://localhost:8082/gavaidp/certs
             user-name-attribute: preferred_username
         registration:
           myspring:

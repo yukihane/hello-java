@@ -10,9 +10,9 @@ import org.springframework.security.oauth2.client.registration.ClientRegistratio
 import org.springframework.security.oauth2.jose.jws.MacAlgorithm;
 import org.springframework.security.oauth2.jwt.JwtDecoderFactory;
 
-@Profile("gabaidp")
+@Profile("gavaidp")
 @Configuration
-public class GabaIdpConfig {
+public class GavaidpConfig {
 
     @Bean
     public JwtDecoderFactory<ClientRegistration> idTokenDecoderFactory() {
