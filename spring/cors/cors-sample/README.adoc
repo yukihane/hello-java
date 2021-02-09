@@ -1,0 +1,21 @@
+== これは何？
+
+preflight request が発生するようなリクエストを行い、 Spring Boot がそれに対応できていることを確認する(設定が正しく行えていることを確認する)プログラムです。
+
+* 関連: https://yukihane.github.io/blog/202101/24/spring-boot-cors-permit-all/[Spring Boot の CORS 設定を全許可する] - 発火後忘失
+
+== 実行方法
+
+サーバ:
+[source,bash]
+----
+mvn spring-boot:run
+----
+
+クライアント:
+[source,bash]
+----
+npx serve client/
+----
+
+ブラウザでクライアントのページを開き( http://localhost:5000 など)、 DevTools でボタンを押したときに発生する通信を確認します。
