@@ -1,0 +1,27 @@
+== Spring Boot で embedded Tomcat のデフォルトエラーページをカスタマイズする
+
+いくつかの状況で、Spring Bootは(Spring Bootで設定するWhitelabel Error Page等ではなく)Tomcat側が指定するエラーページを返すようです。
+
+「いくつかの状況」とは、今回の実装サンプルの `ErrorController` が例外を送出ような状況や、次のissueにあるようなURLが不正であった場合などです。
+
+* https://github.com/spring-projects/spring-boot/issues/21257[Tomcat invokes ErrorReportValve directly for malformed URLs #21257]
+
+「Tomcat側が指定するエラーページ」とは、上記のissueにもありますが、 https://github.com/apache/tomcat/blob/master/java/org/apache/catalina/valves/ErrorReportValve.java[`ErrorReportValve`] が生成しています。
+
+Spring Boot 2.4.4 時点ではSpring Bootからは `ErrorReportValve` をカスタマイズするインタフェースが提供されていませんが、issuneに記載されている通り、ワークアラウンドはあるようなのでそれを試したのが本コードです。
+
+== 実装解説
+
+http://localhost:8080 にアクセスすると、 `MyController` が例外を送出しますが、そのエラーをハンドルすべき `MyErrorController` も例外を送出します。このときデフォルト状態であれば Tomcatのデフォルトエラーページが表示されます。
+
+ただし今回は `MyConfig` クラス内で `ErrorReportValve` 実装を挿げ替えていますので、カスタマイズされたエラーページが表示されます。
+( `MyConfig` を削除すれば、デフォルトの挙動になります。 )
+
+また、この `ErrorReportValve` カスタマイズは、通常のエラーハンドリングには影響しません。
+( `MyErrorController` を削除してデフォルトの `BasicErrorController` が使われるようにすれば、Whitelabel Error Page が表示されます。 )
+
+== 関連・参考リンク
+
+今回の `CustomErrorReportValve` 実装は次のリンク先のコードを流用しています:
+
+* https://stackoverflow.com/q/64917200/4506703[Configuring 'tomcat-server.xml' file inside of embedded apache tomcat in spring-boot] - Stack Overflow
