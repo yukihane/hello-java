@@ -1,0 +1,8 @@
+== これは何？
+
+MySQL Connector/J 8.0.23 で変更になったタイムゾーンの扱いの変更を調査するためのサンプルプログラムです。
+
+Spring Boot では 2.4.3 以降でこの仕様変更の影響を受けます。
+
+* https://dev.mysql.com/doc/relnotes/connector-j/8.0/en/news-8-0-23.html[MySQL :: MySQL Connector/J 8.0 Release Notes :: Changes in MySQL Connector/J 8.0.23 (2021-01-18, General Availability)]
+* https://youshe.hatenablog.com/entry/2021/04/09/222859[Spring Bootのバージョンを2.4.4にあげるときの落とし穴 - ゆうしのはてな]
