@@ -1,6 +1,8 @@
 package com.example.mysqltimezoneexample;
 
 import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,4 +22,10 @@ public class MyEntity {
 
     @Column(name = "my_instant")
     private Instant myInstant;
+
+    @Column(name = "my_datetime")
+    private LocalDateTime myDateTime;
+
+    @Column(name = "my_date")
+    private LocalDate myDate;
 }
