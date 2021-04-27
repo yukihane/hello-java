@@ -59,23 +59,6 @@ show variables like '%time_zone%';
 2 rows in set (0.01 sec)
 ----
 
-補足ですが、 `docker run` で環境変数 `TZ` を明示することでDBサーバのタイムゾーン設定を制御できます:
-----
-docker run --name some-mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=my-secret-pw -e TZ=Asia/Tokyo -d mysql:8.0.24
-----
-
-この場合、結果は次のようになります:
-----
-show variables like '%time_zone%';
-+------------------+--------+
-| Variable_name    | Value  |
-+------------------+--------+
-| system_time_zone | JST    |
-| time_zone        | SYSTEM |
-+------------------+--------+
-2 rows in set (0.01 sec)
-----
-
 ===== クライアントセットアップ
 
 ローカルのタイムゾーンを確認します(例はUbuntuの場合):
@@ -257,8 +240,19 @@ spring.datasource.url=jdbc:mysql://localhost:3306/mydb?preserveInstants=true&con
 
 === 補足
 
-`docker run` コマンド引数で環境変数 `TZ` を設定すれば、サーバのタイムゾーンを指定することができます。例:
-
+`docker run` コマンドオプションで環境変数 `TZ` を明示することでDBサーバのタイムゾーン設定を制御できます:
 ----
-docker run --name some-mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=my-secret-pw -e TZ=Asia/Tokyo -d mysql:latest
+docker run --name some-mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=my-secret-pw -e TZ=Asia/Tokyo -d mysql:8.0.24
+----
+
+この場合、結果は次のようになります:
+----
+show variables like '%time_zone%';
++------------------+--------+
+| Variable_name    | Value  |
++------------------+--------+
+| system_time_zone | JST    |
+| time_zone        | SYSTEM |
++------------------+--------+
+2 rows in set (0.01 sec)
 ----
