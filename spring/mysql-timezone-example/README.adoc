@@ -74,7 +74,7 @@ mvn spring-boot:run
 ----
 
 
-なお、本リポジトリのSpring Boot バージョンは `2.4.4` なので、 https://docs.spring.io/spring-boot/docs/2.4.4/reference/html/appendix-dependency-versions.html#dependency-versions[デフォルトでは `mysql-connector-java` のバージョンは `8.0.23`] です。
+なお、本リポジトリのSpring Boot バージョンは `2.4.5` なので、 https://docs.spring.io/spring-boot/docs/2.4.5/reference/html/appendix-dependency-versions.html#dependency-versions[デフォルトでは `mysql-connector-java` のバージョンは `8.0.23`] です。
 
 `mysql-connector-java` バージョン `8.0.22` を利用するためには、 link:pom.xml[] を編集し、 `mysql-connector-java` のバージョンを `8.0.22` と明示します。
 
