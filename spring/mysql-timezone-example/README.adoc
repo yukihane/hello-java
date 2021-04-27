@@ -2,59 +2,52 @@
 
 === 説明
 
+MySQL Connector/J `8.0.23` でタイムゾーン変換のメカニズムが変わりました(Spring Boot では https://docs.spring.io/spring-boot/docs/2.4.3/reference/html/appendix-dependency-versions.html#dependency-versions[`2.4.3` 以降]でこれを採用しています)。
+
 [quote,'https://dev.mysql.com/doc/relnotes/connector-j/8.0/en/news-8-0-23.html[MySQL :: MySQL Connector/J 8.0 Release Notes :: Changes in MySQL Connector/J 8.0.23 (2021-01-18, General Availability)]']
 ____
 *Important Change*: A new mechanism has been introduced for users to configure how time zone conversions should occur when time instants are saved to or retrieved from a server by Connector/J. 
 ____
 
+この挙動を確認します。
 
-== これは何？
+=== MySQL Connector/J `8.0.22` と `8.0.23` のデフォルト設定挙動確認
 
-MySQL Connector/J 8.0.23 で変更になったタイムゾーンの扱いの変更を調査するためのサンプルプログラムです。
+==== 準備(実行環境作成)
 
-Spring Boot では 2.4.3 以降でこの仕様変更の影響を受けます。
+===== DBサーバセットアップ
 
-* https://dev.mysql.com/doc/relnotes/connector-j/8.0/en/news-8-0-23.html[MySQL :: MySQL Connector/J 8.0 Release Notes :: Changes in MySQL Connector/J 8.0.23 (2021-01-18, General Availability)]
-* https://youshe.hatenablog.com/entry/2021/04/09/222859[Spring Bootのバージョンを2.4.4にあげるときの落とし穴 - ゆうしのはてな]
-
-
-== 説明&何が変わったか
-
-* https://dev.mysql.com/doc/connector-j/8.0/en/connector-j-time-instants.html[MySQL :: MySQL Connector/J 8.0 Developer Guide :: 6.6.1 Preserving Time Instants]
-
-より。
-
-DBにストアされる `TIMESTAMP` 型の値は、UTCに変換されてストアされます
-(注: MySQL 8.0.19 以降は、タイムオフセット設定値を考慮した値でストアすることも可能)。
-
-
-== 実行環境作成
-
-https://github.com/yukihane/hello-flyway と同じように、サーバを起動し、DB作成、ユーザ作成します。
-
+https://hub.docker.com/_/mysql[mysql Dockerコンテナ] を起動します(今回は現時点での最新版 `8.0.24` を使用):
 ----
-docker run --name some-mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql:latest
+docker run --name some-mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql:8.0.24
+----
+
+loginします:
+----
 mysql -uroot -pmy-secret-pw --protocol=tcp
 ----
 
+DB, userを作成します:
 ----
 create database mydb;
 create user 'myuser'@'%' identified BY 'mypass';
 grant all privileges on mydb.* to 'myuser'@'%';
 ----
 
-テーブルを作成します。
-
+tableを作成します:
 [source,sql]
 ----
 use mydb;
 create table my_entity (
     id bigint auto_increment primary key,
-    my_instant timestamp null,
-    my_cur_timestamp timestamp DEFAULT CURRENT_TIMESTAMP
+    my_instant timestamp,
+    my_datetime datetime,
+    my_date date,
+    my_cur_timestamp timestamp default current_timestamp
 );
 ----
 
+DBサーバのタイムゾーンを確認します:
 ----
 show variables like '%time_zone%';
 +------------------+--------+
@@ -66,8 +59,206 @@ show variables like '%time_zone%';
 2 rows in set (0.01 sec)
 ----
 
+補足ですが、 `docker run` で環境変数 `TZ` を明示することでDBサーバのタイムゾーン設定を制御できます:
+----
+docker run --name some-mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=my-secret-pw -e TZ=Asia/Tokyo -d mysql:8.0.24
+----
 
-ちなみに、 `TZ` 指定バージョン:
+この場合、結果は次のようになります:
+----
+show variables like '%time_zone%';
++------------------+--------+
+| Variable_name    | Value  |
++------------------+--------+
+| system_time_zone | JST    |
+| time_zone        | SYSTEM |
++------------------+--------+
+2 rows in set (0.01 sec)
+----
+
+===== クライアントセットアップ
+
+ローカルのタイムゾーンを確認します(例はUbuntuの場合):
+----
+cat /etc/timezone 
+Asia/Tokyo
+----
+
+本リポジトリのコードを実行します:
+
+----
+mvn spring-boot:run
+----
+
+
+なお、本リポジトリのSpring Boot バージョンは `2.4.4` なので、 https://docs.spring.io/spring-boot/docs/2.4.4/reference/html/appendix-dependency-versions.html#dependency-versions[デフォルトでは `mysql-connector-java` のバージョンは `8.0.23`] です。
+
+`mysql-connector-java` バージョン `8.0.22` を利用するためには、 link:pom.xml[] を編集し、 `mysql-connector-java` のバージョンを `8.0.22` と明示します。
+
+==== 実行・結果
+
+http://localhost:8080 にアクセスすると現在時刻をテーブルにinsertします。
+
+----
+select * from my_entity;
++----+---------------------+---------------------+------------+---------------------+
+| id | my_instant          | my_datetime         | my_date    | my_cur_timestamp    |
++----+---------------------+---------------------+------------+---------------------+
+|  1 | 2021-04-27 18:19:41 | 2021-04-27 18:19:41 | 2021-04-28 | 2021-04-27 18:19:40 |
+|  2 | 2021-04-28 03:20:15 | 2021-04-28 03:20:15 | 2021-04-28 | 2021-04-27 18:20:15 |
++----+---------------------+---------------------+------------+---------------------+
+----
+
+id:1 が `8.0.22` の実行結果、 id:2 が `8.0.23` の実行結果です。
+
+`8.0.23` では、クライアントで生成し `my_instant`, `my_datetime` へ insert した現在時刻が、9時間進んでいます。
+
+ちなみに、これを実行した時刻は概ね以下のとおりです。
+
+DB:
+
+----
+select now();
++---------------------+
+| now()               |
++---------------------+
+| 2021-04-27 18:24:17 |
++---------------------+
+----
+
+クライアント:
+
+----
+date
+2021年  4月 28日 水曜日 03:24:39 JST
+----
+
+つまり、次のような挙動になっていると予想されます:
+
+|===
+|カラム|保存されている値
+
+|`my_instant`, `my_datetime`
+| `8.0.22` では UTC が、 `8.0.23` では JST における現在時刻
+
+|`my_date`
+|どちらのバージョンもJST基準の本日日付
+
+|`my_cur_timestamp`
+|どちらのバージョンもUTCにおける現在時刻
+
+|===
+
+より正確な説明は、冒頭で引用しているリリースノートからリンクされている次のページで読むことができます:
+
+* https://dev.mysql.com/doc/connector-j/8.0/en/connector-j-time-instants.html[6.6.1 Preserving Time Instants]
+* https://dev.mysql.com/doc/connector-j/8.0/en/connector-j-connp-props-datetime-types-processing.html[6.3.11 Datetime types processing]
+
+=== 対応方法
+
+[quote,'https://dev.mysql.com/doc/relnotes/connector-j/8.0/en/news-8-0-23.html[Changes in MySQL Connector/J 8.0.23 (2021-01-18, General Availability)]']
+____
+To preserve the default behavior of Connector/J 8.0.22 and earlier to query the session time zone from the server and then convert a timestamp between that and the JVM time zone, set the new connection property connectionTimeZone to SERVER, and leave the other two new properties at their default values.
+____
+
+にある通り、 `8.0.22` 以前と同じ挙動にするには、 `connectionTimeZone=SERVER` という設定を行えばよいです。
+この設定は、 https://dev.mysql.com/doc/connector-j/8.0/en/connector-j-time-instants.html[6.6.1 Preserving Time Instants] で説明されている、 Solution `2a` に相当します。
+
+これ以外の対応方法(プロパティ設定値)、その設定を行った場合の挙動についてもこのページに書かれているので一読すべきでしょう。
+
+=== Solution 確認
+
+前述した、 https://dev.mysql.com/doc/connector-j/8.0/en/connector-j-time-instants.html[6.6.1 Preserving Time Instants] に記載されている Solution 設定を実際に試してみます。
+
+本リポジトリのプログラムにおいては、プロパティ設定は link:src/main/resources/application.yml[`application.yml`] の `spring.datasource.url` 設定値を書き換えることで実現できます。
+
+本節の実行環境は、「MySQL Connector/J `8.0.22` と `8.0.23` のデフォルト設定挙動確認」節で記載したものと同等です。
+すなわち、DBサーバのタイムゾーンはUTCで、クライアントはJSTです。
+
+==== Solution 1
+
+===== 設定
+----
+spring.datasource.url=jdbc:mysql://localhost:3306/mydb?preserveInstants=false
+----
+
+==== 結果
+----
++----+---------------------+---------------------+------------+---------------------+
+| id | my_instant          | my_datetime         | my_date    | my_cur_timestamp    |
++----+---------------------+---------------------+------------+---------------------+
+|  7 | 2021-04-28 04:04:36 | 2021-04-28 04:04:36 | 2021-04-28 | 2021-04-27 19:04:35 |
++----+---------------------+---------------------+------------+---------------------+
+----
+
+改善されない(プロパティ未設定の時と同じ)。
+
+Solution 1 は、サーバとクライアントが同じタイムゾーンの場合の設定であり(詳しくは原文参照)、今回のようにタイムゾーンが異なる場合には適さない。
+
+==== Solution 2a
+
+===== 設定
+----
+spring.datasource.url=jdbc:mysql://localhost:3306/mydb?preserveInstants=true&connectionTimeZone=SERVER
+----
+
+==== 結果
+----
++----+---------------------+---------------------+------------+---------------------+
+| id | my_instant          | my_datetime         | my_date    | my_cur_timestamp    |
++----+---------------------+---------------------+------------+---------------------+
+|  8 | 2021-04-27 19:07:30 | 2021-04-27 19:07:30 | 2021-04-28 | 2021-04-27 19:07:29 |
++----+---------------------+---------------------+------------+---------------------+
+----
+
+`my_instant`, `my_datetime`, `my_cur_timestamp` について、統一されてUTCの現在時刻が保存されている。
+
+ただし、 `LocalDate` 型(MySQL上で `DATE` 型)の `my_date` は JST の現在日で保存されている(これについての詳細は 6.6.1 Preserving Time Instants > Background 参照。)。
+
+==== Solution 2b
+
+===== 設定
+----
+spring.datasource.url=jdbc:mysql://localhost:3306/mydb?connectionTimeZone=LOCAL&forceConnectionTimeZoneToSession=true
+----
+
+==== 結果
+----
++----+---------------------+---------------------+------------+---------------------+
+| id | my_instant          | my_datetime         | my_date    | my_cur_timestamp    |
++----+---------------------+---------------------+------------+---------------------+
+|  9 | 2021-04-27 19:17:34 | 2021-04-28 04:17:34 | 2021-04-28 | 2021-04-27 19:17:34 |
++----+---------------------+---------------------+------------+---------------------+
+----
+
+* `my_instant`, `my_cur_timestamp` は UTC
+* `my_datetime` は JST
+
+==== Solution 2c
+
+===== 設定
+----
+spring.datasource.url=jdbc:mysql://localhost:3306/mydb?preserveInstants=true&connectionTimeZone=Europe/Moscow&forceConnectionTimeZoneToSession=true
+----
+
+`Europe/Moscow` は https://www.time-j.net/WorldTime/Location/Europe/Moscow[`UTC+03:00`] 。
+
+==== 結果
+----
++----+---------------------+---------------------+------------+---------------------+
+| id | my_instant          | my_datetime         | my_date    | my_cur_timestamp    |
++----+---------------------+---------------------+------------+---------------------+
+| 10 | 2021-04-27 19:22:56 | 2021-04-27 22:22:56 | 2021-04-28 | 2021-04-27 19:22:55 |
++----+---------------------+---------------------+------------+---------------------+
+----
+
+* `my_instant`, `my_cur_timestamp` は UTC
+* `my_datetime` は `UTC+03:00`
+
+=== 補足
+
+`docker run` コマンド引数で環境変数 `TZ` を設定すれば、サーバのタイムゾーンを指定することができます。例:
+
 ----
 docker run --name some-mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=my-secret-pw -e TZ=Asia/Tokyo -d mysql:latest
 ----
