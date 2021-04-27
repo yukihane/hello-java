@@ -185,7 +185,7 @@ Solution 1 は、サーバとクライアントが同じタイムゾーンの場
 spring.datasource.url=jdbc:mysql://localhost:3306/mydb?preserveInstants=true&connectionTimeZone=SERVER
 ----
 
-==== 結果
+===== 結果
 ----
 +----+---------------------+---------------------+------------+---------------------+
 | id | my_instant          | my_datetime         | my_date    | my_cur_timestamp    |
@@ -205,7 +205,7 @@ spring.datasource.url=jdbc:mysql://localhost:3306/mydb?preserveInstants=true&con
 spring.datasource.url=jdbc:mysql://localhost:3306/mydb?connectionTimeZone=LOCAL&forceConnectionTimeZoneToSession=true
 ----
 
-==== 結果
+===== 結果
 ----
 +----+---------------------+---------------------+------------+---------------------+
 | id | my_instant          | my_datetime         | my_date    | my_cur_timestamp    |
@@ -226,7 +226,7 @@ spring.datasource.url=jdbc:mysql://localhost:3306/mydb?preserveInstants=true&con
 
 `Europe/Moscow` は https://www.time-j.net/WorldTime/Location/Europe/Moscow[`UTC+03:00`] 。
 
-==== 結果
+===== 結果
 ----
 +----+---------------------+---------------------+------------+---------------------+
 | id | my_instant          | my_datetime         | my_date    | my_cur_timestamp    |
