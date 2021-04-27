@@ -153,7 +153,7 @@ ____
 
 前述した、 https://dev.mysql.com/doc/connector-j/8.0/en/connector-j-time-instants.html[6.6.1 Preserving Time Instants] に記載されている Solution 設定を実際に試してみます。
 
-本リポジトリのプログラムにおいては、プロパティ設定は link:src/main/resources/application.yml[`application.yml`] の `spring.datasource.url` 設定値を書き換えることで実現できます。
+本リポジトリのプログラムにおいては、プロパティ設定は link:src/main/resources/application.properties[`application.properties`] の `spring.datasource.url` 設定値を書き換えることで実現できます。
 
 本節の実行環境は、「MySQL Connector/J `8.0.22` と `8.0.23` のデフォルト設定挙動確認」節で記載したものと同等です。
 すなわち、DBサーバのタイムゾーンはUTCで、クライアントはJSTです。
