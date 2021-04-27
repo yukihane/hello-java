@@ -1,3 +1,13 @@
+== MySQL Connector/J 8.0.23 でセッションタイムゾーンのデフォルト挙動が変わっている
+
+=== 説明
+
+[quote,'https://dev.mysql.com/doc/relnotes/connector-j/8.0/en/news-8-0-23.html[MySQL :: MySQL Connector/J 8.0 Release Notes :: Changes in MySQL Connector/J 8.0.23 (2021-01-18, General Availability)]']
+____
+*Important Change*: A new mechanism has been introduced for users to configure how time zone conversions should occur when time instants are saved to or retrieved from a server by Connector/J. 
+____
+
+
 == これは何？
 
 MySQL Connector/J 8.0.23 で変更になったタイムゾーンの扱いの変更を調査するためのサンプルプログラムです。
@@ -6,3 +16,58 @@ Spring Boot では 2.4.3 以降でこの仕様変更の影響を受けます。
 
 * https://dev.mysql.com/doc/relnotes/connector-j/8.0/en/news-8-0-23.html[MySQL :: MySQL Connector/J 8.0 Release Notes :: Changes in MySQL Connector/J 8.0.23 (2021-01-18, General Availability)]
 * https://youshe.hatenablog.com/entry/2021/04/09/222859[Spring Bootのバージョンを2.4.4にあげるときの落とし穴 - ゆうしのはてな]
+
+
+== 説明&何が変わったか
+
+* https://dev.mysql.com/doc/connector-j/8.0/en/connector-j-time-instants.html[MySQL :: MySQL Connector/J 8.0 Developer Guide :: 6.6.1 Preserving Time Instants]
+
+より。
+
+DBにストアされる `TIMESTAMP` 型の値は、UTCに変換されてストアされます
+(注: MySQL 8.0.19 以降は、タイムオフセット設定値を考慮した値でストアすることも可能)。
+
+
+== 実行環境作成
+
+https://github.com/yukihane/hello-flyway と同じように、サーバを起動し、DB作成、ユーザ作成します。
+
+----
+docker run --name some-mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql:latest
+mysql -uroot -pmy-secret-pw --protocol=tcp
+----
+
+----
+create database mydb;
+create user 'myuser'@'%' identified BY 'mypass';
+grant all privileges on mydb.* to 'myuser'@'%';
+----
+
+テーブルを作成します。
+
+[source,sql]
+----
+use mydb;
+create table my_entity (
+    id bigint auto_increment primary key,
+    my_instant timestamp null,
+    my_cur_timestamp timestamp DEFAULT CURRENT_TIMESTAMP
+);
+----
+
+----
+show variables like '%time_zone%';
++------------------+--------+
+| Variable_name    | Value  |
++------------------+--------+
+| system_time_zone | UTC    |
+| time_zone        | SYSTEM |
++------------------+--------+
+2 rows in set (0.01 sec)
+----
+
+
+ちなみに、 `TZ` 指定バージョン:
+----
+docker run --name some-mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=my-secret-pw -e TZ=Asia/Tokyo -d mysql:latest
+----
