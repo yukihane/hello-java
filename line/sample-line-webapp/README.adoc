@@ -2,7 +2,7 @@
 
 == これは何？
 
-https://himeji-cs.jp/blog2/blog/2019/08/line-login-sample.html[LINEログイン機能を試してみる] で実装したコードです。
+https://yukihane.github.io/blog/201908/line-login-sample/[LINEログイン機能を試してみる] で実装したコードです。
 
 Spring Boot で https://developers.line.biz/ja/docs/line-login/[LINEログイン] 機能をためすためのものです。
 
@@ -14,7 +14,7 @@ Spring Boot で https://developers.line.biz/ja/docs/line-login/[LINEログイン
 
 ローカルで動作させてみることもできます。その場合はこの設定はスキップできます。
 
-* 参考: https://himeji-cs.jp/blog2/blog/2019/08/hello-heroku-with-springboot.html[HerokuでSpringBootアプリを動かしてみる > ローカルでビルドした `jar` をデプロイする] 及びこのリンク先リファレンス
+* 参考: https://yukihane.github.io/blog/201908/hello-heroku-with-springboot/[HerokuでSpringBootアプリを動かしてみる > ローカルでビルドした `jar` をデプロイする] 及びこのリンク先リファレンス
 
 今回の例ではHerok上で app名を `samplelinelogin` と登録する想定で記載しています。
 
