@@ -22,6 +22,4 @@ http://localhost:8080 にアクセスすると、 `MyController` が例外を送
 
 == 関連・参考リンク
 
-今回の `CustomErrorReportValve` 実装は次のリンク先のコードを流用しています:
-
 * https://stackoverflow.com/q/64917200/4506703[Configuring 'tomcat-server.xml' file inside of embedded apache tomcat in spring-boot] - Stack Overflow
