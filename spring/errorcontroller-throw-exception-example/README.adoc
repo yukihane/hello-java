@@ -2,7 +2,7 @@
 
 いくつかの状況で、Spring Bootは(Spring Bootで設定するWhitelabel Error Page等ではなく)Tomcat側が指定するエラーページを返すようです。
 
-「いくつかの状況」とは、今回の実装サンプルの `ErrorController` が例外を送出ような状況や、次のissueにあるようなURLが不正であった場合などです。
+「いくつかの状況」とは、今回の実装サンプルの `ErrorController` が例外を送出ような状況や、次のissueにあるようなURLが不正であった場合(`curl `http://localhost:8080\[``)などです。
 
 * https://github.com/spring-projects/spring-boot/issues/21257[Tomcat invokes ErrorReportValve directly for malformed URLs #21257]
 
