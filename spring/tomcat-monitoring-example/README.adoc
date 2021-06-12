@@ -1,3 +1,7 @@
 == これは何？
 
 Tomcatのthread poolの状況を確認するために、メトリクス出力の設定を行いログ出力するサンプルです。
+
+== link
+
+* https://yukihane.github.io/blog/202106/12/spring-boot-tomcat-metrics/[Spring Boot で Tomcat のメトリクスを出力する – 発火後忘失]
