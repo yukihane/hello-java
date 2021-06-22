@@ -5,15 +5,15 @@
     </div>
 
     <div>
-      <form method="POST" enctype="multipart/form-data" action="/">
+      <form id="form" method="POST" enctype="multipart/form-data" action="/">
         <table>
           <tr>
             <td>File to upload:</td>
-            <td><input type="file" name="files" multiple /></td>
+            <td><input id="input" type="file" name="files" multiple /></td>
           </tr>
           <tr>
             <td></td>
-            <td><input type="submit" value="Upload" /></td>
+            <td><input id="submit" type="submit" value="Upload" /></td>
           </tr>
         </table>
       </form>
@@ -26,5 +26,21 @@
         </li>
       </ul>
     </div>
+    <script>
+      const form = document.getElementById("form");
+      form.addEventListener("submit", (ev) => {
+        ev.preventDefault();
+        const input = document.getElementById("input");
+
+        const data = new FormData(form);
+
+        const request = new XMLHttpRequest();
+        request.upload.addEventListener("progress", (e) => {
+          console.log(e.loaded / e.total);
+        });
+        request.open("POST", "http://localhost:8080/");
+        request.send(data);
+      });
+    </script>
   </body>
 </html>
