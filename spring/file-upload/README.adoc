@@ -1,0 +1,9 @@
+== 複数ファイルアップロード & 進捗出力
+
+* https://ja.stackoverflow.com/q/77682/2808[spring-bootでの複数ファイルアップロードの進捗表示]
+
+↓のコードを基にして、上記の要求を満たすようにフロントエンドを書き換えたものです。
+
+* https://spring.io/guides/gs/uploading-files/[Getting Started | Uploading Files]
+
+参考: https://medium.com/typecode/a-strategy-for-handling-multiple-file-uploads-using-javascript-eb00a77e15f[A strategy for handling multiple file uploads using JavaScript | by Fred Every | Type/Code | Medium]
