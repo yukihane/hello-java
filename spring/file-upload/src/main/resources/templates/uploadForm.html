@@ -32,14 +32,19 @@
         ev.preventDefault();
         const input = document.getElementById("input");
 
-        const data = new FormData(form);
+        const files = input.files;
+        for (let i = 0; i < files.length; i++) {
+          const file = files[i];
+          const data = new FormData();
+          data.set("files", file);
 
-        const request = new XMLHttpRequest();
-        request.upload.addEventListener("progress", (e) => {
-          console.log(e.loaded / e.total);
-        });
-        request.open("POST", "http://localhost:8080/");
-        request.send(data);
+          const request = new XMLHttpRequest();
+          request.upload.addEventListener("progress", (e) => {
+            console.log(file.name + ": " + (100 * e.loaded) / e.total);
+          });
+          request.open("POST", "http://localhost:8080/");
+          request.send(data);
+        }
       });
     </script>
   </body>
