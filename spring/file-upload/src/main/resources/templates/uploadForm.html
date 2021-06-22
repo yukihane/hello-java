@@ -40,7 +40,9 @@
 
           const request = new XMLHttpRequest();
           request.upload.addEventListener("progress", (e) => {
-            console.log(file.name + ": " + (100 * e.loaded) / e.total);
+            console.log(
+              file.name + ": " + ((100 * e.loaded) / e.total).toFixed(2) + "%"
+            );
           });
           request.open("POST", "http://localhost:8080/");
           request.send(data);
