@@ -7,3 +7,7 @@
 * https://spring.io/guides/gs/uploading-files/[Getting Started | Uploading Files]
 
 参考: https://medium.com/typecode/a-strategy-for-handling-multiple-file-uploads-using-javascript-eb00a77e15f[A strategy for handling multiple file uploads using JavaScript | by Fred Every | Type/Code | Medium]
+
+1回のpostでファイルアップロードするバージョンを以下に作成しています。
+
+* https://github.com/yukihane/stackoverflow-qa/tree/master/jaso77682
