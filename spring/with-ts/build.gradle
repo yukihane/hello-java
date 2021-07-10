@@ -32,6 +32,12 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
+bootRun {
+    debugOptions {
+        suspend = false
+    }
+}
+
 test {
     useJUnitPlatform()
 }
