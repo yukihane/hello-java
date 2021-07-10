@@ -2,6 +2,9 @@ plugins {
     id 'org.springframework.boot' version '2.5.2'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
+    id 'eclipse'
+    id 'com.diffplug.eclipse.apt' version '3.30.0'
+    id 'com.dorongold.task-tree' version '2.1.0'
 }
 
 group = 'com.github.yukihane'
