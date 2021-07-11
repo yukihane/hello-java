@@ -1,3 +1,5 @@
 export const getDate = () => {
-  return new Date();
+  // (JSではない) TypeScriptの構文
+  const date: Date = new Date();
+  return date;
 };
