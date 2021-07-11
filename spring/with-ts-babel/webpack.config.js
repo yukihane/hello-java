@@ -17,9 +17,26 @@ const config = {
   module: {
     rules: [
       {
-        test: /\.(ts|tsx)$/i,
-        loader: "ts-loader",
-        exclude: ["/node_modules/"],
+        loader: "babel-loader",
+        options: {
+          exclude: [
+            // \\ for Windows, \/ for Mac OS and Linux
+            /node_modules[\\\/]core-js/,
+            /node_modules[\\\/]webpack[\\\/]buildin/,
+          ],
+          presets: [
+            [
+              "@babel/preset-env",
+              {
+                useBuiltIns: "usage",
+                corejs: "3",
+                shippedProposals: true,
+              },
+            ],
+            "@babel/preset-typescript",
+          ],
+          plugins: ["@babel/plugin-proposal-class-properties"],
+        },
       },
 
       // Add your rules for custom modules here
