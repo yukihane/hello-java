@@ -5,6 +5,7 @@ plugins {
     id 'eclipse'
     id 'com.diffplug.eclipse.apt' version '3.30.0'
     id 'com.dorongold.task-tree' version '2.1.0'
+    id 'com.github.node-gradle.node' version '3.1.0'
 }
 
 group = 'com.github.yukihane'
@@ -34,3 +35,6 @@ dependencies {
 test {
     useJUnitPlatform()
 }
+
+yarn_build.dependsOn yarn_install
+processResources.dependsOn yarn_build
