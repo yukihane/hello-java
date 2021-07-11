@@ -1,4 +1,5 @@
 import { getDate } from "./date";
+import { sum } from "./sum";
 
 document.addEventListener("DOMContentLoaded", (event) => {
   const elm = document.getElementById("client");
@@ -13,4 +14,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
   console.log(str.startsWith("To be")); // true
   console.log(str.startsWith("not to be")); // false
   console.log(str.startsWith("not to be", 10)); // true
+
+  console.log(sum(1, 2));
 });
