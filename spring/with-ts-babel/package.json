@@ -4,11 +4,11 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build": "jest && webpack --mode=production --node-env=production",
+    "build": "yarn run test && webpack --mode=production --node-env=production",
     "build:dev": "webpack --mode=development",
     "build:prod": "webpack --mode=production --node-env=production",
     "watch": "webpack --watch",
-    "test": "jest"
+    "test": "tsc && jest"
   },
   "devDependencies": {
     "@babel/core": "^7.14.6",

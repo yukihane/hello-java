@@ -1,7 +1,10 @@
 {
+  "include": ["src/main/js/**/*"],
   "compilerOptions": {
     "strict": true,
     "module": "es6",
     "target": "es5",
-  },
+    "moduleResolution": "Node",
+    "noEmit": true
+  }
 }
