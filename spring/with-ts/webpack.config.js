@@ -8,7 +8,7 @@ const isProduction = process.env.NODE_ENV == "production";
 const config = {
   entry: "./src/main/js/index.ts",
   output: {
-    path: path.resolve(__dirname, "build/resources/main/static"),
+    path: path.resolve(__dirname, "build/resources/main/static/static"),
   },
   plugins: [
     // Add your plugins here
