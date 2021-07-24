@@ -5,10 +5,42 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <style>
+      table,
+      td,
+      th {
+        border: 1px solid;
+      }
+    </style>
   </head>
   <body>
-    <div th:text="${now}"></div>
-    <div id="client"></div>
-    <script src="main.js"></script>
+    <table>
+      <tbody>
+        <tr>
+          <td>サーバ時刻</td>
+          <td id="server"></td>
+        </tr>
+        <tr>
+          <td>ブラウザ</td>
+          <td id="client"></td>
+        </tr>
+      </tbody>
+    </table>
+    <script
+      type="text/javascript"
+      src="../../../../build/resources/main/static/static/mylib.js"
+      th:src="@{/static/mylib.js}"
+    ></script>
+    <script th:inline="javascript">
+      window.addEventListener("DOMContentLoaded", (event) => {
+        const serverTime = /*[[${now}]]*/ "2020-01-01T10:10:10.000+09:00";
+        const server = document.getElementById("server");
+        server.innerText = serverTime;
+
+        const clientTime = mylib.getOS();
+        const client = document.getElementById("client");
+        client.innerText = clientTime;
+      });
+    </script>
   </body>
 </html>

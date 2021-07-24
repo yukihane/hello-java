@@ -1,8 +1,6 @@
-import { getDate } from "./date";
+import { UAParser } from "ua-parser-js";
 
-document.addEventListener("DOMContentLoaded", (event) => {
-  const elm = document.getElementById("client");
-  if (elm) {
-    elm.innerText = getDate().toString();
-  }
-});
+export const getOS = (userAgent: string) => {
+  const parser = new UAParser(userAgent);
+  return JSON.stringify(parser.getOS());
+};
