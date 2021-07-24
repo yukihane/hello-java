@@ -4,6 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
+    "@types/ua-parser-js": "^0.7.36",
     "@webpack-cli/generators": "^2.2.0",
     "prettier": "^2.3.2",
     "ts-loader": "^9.2.3",
@@ -17,5 +18,8 @@
     "build:dev": "webpack --mode=development",
     "build:prod": "webpack --mode=production --node-env=production",
     "watch": "webpack --watch"
+  },
+  "dependencies": {
+    "ua-parser-js": "^0.7.28"
   }
 }
