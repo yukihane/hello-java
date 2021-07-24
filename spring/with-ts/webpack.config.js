@@ -6,8 +6,13 @@ const path = require("path");
 const isProduction = process.env.NODE_ENV == "production";
 
 const config = {
-  entry: "./src/main/js/index.ts",
+  // https://webpack.js.org/concepts/output/#multiple-entry-points
+  // https://webpack.js.org/configuration/output/#outputlibrary
+  entry: {
+    mylib: "./src/main/js/index.ts",
+  },
   output: {
+    library: "[name]",
     path: path.resolve(__dirname, "build/resources/main/static/static"),
   },
   plugins: [
