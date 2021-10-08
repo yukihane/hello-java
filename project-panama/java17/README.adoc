@@ -11,3 +11,9 @@ Java から Project Panama の API を利用して Rust で作成したダイナ
 詳細は次を参照してください:
 
 * https://yukihane.github.io/blog/202110/08/hello-project-panama-on-java17/[Hello Project Panama, on Java17 ]
+
+=== 実行方法
+
+. `jextract` を取得します。これは https://jdk.java.net/panama/[Project Panama 向け Early Access Build] に含まれます。
+. link:build-and-run.sh[] 内の `jextract` のパス設定を更新します。
+. `build-and-run.sh` を実行します。
