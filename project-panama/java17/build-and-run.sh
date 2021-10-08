@@ -25,6 +25,7 @@ $jextract \
 
 
 javac \
+-encoding utf-8 \
 -d ./classes \
 -cp ./classes \
 --add-modules jdk.incubator.foreign \
@@ -32,6 +33,7 @@ javac \
 
 LD_LIBRARY_PATH=./greeter/target/release \
 java \
+-Dfile.encoding=utf-8 \
 --enable-native-access=ALL-UNNAMED \
 --add-modules jdk.incubator.foreign \
 -cp ./classes Main
