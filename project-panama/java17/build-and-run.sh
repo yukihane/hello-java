@@ -31,6 +31,8 @@ javac \
 --add-modules jdk.incubator.foreign \
 ./src/Main.java
 
+## Windows の場合 LD_LIBRARY_PATH が機能しないので
+## ./greeter/target/release/greeter.dll をカレントディレクトリにコピーして実行します
 LD_LIBRARY_PATH=./greeter/target/release \
 java \
 -Dfile.encoding=utf-8 \
