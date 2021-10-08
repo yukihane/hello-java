@@ -1,0 +1,13 @@
+== Hello Project Panama, on Java17
+
+=== これは何？
+
+Java から Project Panama の API を利用して Rust で作成したダイナミックリンクライブラリの関数を呼び出すプログラムです。
+
+* https://yukihane.github.io/blog/202002/11/hello-project-panama/[Hello Project Panama – 発火後忘失]
+
+で作成したコードが Java17 では動作しなくなっていたので、 Java17 向けに書き直したものです。
+
+詳細は次を参照してください:
+
+* https://yukihane.github.io/blog/202110/08/hello-project-panama-on-java17/[Hello Project Panama, on Java17 ]
