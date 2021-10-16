@@ -5,7 +5,7 @@
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.3.3.RELEASE</version>
+    <version>2.5.5</version>
     <relativePath /> <!-- lookup parent from repository -->
   </parent>
   <groupId>com.example</groupId>
@@ -16,7 +16,8 @@
 
   <properties>
     <java.version>11</java.version>
-    <mapstruct.version>1.4.0.Beta3</mapstruct.version>
+    <mapstruct.version>1.4.2.Final</mapstruct.version>
+    <lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
   </properties>
 
   <dependencies>
@@ -86,6 +87,12 @@
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
                 <version>${lombok.version}</version>
+              </path>
+              <!-- https://mapstruct.org/faq/#Can-I-use-MapStruct-together-with-Project-Lombok -->
+              <path>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok-mapstruct-binding</artifactId>
+                <version>${lombok-mapstruct-binding.version}</version>
               </path>
             </annotationProcessorPaths>
             <compilerArgs>
