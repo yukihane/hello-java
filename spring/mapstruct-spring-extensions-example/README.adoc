@@ -1,6 +1,37 @@
 = MapStruct Spring Extensions Example
 
+== これは何？
+
 * https://stackoverflow.com/a/65133450
 * https://mapstruct.org/news/2021-07-03-mapstruct-spring-extensions-0-1-0-released/
 
 で解説されている機能を使ってみるサンプルです。
+
+== MapStruct Spring Extensions の使い方
+
+* https://mapstruct.org/documentation/spring-extensions/reference/html/
+
+がマニュアル。
+
+* https://mapstruct.org/documentation/spring-extensions/reference/html/#setup[マニュアルにあるセットアップ]を済ませます。
+** https://yukihane.github.io/blog/202008/23/spring-lombok-mapstruct/[通常のMapStruct のセットアップ] に加え、依存モジュールを1つ、アノテーションプロセッサを1つ追加します。
+* `Application` クラス(Spring Bootのひな型作成時に自動生成されている、ルートパッケージ配下にある `@SpringBootApplication` アノテーションが付与されているクラス)に、 `@SpringMapperConfig` アノテーションを付与します。
+** これは必須ではないですが、 `ConversionServiceAdapter` クラスをコンポーネントスキャン対象にするのに一番楽な設定方法。 参考: https://mapstruct.org/documentation/spring-extensions/reference/html/#mappersAsConvertersCustomNames[3.1. Custom Names]
+* `@Mapper` アノテーションの `uses` セクションに `ConversionServiceAdapter.class` を設定して完了。
+
+== 本コードの実行方法
+
+[source,sh]
+----
+curl --location --request POST 'http://localhost:8080/' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "name": "my car",
+    "wheel": {
+        "size": 100
+    },
+    "pedal": {
+        "size": 20
+    }
+}'
+----
