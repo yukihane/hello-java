@@ -5,7 +5,7 @@ import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 import org.springframework.core.convert.converter.Converter;
 
-@Mapper(uses = { WheelMapper.class, PedalMapper.class })
+@Mapper(uses = ConversionServiceAdapter.class)
 public interface CarMapper extends Converter<Car, CarDto> {
     @Override
     @Mappings({
