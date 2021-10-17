@@ -1,0 +1,6 @@
+= MapStruct Spring Extensions Example
+
+* https://stackoverflow.com/a/65133450
+* https://mapstruct.org/news/2021-07-03-mapstruct-spring-extensions-0-1-0-released/
+
+で解説されている機能を使ってみるサンプルです。
