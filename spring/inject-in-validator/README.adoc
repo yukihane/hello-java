@@ -1,0 +1,22 @@
+= Spring Boot でカスタム validator に injection する
+
+== これは何？
+
+カスタム validator に Spring コンポーネントをインジェクションするための設定を示すためのサンプルコードです。
+
+== 実行方法
+
+[source,sh]
+----
+curl --location --request POST 'http://localhost:8080/' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "name": "4",
+    "age": 21
+}
+'
+----
+
+とすることで、本来であれば永続化を行って正常終了するリクエストになります(ちなみに `name` を `3` にすれば検証 NG  になります)。
+
+`MyConfig` を削除した状態だと、 デフォルト設定で JPA validator インスタンスを生成しようとするので Spring コンポーネントとして扱われず `new` できないため例外が発生します。
