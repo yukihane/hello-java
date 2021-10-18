@@ -23,6 +23,7 @@ public class MyEntity {
 
     @NotNull
     @NotBlank
+    @MyConstraint("3")
     private String name;
 
     @Min(20)

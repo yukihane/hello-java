@@ -26,10 +26,17 @@ public class MyController {
         final MyEntity myEntity = conversionService.convert(req, MyEntity.class);
         final MyEntity saved = repository.save(myEntity);
         return saved;
-        //        return new MyEntity();
     }
 
-    public record MyRequest(@NotNull @NotBlank String name, int age) {
+    public record MyRequest(@NotNull @NotBlank @MyConstraint("1") String name, int age) {
+    }
+
+    @PostMapping("/2")
+    public MyEntity index2(@Valid @RequestBody final MyRequest2 req) {
+        return new MyEntity();
+    }
+
+    public record MyRequest2(@NotNull @NotBlank @MyConstraint("2") String name, int age) {
     }
 
     @Mapper
