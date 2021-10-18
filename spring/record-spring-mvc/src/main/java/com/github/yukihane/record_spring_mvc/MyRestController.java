@@ -1,7 +1,6 @@
 package com.github.yukihane.record_spring_mvc;
 
 import java.time.LocalDate;
-import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.mapstruct.Mapper;
@@ -28,18 +27,16 @@ public class MyRestController {
         return resp;
     }
 
-    @Data
-    public static class RequestData {
-        private String name;
-        private int age;
-        private LocalDate registrationDate;
+    public record RequestData(
+        String name,
+        int age,
+        LocalDate registrationDate) {
     }
 
-    @Data
-    public static class ResponseData {
-        private String name;
-        private int age;
-        private LocalDate registrationDate;
+    public record ResponseData(
+        String name,
+        int age,
+        LocalDate registrationDate) {
     }
 
     @Mapper

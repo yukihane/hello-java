@@ -1,7 +1,6 @@
 package com.github.yukihane.record_spring_mvc;
 
 import java.time.LocalDate;
-import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,11 +16,9 @@ public class MyHtmlController {
         return "index";
     }
 
-    @Data
-    public static class FormData {
-        private String name;
-        private int age;
-        @DateTimeFormat(pattern = "uuuu-MM-dd")
-        private LocalDate registrationDate;
+    public record FormData(
+        String name,
+        int age,
+        @DateTimeFormat(pattern = "uuuu-MM-dd") LocalDate registrationDate) {
     }
 }
