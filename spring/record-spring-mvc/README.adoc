@@ -1,3 +1,7 @@
+== これは何？
+
+Java17 `record` を Spring MVC で利用できるのか実装してみたコードです。
+
 == 実行
 
 === Rest API
