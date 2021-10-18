@@ -1,0 +1,24 @@
+== 実行
+
+=== Rest API
+[source,sh]
+----
+curl --location --request POST 'http://localhost:8080/rest' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "name": "my name",
+    "age": 18,
+    "registrationDate": "2021-10-10"
+}'
+----
+
+=== Form POST
+
+[source,sh]
+----
+curl --location --request POST 'http://localhost:8080/' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--data-urlencode 'name=my name' \
+--data-urlencode 'age=18' \
+--data-urlencode 'registrationDate=2021-10-10'
+----
