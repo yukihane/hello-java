@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<!-- https://docs.jboss.org/hibernate/orm/4.3/manual/en-US/html_single/#configuration-xmlconfig -->
+<!-- http://www.h2database.com/html/cheatSheet.html -->
+
+<hibernate-configuration>
+
+    <session-factory>
+        <!-- properties -->
+        <property name="dialect">org.hibernate.dialect.H2Dialect</property>
+        <property name="connection.url">jdbc:h2:mem:test;DB_CLOSE_DELAY=-1</property>
+        <property name="show_sql">true</property>
+    </session-factory>
+
+</hibernate-configuration>
