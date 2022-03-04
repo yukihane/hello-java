@@ -17,7 +17,7 @@
         <kotlin.code.style>official</kotlin.code.style>
         <jackson.version>2.13.1</jackson.version>
         <lombok.version>1.18.22</lombok.version>
-        <junit.version>4.12</junit.version>
+        <junit.version>4.13.1</junit.version>
     </properties>
 
     <dependencies>
