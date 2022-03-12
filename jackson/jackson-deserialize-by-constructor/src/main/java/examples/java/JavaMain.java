@@ -1,11 +1,8 @@
 package examples.java;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
-import lombok.RequiredArgsConstructor;
-import lombok.Value;
 
 public class JavaMain {
     public static final String JSON_TEXT = "{\"name\": \"Bob\", \"age\": 30 }";
@@ -19,10 +16,5 @@ public class JavaMain {
     }
 }
 
-// https://github.com/projectlombok/lombok/issues/1842#issuecomment-419982012
-@Value
-@RequiredArgsConstructor(onConstructor = @__(@JsonCreator))
-class Person {
-    String name;
-    int age;
+record Person(String name, int age) {
 }
