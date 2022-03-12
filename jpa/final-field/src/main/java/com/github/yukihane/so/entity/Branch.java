@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @ToString(onlyExplicitlyIncluded = true)
-@NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
+@NoArgsConstructor(access = AccessLevel.PROTECTED, force = true)
 @RequiredArgsConstructor
 public class Branch {
 

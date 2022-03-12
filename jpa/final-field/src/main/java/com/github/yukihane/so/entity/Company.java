@@ -13,7 +13,7 @@ import java.util.List;
 @ToString(onlyExplicitlyIncluded = true)
 // プログラムからは利用させないので private,
 // ユーザの設定必須なものもno-argコンストラクタで初期化したいので force
-@NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
+@NoArgsConstructor(access = AccessLevel.PROTECTED, force = true)
 // ユーザが使うコンストラクタ
 @RequiredArgsConstructor
 public class Company {
