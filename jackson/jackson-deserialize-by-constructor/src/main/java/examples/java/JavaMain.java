@@ -9,6 +9,7 @@ public class JavaMain {
 
     public static void main(String[] args) throws JsonProcessingException {
         ObjectMapper om = new ObjectMapper();
+        // コンパイラオプションに -parameters 指定が必要
         om.registerModule(new ParameterNamesModule());
 
         Person person = om.readValue(JSON_TEXT, Person.class);
