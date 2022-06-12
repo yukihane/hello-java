@@ -1,0 +1,2 @@
+https://openjdk.java.net/projects/valhalla/[Project Valhalla] の https://openjdk.java.net/jeps/8277163[value classes] と https://openjdk.java.net/jeps/401[JEP401: primitive classes] を試してみます。
+
