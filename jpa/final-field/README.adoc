@@ -1,0 +1,11 @@
+== これは何？
+
+JPA の spec ではフィールドが `final` でないことを規定していないので、 `final` でも動作するのかを確認するプログラムです。
+
+結果、動作しました。
+が、仕様では final を許容していないようです。
+
+[quote,,'link:https://jakarta.ee/specifications/persistence/3.0/jakarta-persistence-spec-3.0.html#a18[2.1. The Entity Class - Jakarta Persistence]']
+____
+The entity class must not be final. No methods or persistent instance variables of the entity class may be final.
+____

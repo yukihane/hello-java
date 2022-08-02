@@ -13,4 +13,4 @@ fun main() {
     println(person)
 }
 
-data class Person(val name: String, val age: Integer)
+data class Person(val name: String, val age: Int)
