@@ -1,5 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.github.yukihane.examples</groupId>
@@ -23,9 +23,16 @@
     <mapstruct.version>1.5.0.Beta2</mapstruct.version>
     <lombok.version>1.18.22</lombok.version>
     <jooq.version>3.17.3</jooq.version>
+    <mysql.version>8.0.30</mysql.version>
+
   </properties>
 
   <dependencies>
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>${mysql.version}</version>
+    </dependency>
     <dependency>
       <groupId>org.jooq</groupId>
       <artifactId>jooq</artifactId>
@@ -98,6 +105,71 @@
       </plugins>
     </pluginManagement>
     <plugins>
+      <plugin>
+
+        <!-- Specify the maven code generator plugin -->
+        <!-- Use org.jooq                for the Open Source Edition
+           org.jooq.pro            for commercial editions with Java 17 support, 
+           org.jooq.pro-java-11    for commercial editions with Java 11 support,
+           org.jooq.pro-java-8     for commercial editions with Java 8 support,
+           org.jooq.trial          for the free trial edition with Java 17 support, 
+           org.jooq.trial-java-11  for the free trial edition with Java 11 support, 
+           org.jooq.trial-java-8   for the free trial edition with Java 8 support 
+         
+       Note: Only the Open Source Edition is hosted on Maven Central. 
+             Import the others manually from your distribution -->
+        <groupId>org.jooq</groupId>
+        <artifactId>jooq-codegen-maven</artifactId>
+        <version>${jooq.version}</version>
+
+        <!-- The plugin should hook into the generate goal -->
+        <executions>
+          <execution>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+          </execution>
+        </executions>
+
+        <!-- Manage the plugin's dependency. In this example, we'll use a PostgreSQL database -->
+        <dependencies>
+          <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql.version}</version>
+          </dependency>
+        </dependencies>
+
+        <!-- Specify the plugin configuration.
+       The configuration format is the same as for the standalone code generator -->
+        <configuration>
+
+          <!-- JDBC connection parameters -->
+          <jdbc>
+            <driver>com.mysql.cj.jdbc.Driver</driver>
+            <url>jdbc:mysql://localhost:3306/library</url>
+            <user>root</user>
+            <password>mypw</password>
+          </jdbc>
+
+          <!-- Generator parameters -->
+          <generator>
+            <database>
+              <name>org.jooq.meta.mysql.MySQLDatabase</name>
+              <includes>.*</includes>
+              <excludes></excludes>
+              <!-- In case your database supports catalogs, e.g. SQL Server:
+        <inputCatalog>public</inputCatalog>
+          -->
+              <inputSchema>library</inputSchema>
+            </database>
+            <target>
+              <packageName>org.jooq.codegen.maven.example</packageName>
+              <directory>target/generated-sources/jooq</directory>
+            </target>
+          </generator>
+        </configuration>
+      </plugin>
       <plugin>
         <artifactId>maven-surefire-plugin</artifactId>
         <version>${maven-failsafe-plugin.version}</version>
