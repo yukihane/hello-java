@@ -1,0 +1,6 @@
+https://www.h2database.com/html/tutorial.html#using_server
+
+[source]
+----
+java -cp h2*.jar org.h2.tools.Server
+----
