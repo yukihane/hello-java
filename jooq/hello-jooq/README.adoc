@@ -1,1 +1,30 @@
-https://www.jooq.org/doc/3.17/manual-single-page/#tutorials
+## これは何？
+
+下記 jOOQ チュートリアルの実行手順です。
+
+* https://www.jooq.org/doc/3.17/manual-single-page/#tutorials
+
+## 手順
+
+MySQL を Docker で起動します(https://hub.docker.com/_/mysql[参考]):
+[source]
+----
+docker run --name hello-jooq -p 3306:3306 -v $PWD/tool:/tool -e MYSQL_ROOT_PASSWORD=mypw -d mysql:8.0.30
+----
+
+データベースとテーブルを作成します:
+[source]
+----
+# docker に入る
+docker exec -it hello-jooq /bin/bash
+# docker 内でコマンド実行
+mysql -uroot -pmypw --protocol=tcp < /tool/schema.sql
+# docker から抜ける
+exit
+----
+
+コンパイルを実行すれば自動生成も同時に行われます:
+[source]
+----
+mvn clean compile
+----
