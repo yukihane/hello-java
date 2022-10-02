@@ -1,0 +1,7 @@
+JJUGナイトセミナー「Java 19 リリース記念イベント」 https://youtu.be/SrwIBVBz1Po?t=2997 において、 Java19 で `when` が予約語になるので mockito の (static import する) メソッド名と被ってエラーになるのでは、との懸念が出ていたので調べてみました。
+
+結論としては、問題なさそうです。
+
+関連する issue としては以下？
+
+* https://github.com/mockito/mockito/issues/2755
