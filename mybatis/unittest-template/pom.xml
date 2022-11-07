@@ -15,7 +15,7 @@
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <mybatis.version>3.5.1</mybatis.version>
-        <hsqldb.version>2.5.0</hsqldb.version>
+        <hsqldb.version>2.7.1</hsqldb.version>
         <junit.version>5.4.2</junit.version>
     </properties>
 
