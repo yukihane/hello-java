@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head></head>
+
+<body>
+<table>
+    <tr th:each="item : ${items}">
+        <td th:text="${item.name}">アイテム(1列目)</td>
+        <td th:replace="03fragment :: tabledata(${item})">アイテム(2列目)</td>
+    </tr>
+</table>
+</body>
+</html>

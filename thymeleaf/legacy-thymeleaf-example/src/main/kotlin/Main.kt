@@ -14,6 +14,8 @@ fun main() {
 
     val engine = buildTemplateEngine()
 
+    // output/01output.html
+    // 最もシンプルなサンプル
     Files.newBufferedWriter(dir.resolve("01output.html")).use { writer ->
         val ctx = Context()
         ctx.variables.apply {
@@ -22,10 +24,23 @@ fun main() {
         engine.process("01basic", ctx, writer)
     }
 
+    // output/02output.html
+    // thymeleaf-layout-dialect の decorator 利用サンプル
     Files.newBufferedWriter(dir.resolve("02output.html")).use { writer ->
         val ctx = Context()
         // https://ultraq.github.io/thymeleaf-layout-dialect/processors/decorate/
         engine.process("02content", ctx, writer)
+    }
+
+    // output/03output.html
+    // th:fragment の利用サンプル
+    // https://www.thymeleaf.org/doc/tutorials/2.1/usingthymeleaf.html#parameterizable-fragment-signatures
+    Files.newBufferedWriter(dir.resolve("03output.html")).use { writer ->
+        val ctx = Context()
+        ctx.variables.apply {
+            put("items", listOf(Item("item01"), Item("item02"), Item("item03")))
+        }
+        engine.process("03list-and-fragment", ctx, writer)
     }
 
 }
@@ -36,7 +51,6 @@ fun buildTemplateEngine(): TemplateEngine {
         prefix = "templates/"
         suffix = ".html"
         templateMode = StandardTemplateModeHandlers.LEGACYHTML5.templateModeName
-//        templateMode = StandardTemplateModeHandlers.XHTML.templateModeName
         characterEncoding = StandardCharsets.UTF_8.displayName()
         isCacheable = false
     }
@@ -49,3 +63,7 @@ fun buildTemplateEngine(): TemplateEngine {
 
     return engine
 }
+
+data class Item(
+    val name: String,
+)
