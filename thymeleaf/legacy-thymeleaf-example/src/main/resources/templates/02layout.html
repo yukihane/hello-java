@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+>
+  <head> 
+    <title>レイアウトページ</title>
+    <meta name="page-name" content="02layout" />
+
+  </head>
+
+  <body>
+    <header>
+      <h1>My website</h1>
+    </header>
+    <section layout:fragment="content">
+      <p>ページコンテンツがここに表示されます</p>
+    </section>
+    <footer>
+      <p>My footer</p>
+      <p layout:fragment="custom-footer">Custom footer here</p>
+    </footer>  
+  </body>
+</html>

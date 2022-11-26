@@ -10,7 +10,7 @@ import java.nio.file.Paths
 
 fun main() {
     val dir = Paths.get("output")
-    Files.createDirectory(dir)
+    Files.createDirectories(dir)
 
     val engine = buildTemplateEngine()
 
@@ -21,6 +21,13 @@ fun main() {
         }
         engine.process("01basic", ctx, writer)
     }
+
+    Files.newBufferedWriter(dir.resolve("02output.html")).use { writer ->
+        val ctx = Context()
+        // https://ultraq.github.io/thymeleaf-layout-dialect/processors/decorate/
+        engine.process("02content", ctx, writer)
+    }
+
 }
 
 fun buildTemplateEngine(): TemplateEngine {
