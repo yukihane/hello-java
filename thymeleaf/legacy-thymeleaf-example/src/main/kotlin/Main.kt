@@ -3,20 +3,24 @@ import org.thymeleaf.TemplateEngine
 import org.thymeleaf.context.Context
 import org.thymeleaf.templatemode.StandardTemplateModeHandlers
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver
-import java.io.FileWriter
 import java.nio.charset.StandardCharsets
+import java.nio.file.Files
+import java.nio.file.Paths
+
 
 fun main() {
+    val dir = Paths.get("output")
+    Files.createDirectory(dir)
+
     val engine = buildTemplateEngine()
-    val ctx = Context()
-    ctx.variables.apply {
-        put("greet", "Hello, world!")
-    }
 
-    System.out.writer().use { writer ->
-        engine.process("home", ctx, writer)
+    Files.newBufferedWriter(dir.resolve("01output.html")).use { writer ->
+        val ctx = Context()
+        ctx.variables.apply {
+            put("greet", "Hello, world!")
+        }
+        engine.process("01basic", ctx, writer)
     }
-
 }
 
 fun buildTemplateEngine(): TemplateEngine {
