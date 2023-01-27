@@ -1,0 +1,1 @@
+Set の link:https://docs.oracle.com/javase/jp/17/docs/api/java.base/java/util/Set.html#equals(java.lang.Object)[equals] の挙動を確認します。
