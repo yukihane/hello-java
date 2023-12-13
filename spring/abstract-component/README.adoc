@@ -1,0 +1,10 @@
+抽象クラスに `@Component` をつけるとどうなるかを確認するための検証コード。
+
+
+結果としては、無視される模様。
+ログに次のように出力されている:
+
+[source]
+----
+Ignored because not a concrete top-level class: file [/home/yuki/Documents/repos/java/hello-java/spring/abstract-component/target/classes/com/example/abstractcomponent/MyAbstractComponent.class]
+----
