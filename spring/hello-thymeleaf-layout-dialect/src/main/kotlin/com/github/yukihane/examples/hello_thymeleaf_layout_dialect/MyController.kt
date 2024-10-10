@@ -17,8 +17,13 @@ class MyController {
     }
 
     @GetMapping("/insert")
-    fun modal(): String {
+    fun insert(): String {
         return "insert/index"
+    }
+
+    @GetMapping("/replace")
+    fun replace(): String {
+        return "replace/index"
     }
 
 }
