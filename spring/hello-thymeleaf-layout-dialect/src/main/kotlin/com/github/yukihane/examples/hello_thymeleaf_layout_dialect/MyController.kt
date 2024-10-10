@@ -6,13 +6,13 @@ import org.springframework.web.bind.annotation.GetMapping
 @Controller
 class MyController {
 
-    @GetMapping("/content1")
+    @GetMapping("/decorate/content1")
     fun content1(): String {
-        return "content1"
+        return "decorate/content1"
     }
 
-    @GetMapping("/content2")
+    @GetMapping("/decorate/content2")
     fun content2(): String {
-        return "content2"
+        return "decorate/content2"
     }
 }
