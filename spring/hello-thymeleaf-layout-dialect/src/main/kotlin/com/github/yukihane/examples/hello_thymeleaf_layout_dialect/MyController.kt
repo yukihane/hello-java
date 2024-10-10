@@ -10,4 +10,9 @@ class MyController {
     fun content1(): String {
         return "content1"
     }
+
+    @GetMapping("/content2")
+    fun content2(): String {
+        return "content2"
+    }
 }
