@@ -15,4 +15,10 @@ class MyController {
     fun content2(): String {
         return "decorate/content2"
     }
+
+    @GetMapping("/insert")
+    fun modal(): String {
+        return "insert/index"
+    }
+
 }
