@@ -5,12 +5,12 @@ import { promises as fs } from "fs";
 
 export default {
   build: {
-    minify: false,
+    minify: false, // 今回、わかりやすいようにminifyは実施していません
     rollupOptions: {
       // resouces/templates に入れる html ファイルを列挙する
       input: {
         // ここに thymeleaf テンプレートファイルを列挙する
-        // "hello/index": "templates/hello/index.html",
+        "hello/index": "templates/hello/index.html",
       },
       // 出力ファイル名にhashを付けないようにする設定
       // https://github.com/vitejs/vite/issues/378#issuecomment-789366197
