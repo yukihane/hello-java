@@ -39,7 +39,7 @@ export default {
         );
 
         try {
-          await fs.rm(destTemplates, { recursive: true });
+          await fs.rm(destTemplates, { recursive: true, force: true });
           await fs.mkdir(destTemplates, { recursive: true });
           await fs.cp(srcTemplates, destTemplates, {
             recursive: true,
@@ -49,7 +49,7 @@ export default {
             `Moved templates from ${srcTemplates} to ${destTemplates}`
           );
 
-          await fs.rm(destVite, { recursive: true });
+          await fs.rm(destVite, { recursive: true, force: true });
           await fs.mkdir(destVite, { recursive: true });
           await fs.cp(srcVite, destVite, {
             recursive: true,
