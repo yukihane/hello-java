@@ -9,8 +9,8 @@ export default {
     rollupOptions: {
       // resouces/templates に入れる html ファイルを列挙する
       input: {
-        // index: resolve(__dirname, "templates/index.html"),
-        "hello/index": "templates/hello/index.html",
+        // ここに thymeleaf テンプレートファイルを列挙する
+        // "hello/index": "templates/hello/index.html",
       },
       // 出力ファイル名にhashを付けないようにする設定
       // https://github.com/vitejs/vite/issues/378#issuecomment-789366197
@@ -22,9 +22,9 @@ export default {
     },
   },
   plugins: [
+    // ビルドしたファイルを Spring Boot のリソースディレクトリーに移す
     {
-      // 全部outDir(resources/static)に入ってしまうので、templatesはresources/templatesに移動する
-      name: "move-templates",
+      name: "move-resources",
       closeBundle: async () => {
         const srcTemplates = resolve(__dirname, "dist/templates");
         const destTemplates = resolve(
