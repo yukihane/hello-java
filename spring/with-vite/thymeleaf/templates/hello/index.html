@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <link rel="stylesheet" href="/src/hello/style.scss" />
+  </head>
+  <body>
+    <div>
+      <div class="hello" th:text="|Hello, ${name}!|">Hello!</div>
+      <div><img src="/vite/image/hello.png" /></div>
+    </div>
+    <script type="module" src="/src/hello/main.ts"></script>
+  </body>
+</html>

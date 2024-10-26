@@ -9,7 +9,8 @@ export default {
     rollupOptions: {
       // resouces/templates に入れる html ファイルを列挙する
       input: {
-        index: resolve(__dirname, "templates/index.html"),
+        // index: resolve(__dirname, "templates/index.html"),
+        "hello/index": "templates/hello/index.html",
       },
       // 出力ファイル名にhashを付けないようにする設定
       // https://github.com/vitejs/vite/issues/378#issuecomment-789366197
