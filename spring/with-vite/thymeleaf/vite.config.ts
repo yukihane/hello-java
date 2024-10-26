@@ -21,26 +21,43 @@ export default {
       },
     },
   },
-  // plugins: [
-  //   {
-  //     // 全部outDir(resources/static)に入ってしまうので、templatesはresources/templatesに移動する
-  //     name: "move-templates",
-  //     closeBundle: async () => {
-  //       const srcDir = resolve(
-  //         __dirname,
-  //         "../src/main/resources/static/templates"
-  //       );
-  //       const destDir = resolve(__dirname, "../src/main/resources/templates");
+  plugins: [
+    {
+      // 全部outDir(resources/static)に入ってしまうので、templatesはresources/templatesに移動する
+      name: "move-templates",
+      closeBundle: async () => {
+        const srcTemplates = resolve(__dirname, "dist/templates");
+        const destTemplates = resolve(
+          __dirname,
+          "../src/main/resources/templates"
+        );
 
-  //       try {
-  //         await fs.mkdir(destDir, { recursive: true });
-  //         await fs.cp(srcDir, destDir, { recursive: true, force: true });
-  //         await fs.rm(srcDir, { recursive: true, force: true });
-  //         console.log(`Moved templates from ${srcDir} to ${destDir}`);
-  //       } catch (err) {
-  //         console.error(`Failed to move templates: ${err}`);
-  //       }
-  //     },
-  //   },
-  // ],
+        const srcVite = resolve(__dirname, "dist/vite");
+        const destVite = resolve(
+          __dirname,
+          "../src/main/resources/static/vite"
+        );
+
+        try {
+          await fs.mkdir(destTemplates, { recursive: true });
+          await fs.cp(srcTemplates, destTemplates, {
+            recursive: true,
+            force: true,
+          });
+          console.log(
+            `Moved templates from ${srcTemplates} to ${destTemplates}`
+          );
+
+          await fs.mkdir(destVite, { recursive: true });
+          await fs.cp(srcVite, destVite, {
+            recursive: true,
+            force: true,
+          });
+          console.log(`Moved templates from ${srcVite} to ${destVite}`);
+        } catch (err) {
+          console.error(`Failed to move templates: ${err}`);
+        }
+      },
+    },
+  ],
 } satisfies UserConfig;
