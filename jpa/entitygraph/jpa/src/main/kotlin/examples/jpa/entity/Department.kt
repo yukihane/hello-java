@@ -2,6 +2,10 @@ package examples.jpa.entity
 
 import javax.persistence.*
 
+@NamedEntityGraph(
+    name = "department.users",
+    attributeNodes = [NamedAttributeNode("users")]
+)
 @Entity
 @Table(name = "departments")
 class Department(

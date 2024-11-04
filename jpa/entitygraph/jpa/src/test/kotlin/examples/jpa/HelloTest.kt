@@ -1,8 +1,8 @@
 package examples.jpa
 
-import examples.jpa.entity.Person
+import examples.jpa.entity.Department
+import examples.jpa.entity.User
 import org.hibernate.SessionFactory
-import org.hibernate.testing.transaction.TransactionUtil.doInHibernate
 import org.hibernate.testing.transaction.TransactionUtil.doInJPA
 import org.junit.jupiter.api.Test
 import javax.persistence.Persistence
@@ -17,13 +17,29 @@ class HelloTest {
     @Test
     fun testApp() {
         doInJPA(this::entityManagerFactory) { em ->
-            val p = Person()
-            em.persist(p)
+            val d = Department()
+            val u = listOf(
+                User(department = d, active = true),
+                User(department = d, active = true),
+                User(department = d, active = false),
+            )
+            em.persist(d)
+            u.forEach { em.persist(it) }
         }
 
-        doInHibernate<Unit>(this::sessionFactory) { session ->
-            val result: List<Person> = session.createQuery("select p from Person p", Person::class.java).list()
-            result.forEach { println(it.id) }
+        doInJPA<Unit>(this::entityManagerFactory) { em ->
+            val graph = em.getEntityGraph("department.users")
+            val query = em.createQuery(
+                "select distinct d from Department d left join d.users u on u.active = true",
+                Department::class.java
+            )
+            query.setHint("javax.persistence.fetchgraph", graph);
+            val results = query.getResultList()
+
+            println("size: ${results.size}")
+            results.forEach { d ->
+                println(d.users)
+            }
         }
     }
 }

@@ -16,4 +16,9 @@ class User(
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     var id: Long? = null
+
+    @Override
+    override fun toString(): String {
+        return this::class.simpleName + "(id = $id , active = $active )"
+    }
 }
