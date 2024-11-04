@@ -1,0 +1,5 @@
+- `EntityGraph` は子のフィルターを行うためのわけではない、らしい
+    - が、下のページではその用途で使えている
+        - https://qiita.com/sis-yoshiday/items/5117789d2af9ab616729
+    - よく見ると、上のページで用いているのはSpring Data JPA の `EntityGraph`, 冒頭の話は JPA の `EntityGraph` のこと
+- Spring Data JPA のものと、JPA のもの、それぞれの挙動を見てみよう
