@@ -25,8 +25,8 @@ class UserController(
         }
 
         val users = page.getContent()
-        model.addAttribute(page)
-        model.addAttribute(users)
+        model.addAttribute("page", page)
+        model.addAttribute("users", users)
         return "user-list"
     }
 }

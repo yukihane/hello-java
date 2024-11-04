@@ -1,6 +1,26 @@
 <!DOCTYPE html>
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
-  <head> </head>
+  <head></head>
 
-  <body></body>
+  <body>
+    <div>
+      <form th:action="@{/users}" method="get">
+        <input type="text" />
+      </form>
+    </div>
+
+    <div>
+      <h1>ユーザ一覧</h1>
+      <table border="1">
+        <tr>
+          <th>ユーザID</th>
+          <th>ユーザ名</th>
+        </tr>
+        <tr th:each="user : ${users}">
+          <td th:text="${user.id}"></td>
+          <td th:text="${user.name}"></td>
+        </tr>
+      </table>
+    </div>
+  </body>
 </html>
