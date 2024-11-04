@@ -5,7 +5,13 @@
   <body>
     <div>
       <form th:action="@{/users}" method="get">
-        <input type="text" />
+        <label for="name">ユーザー名</label>
+        <input type="text" name="name" id="name" />
+        <label for="size">1ページ辺り表示件数</label>
+        <input type="number" name="size" id="size" />
+        <label for="page">ページ番号(0始まり)</label>
+        <input type="number" name="page" id="page" />
+        <input type="submit" value="検索" />
       </form>
     </div>
 
