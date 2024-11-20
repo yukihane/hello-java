@@ -1,0 +1,1 @@
+`LocalDateTime` の時刻系オブジェクトを、 Rest APIやThymeleaf連携したときにJSが扱いやすい文字列に変換できているのかを確認。
