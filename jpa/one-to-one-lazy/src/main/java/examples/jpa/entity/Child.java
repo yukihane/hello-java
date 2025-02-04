@@ -16,4 +16,11 @@ public class Child {
     private Long id;
 
     private String name;
+
+    // デバッガでフィールドを参照しようとすると toString() を呼び出す
+    // 実体が必要になりselectが呼ばれる
+    @Override
+    public String toString() {
+        return String.format("id: %d, name: %s", id, name);
+    }
 }
