@@ -1,0 +1,22 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head> </head>
+
+  <body>
+    <form action="#" th:action="@{/}" th:object="${myForm}" method="post">
+      <table>
+        <tr>
+          <td>date1:</td>
+          <td><input type="date" th:field="*{date1}" /></td>
+        </tr>
+        <tr>
+          <td>date2:</td>
+          <td><input type="text" th:field="*{date2}" /></td>
+        </tr>
+        <tr>
+          <td><button type="submit">Submit</button></td>
+        </tr>
+      </table>
+    </form>
+  </body>
+</html>
