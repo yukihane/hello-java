@@ -1,0 +1,12 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head> </head>
+  <body>
+    <div th:each="obj : ${message}">
+      <div th:text="${obj.text}"></div>
+    </div>
+    <div th:each="obj : ${messages}">
+      <div th:text="${obj.text}"></div>
+    </div>
+  </body>
+</html>
