@@ -1,0 +1,30 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head> </head>
+  <body>
+    <table>
+      <tbody>
+        <tr>
+          <td>system default zone</td>
+          <td th:text="${defaultZone}"></td>
+        </tr>
+        <tr>
+          <td>clock zone</td>
+          <td th:text="${clockZone}"></td>
+        </tr>
+      </tbody>
+    </table>
+    <table>
+      <tbody>
+        <tr>
+          <td>localDateTime</td>
+          <td th:text="${localDateTime}"></td>
+        </tr>
+        <tr>
+          <td>localDateTimeWithClock</td>
+          <td th:text="${localDateTimeWithClock}"></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
