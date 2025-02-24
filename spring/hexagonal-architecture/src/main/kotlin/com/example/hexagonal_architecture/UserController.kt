@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 @RequestMapping("/users")
 class UserController(
     private val personMapper: PersonMapper,
+    private val personConverter: PersonConverter,
 ) {
 
     @GetMapping
@@ -26,6 +27,9 @@ class UserController(
         if (bindingResult.hasErrors()) {
             return "users/index"
         }
+
+        val entity = personConverter.toEntity(personForm)
+        personMapper.insert(entity)
         return "redirect:/users/result"
     }
 

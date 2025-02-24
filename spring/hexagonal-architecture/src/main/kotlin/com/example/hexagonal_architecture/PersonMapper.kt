@@ -1,8 +1,6 @@
 package com.example.hexagonal_architecture
 
-import org.apache.ibatis.annotations.Mapper
-import org.apache.ibatis.annotations.Param
-import org.apache.ibatis.annotations.Select
+import org.apache.ibatis.annotations.*
 
 @Mapper
 interface PersonMapper {
@@ -11,4 +9,8 @@ interface PersonMapper {
 
     @Select("select * from person order by id")
     fun findAll(): List<PersonEntity>
+
+    @Insert("insert into person(name, age) values (#{name}, #{age})")
+    @Options(useGeneratedKeys = true, keyProperty = "id")
+    fun insert(entity: PersonEntity)
 }
