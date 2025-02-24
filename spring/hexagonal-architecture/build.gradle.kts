@@ -1,3 +1,5 @@
+val mapstructVersion = "1.6.3"
+
 plugins {
     kotlin("jvm") version "1.9.25"
     kotlin("plugin.spring") version "1.9.25"
@@ -31,9 +33,11 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
+    implementation("org.mapstruct:mapstruct:${mapstructVersion}")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     runtimeOnly("com.h2database:h2")
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
+    annotationProcessor("org.mapstruct:mapstruct-processor:${mapstructVersion}")
     testImplementation("org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.4")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
