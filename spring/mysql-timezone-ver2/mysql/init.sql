@@ -32,5 +32,5 @@ CREATE TABLE my_entities (
     -- timestamp
     my_instant_stamp TIMESTAMP,
     my_utc_offset_date_time_stamp TIMESTAMP,
-    my_jst_offset_date_time_stamp TIMESTAMP,
+    my_jst_offset_date_time_stamp TIMESTAMP
 );
