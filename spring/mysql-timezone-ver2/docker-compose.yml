@@ -29,7 +29,7 @@ services:
       SPRING_DATASOURCE_USERNAME: myuser
       SPRING_DATASOURCE_PASSWORD: mypassword
       # https://vladmihalcea.com/time-zones-java-web-application/
-      # SPRING_JPA_PROPERTIES_HIBERNATE_JDBC_TIME_ZONE: UTC
+      # HIBERNATE_TIMEZONE: UTC
 
 volumes:
   mysql_data:
