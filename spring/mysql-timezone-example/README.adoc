@@ -17,9 +17,9 @@ ____
 
 ===== DBサーバセットアップ
 
-https://hub.docker.com/_/mysql[mysql Dockerコンテナ] を起動します(今回は現時点での最新版 `8.0.24` を使用):
+https://hub.docker.com/_/mysql[mysql Dockerコンテナ] を起動します(今回は現時点での最新版 `8.0.41-debian` を使用):
 ----
-docker run --name some-mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql:8.0.24
+docker run --name some-mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql:8.0.41-debian
 ----
 
 loginします:
