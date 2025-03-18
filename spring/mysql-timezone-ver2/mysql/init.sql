@@ -1,0 +1,15 @@
+CREATE DATABASE mydb;
+
+CREATE USER 'myuser'@'%' IDENTIFIED BY 'mypassword';
+
+GRANT ALL PRIVILEGES ON mydb.* TO 'myuser'@'%';
+
+FLUSH PRIVILEGES;
+
+USE mydb;
+
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE
+);

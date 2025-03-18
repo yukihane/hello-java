@@ -1,0 +1,13 @@
+#!/bin/sh
+set -e
+
+MAVEN_WRAPPER_VERSION=0.5.6
+MAVEN_VERSION=3.8.1
+
+if [ ! -f ".mvn/wrapper/maven-wrapper.jar" ]; then
+  mkdir -p .mvn/wrapper
+  curl -o .mvn/wrapper/maven-wrapper.jar https://repo.maven.apache.org/maven2/org/apache/maven/wrapper/maven-wrapper/${MAVEN_WRAPPER_VERSION}/maven-wrapper-${MAVEN_WRAPPER_VERSION}.jar
+  curl -o .mvn/wrapper/maven-wrapper.properties https://repo.maven.apache.org/maven2/org/apache/maven/wrapper/maven-wrapper/${MAVEN_WRAPPER_VERSION}/maven-wrapper-${MAVEN_WRAPPER_VERSION}.properties
+fi
+
+exec java -jar .mvn/wrapper/maven-wrapper.jar "$@"
