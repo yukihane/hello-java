@@ -27,4 +27,8 @@ public class MyEntity {
 
     @Column(name = "my_date")
     private LocalDate myDate;
+
+    @Column(name = "my_time")
+    private LocalTime myTime;
+
 }

@@ -43,7 +43,8 @@ create table my_entity (
     my_instant timestamp,
     my_datetime datetime,
     my_date date,
-    my_cur_timestamp timestamp default current_timestamp
+    my_cur_timestamp timestamp default current_timestamp,
+    my_time time
 );
 ----
 
