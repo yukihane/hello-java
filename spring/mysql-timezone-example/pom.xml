@@ -33,12 +33,8 @@
       <optional>true</optional>
     </dependency>
     <dependency>
-      <groupId>mysql</groupId>
-      <artifactId>mysql-connector-java</artifactId>
-      <!-- 8.0.22 で動作させる場合には下記コメントアウトを解除する -->
-      <!--
-      <version>8.0.22</version>
-      -->
+      <groupId>com.mysql</groupId>
+      <artifactId>mysql-connector-j</artifactId>
       <scope>runtime</scope>
     </dependency>
     <dependency>
