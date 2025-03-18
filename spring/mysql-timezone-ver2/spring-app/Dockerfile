@@ -3,6 +3,7 @@ FROM openjdk:21-jdk-slim-bullseye
 VOLUME /tmp
 
 COPY ./mvnw ./
+COPY ./.mvn ./.mvn
 COPY ./pom.xml ./
 COPY ./src ./src
 
