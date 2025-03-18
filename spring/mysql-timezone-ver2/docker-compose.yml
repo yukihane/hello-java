@@ -9,8 +9,6 @@ services:
       MYSQL_DATABASE: mydatabase
       MYSQL_USER: myuser
       MYSQL_PASSWORD: mypassword
-    ports:
-      - "23306:3306"
     volumes:
       - mysql_data:/var/lib/mysql
       - ./mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
@@ -18,8 +16,6 @@ services:
   spring-app:
     build:
       context: ./spring-app
-    ports:
-      - "8080:8080"
     depends_on:
       - mysql
     environment:
