@@ -2,6 +2,7 @@ package com.example.demo;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,6 +32,7 @@ public class DemoApplication implements CommandLineRunner {
         System.exit(exitCode);
     }
 
+    @Transactional
     @Override
     public void run(String... args) throws Exception {
         final var UTC = ZoneOffset.UTC;
