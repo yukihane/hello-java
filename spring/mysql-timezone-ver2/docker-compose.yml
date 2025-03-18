@@ -1,5 +1,4 @@
-version: '3.8'
-
+name: mysql-timezone
 services:
   mysql:
     build:
@@ -8,8 +7,8 @@ services:
       TZ: UTC
       MYSQL_ROOT_PASSWORD: rootpassword
       MYSQL_DATABASE: mydatabase
-      MYSQL_USER: user
-      MYSQL_PASSWORD: userpassword
+      MYSQL_USER: myuser
+      MYSQL_PASSWORD: mypassword
     ports:
       - "23306:3306"
     volumes:
@@ -31,8 +30,8 @@ services:
       # https://dev.mysql.com/doc/connector-j/en/connector-j-time-instants.html
       # の "Solution 2a"
       # SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/mydatabase?preserveInstants=true&connectionTimeZone=SERVER
-      SPRING_DATASOURCE_USERNAME: user
-      SPRING_DATASOURCE_PASSWORD: userpassword
+      SPRING_DATASOURCE_USERNAME: myuser
+      SPRING_DATASOURCE_PASSWORD: mypassword
       # https://vladmihalcea.com/time-zones-java-web-application/
       # SPRING_JPA_PROPERTIES_HIBERNATE_JDBC_TIME_ZONE: UTC
 

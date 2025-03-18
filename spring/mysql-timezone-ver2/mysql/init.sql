@@ -1,12 +1,4 @@
-CREATE DATABASE mydb;
-
-CREATE USER 'myuser'@'%' IDENTIFIED BY 'mypassword';
-
-GRANT ALL PRIVILEGES ON mydb.* TO 'myuser'@'%';
-
-FLUSH PRIVILEGES;
-
-USE mydb;
+USE mydatabase;
 
 CREATE TABLE my_entities (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
