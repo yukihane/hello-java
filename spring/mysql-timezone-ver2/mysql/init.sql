@@ -21,9 +21,16 @@ CREATE TABLE my_entities (
     -- instant date-time types
     my_calendar DATETIME,
     my_date DATETIME,
-    my_instant TIMESTAMP,
-    my_offset_date_time DATETIME,
+    my_instant DATETIME,
+    my_utc_offset_date_time DATETIME,
+    my_jst_offset_date_time DATETIME,
+    my_default_offset_date_time DATETIME,
     my_utc_zoned_date_time DATETIME,
     my_jst_zoned_date_time DATETIME,
-    my_default_zoned_date_time DATETIME
+    my_default_zoned_date_time DATETIME,
+
+    -- timestamp
+    my_instant_stamp TIMESTAMP,
+    my_utc_offset_date_time_stamp TIMESTAMP,
+    my_jst_offset_date_time_stamp TIMESTAMP,
 );

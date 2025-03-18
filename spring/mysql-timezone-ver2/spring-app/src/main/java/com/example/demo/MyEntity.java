@@ -1,9 +1,9 @@
 package com.example.demo;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.*;
@@ -14,6 +14,8 @@ import java.util.Date;
 @Table(name = "my_entities")
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class MyEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,8 +32,16 @@ public class MyEntity {
     private Calendar myCalendar;
     private Date myDate;
     private Instant myInstant;
-    private OffsetDateTime myOffsetDateTime;
+    private OffsetDateTime myUtcOffsetDateTime;
+    private OffsetDateTime myJstOffsetDateTime;
+    private OffsetDateTime myDefaultOffsetDateTime;
     private ZonedDateTime myUtcZonedDateTime;
     private ZonedDateTime myJstZonedDateTime;
     private ZonedDateTime myDefaultZonedDateTime;
+
+    // timestamp
+    private Instant myInstantStamp;
+    private OffsetDateTime myUtcOffsetDateTimeStamp;
+    private OffsetDateTime myJstOffsetDateTimeStamp;
+    private OffsetDateTime myDefaultOffsetDateTimeStamp;
 }
