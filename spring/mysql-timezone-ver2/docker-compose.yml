@@ -5,6 +5,7 @@ services:
     build:
       context: ./mysql
     environment:
+      TZ: UTC
       MYSQL_ROOT_PASSWORD: rootpassword
       MYSQL_DATABASE: mydatabase
       MYSQL_USER: user
@@ -23,9 +24,17 @@ services:
     depends_on:
       - mysql
     environment:
+      TZ: Asia/Tokyo
+      # JVMに、起動時に明示的にタイムゾーンを指定するには:
+      # JAVA_TOOL_OPTIONS: "-Duser.timezone=Asia/Tokyo"
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/mydatabase
+      # https://dev.mysql.com/doc/connector-j/en/connector-j-time-instants.html
+      # の "Solution 2a"
+      # SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/mydatabase?preserveInstants=true&connectionTimeZone=SERVER
       SPRING_DATASOURCE_USERNAME: user
       SPRING_DATASOURCE_PASSWORD: userpassword
+      # https://vladmihalcea.com/time-zones-java-web-application/
+      # SPRING_JPA_PROPERTIES_HIBERNATE_JDBC_TIME_ZONE: UTC
 
 volumes:
   mysql_data:
