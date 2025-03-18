@@ -1,9 +1,8 @@
-FROM openjdk:11-jre-slim
+FROM openjdk:21-jdk-slim-bullseye
 
 VOLUME /tmp
 
 COPY ./mvnw ./
-COPY ./mvnw.cmd ./
 COPY ./pom.xml ./
 COPY ./src ./src
 
