@@ -7,5 +7,5 @@ import org.springframework.boot.runApplication
 class MapstructSpringExtensionsKotlinApplication
 
 fun main(args: Array<String>) {
-	runApplication<MapstructSpringExtensionsKotlinApplication>(*args)
+    runApplication<MapstructSpringExtensionsKotlinApplication>(*args)
 }
