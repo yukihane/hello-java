@@ -6,7 +6,7 @@ import org.mapstruct.Mappings
 import org.springframework.core.convert.converter.Converter
 
 
-@Mapper(uses = [WheelMapper::class, PedalMapper::class])
+@Mapper(uses = [ConversionServiceAdapter::class])
 interface CarMapper : Converter<Car, CarDto> {
     @Mappings(Mapping(source = "wheel", target = "steeringWheel"), Mapping(source = "pedal", target = "footPedal"))
     override fun convert(car: Car): CarDto

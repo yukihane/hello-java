@@ -11,6 +11,7 @@ group = "com.example"
 version = "0.0.1-SNAPSHOT"
 
 val mapstructVersion by extra("1.6.3")
+val mapstructSpringExtensionsVersion by extra("1.1.3")
 
 java {
     toolchain {
@@ -41,6 +42,12 @@ dependencies {
     // https://mapstruct.org/documentation/installation/#gradle
     implementation("org.mapstruct:mapstruct:${mapstructVersion}")
     kapt("org.mapstruct:mapstruct-processor:${mapstructVersion}")
+
+    // https://mapstruct.org/documentation/spring-extensions/reference/html/#_gradle
+    implementation("org.mapstruct.extensions.spring:mapstruct-spring-annotations:${mapstructSpringExtensionsVersion}")
+    kapt("org.mapstruct.extensions.spring:mapstruct-spring-extensions:${mapstructSpringExtensionsVersion}")
+    kaptTest("org.mapstruct.extensions.spring:mapstruct-spring-extensions:${mapstructSpringExtensionsVersion}")
+    testImplementation("org.mapstruct.extensions.spring:mapstruct-spring-test-extensions:${mapstructSpringExtensionsVersion}")
 }
 
 kotlin {
