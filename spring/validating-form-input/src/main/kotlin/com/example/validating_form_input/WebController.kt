@@ -21,7 +21,7 @@ class WebController : WebMvcConfigurer {
     }
 
     @PostMapping("/")
-    fun checkPersonInfo(personForm: @Valid PersonForm, bindingResult: BindingResult): String {
+    fun checkPersonInfo(@Valid personForm: PersonForm, bindingResult: BindingResult): String {
         if (bindingResult.hasErrors()) {
             return "form"
         }
