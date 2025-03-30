@@ -1,0 +1,284 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>個人情報フォーム</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      h1 {
+        color: #333;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+      }
+      table,
+      th,
+      td {
+        border: 1px solid #ddd;
+      }
+      th,
+      td {
+        padding: 10px;
+        text-align: left;
+      }
+      th {
+        background-color: #f2f2f2;
+      }
+      input[type="text"],
+      input[type="number"] {
+        width: 100%;
+        padding: 8px;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+      button {
+        background-color: #4caf50;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-right: 10px;
+      }
+      button:hover {
+        background-color: #45a049;
+      }
+      button.remove {
+        background-color: #f44336;
+      }
+      button.remove:hover {
+        background-color: #d32f2f;
+      }
+      .actions {
+        margin-top: 20px;
+        margin-bottom: 20px;
+      }
+      .alert {
+        padding: 15px;
+        margin-bottom: 20px;
+        border: 1px solid transparent;
+        border-radius: 4px;
+      }
+      .alert-success {
+        color: #3c763d;
+        background-color: #dff0d8;
+        border-color: #d6e9c6;
+      }
+      .field-error {
+        background-color: #ffdddd;
+      }
+      .error-message {
+        color: red;
+        font-size: 0.8rem;
+      }
+      .saved-info {
+        margin-top: 30px;
+      }
+      .clear-button {
+        background-color: #ff9800;
+      }
+      .clear-button:hover {
+        background-color: #e68a00;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>個人情報入力フォーム</h1>
+
+    <div
+      th:if="${successMessage}"
+      class="alert alert-success"
+      th:text="${successMessage}"
+    ></div>
+
+    <form th:action="@{/submit}" th:object="${personalInfoForm}" method="post">
+      <div class="actions">
+        <button type="button" id="addRow">行を追加</button>
+        <button type="submit">保存</button>
+      </div>
+
+      <table id="infoTable">
+        <thead>
+          <tr>
+            <th>名前</th>
+            <th>年齢</th>
+            <th>住所</th>
+            <th>アクション</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="info, stat : *{infoList}">
+            <td
+              th:classappend="${#fields.hasErrors('infoList[' + stat.index + '].name')} ? 'field-error' : ''"
+            >
+              <input
+                type="text"
+                th:field="*{infoList[__${stat.index}__].name}"
+              />
+              <div
+                class="error-message"
+                th:if="${#fields.hasErrors('infoList[' + stat.index + '].name')}"
+                th:errors="*{infoList[__${stat.index}__].name}"
+              ></div>
+            </td>
+            <td
+              th:classappend="${#fields.hasErrors('infoList[' + stat.index + '].age')} ? 'field-error' : ''"
+            >
+              <input
+                type="number"
+                th:field="*{infoList[__${stat.index}__].age}"
+              />
+              <div
+                class="error-message"
+                th:if="${#fields.hasErrors('infoList[' + stat.index + '].age')}"
+                th:errors="*{infoList[__${stat.index}__].age}"
+              ></div>
+            </td>
+            <td
+              th:classappend="${#fields.hasErrors('infoList[' + stat.index + '].address')} ? 'field-error' : ''"
+            >
+              <input
+                type="text"
+                th:field="*{infoList[__${stat.index}__].address}"
+              />
+              <div
+                class="error-message"
+                th:if="${#fields.hasErrors('infoList[' + stat.index + '].address')}"
+                th:errors="*{infoList[__${stat.index}__].address}"
+              ></div>
+            </td>
+            <td>
+              <button
+                type="button"
+                class="remove"
+                th:onclick="'removeRow(this)'"
+                th:disabled="${personalInfoForm.infoList.size() <= 1}"
+              >
+                削除
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </form>
+
+    <div class="saved-info" th:if="${not #lists.isEmpty(savedList)}">
+      <h2>保存された個人情報</h2>
+      <form th:action="@{/clear}" method="post">
+        <button type="submit" class="clear-button">全て削除</button>
+      </form>
+      <table>
+        <thead>
+          <tr>
+            <th>名前</th>
+            <th>年齢</th>
+            <th>住所</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="info : ${savedList}">
+            <td th:text="${info.name}"></td>
+            <td th:text="${info.age}"></td>
+            <td th:text="${info.address}"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <template id="rowTemplate">
+      <tr>
+        <td>
+          <input
+            type="text"
+            name="infoList[INDEX].name"
+            id="infoList[INDEX].name"
+          />
+        </td>
+        <td>
+          <input
+            type="number"
+            name="infoList[INDEX].age"
+            id="infoList[INDEX].age"
+          />
+        </td>
+        <td>
+          <input
+            type="text"
+            name="infoList[INDEX].address"
+            id="infoList[INDEX].address"
+          />
+        </td>
+        <td>
+          <button type="button" class="remove" onclick="removeRow(this)">
+            削除
+          </button>
+        </td>
+      </tr>
+    </template>
+
+    <script>
+      // 行を追加する関数
+      function addRow() {
+        const table = document
+          .getElementById("infoTable")
+          .getElementsByTagName("tbody")[0];
+        const rowCount = table.rows.length;
+
+        // テンプレートからHTML要素を取得
+        const template = document.getElementById("rowTemplate");
+        const newRow = document.importNode(template.content, true);
+
+        // インデックスを置き換え
+        const inputs = newRow.querySelectorAll("input");
+        for (let input of inputs) {
+          input.name = input.name.replace("INDEX", rowCount);
+          input.id = input.id.replace("INDEX", rowCount);
+        }
+
+        table.appendChild(newRow);
+
+        // 各行の削除ボタンを有効にする
+        const buttons = table.querySelectorAll(".remove");
+        buttons.forEach((button) => (button.disabled = false));
+      }
+
+      // 行を削除する関数
+      function removeRow(button) {
+        const row = button.closest("tr");
+        const table = row.closest("tbody");
+
+        if (table.rows.length > 1) {
+          row.remove();
+
+          // インデックスを振り直す
+          for (let i = 0; i < table.rows.length; i++) {
+            const inputs = table.rows[i].querySelectorAll("input");
+            for (let input of inputs) {
+              const oldName = input.name;
+              const newName = oldName.replace(/\d+/, i);
+              input.name = newName;
+              input.id = newName;
+            }
+          }
+
+          // 残りが1行なら削除ボタンを無効にする
+          if (table.rows.length === 1) {
+            table.querySelector(".remove").disabled = true;
+          }
+        }
+      }
+
+      // 追加ボタンにイベントリスナーを設定
+      document.getElementById("addRow").addEventListener("click", addRow);
+    </script>
+  </body>
+</html>
