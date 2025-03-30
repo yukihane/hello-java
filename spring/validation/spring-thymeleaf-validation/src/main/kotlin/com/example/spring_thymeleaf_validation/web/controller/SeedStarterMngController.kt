@@ -4,6 +4,7 @@ import com.example.spring_thymeleaf_validation.business.entities.*
 import com.example.spring_thymeleaf_validation.business.services.SeedStarterService
 import com.example.spring_thymeleaf_validation.business.services.VarietyService
 import jakarta.servlet.http.HttpServletRequest
+import jakarta.validation.Valid
 import org.springframework.stereotype.Controller
 import org.springframework.ui.ModelMap
 import org.springframework.validation.BindingResult
@@ -47,7 +48,7 @@ class SeedStarterMngController(
 
 
     @RequestMapping(value = ["/seedstartermng"], params = ["save"])
-    fun saveSeedstarter(seedStarter: SeedStarter, bindingResult: BindingResult, model: ModelMap): String {
+    fun saveSeedstarter(@Valid seedStarter: SeedStarter, bindingResult: BindingResult, model: ModelMap): String {
         if (bindingResult.hasErrors()) {
             return "seedstartermng"
         }
