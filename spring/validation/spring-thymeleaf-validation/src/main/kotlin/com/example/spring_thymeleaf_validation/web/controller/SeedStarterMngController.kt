@@ -58,14 +58,14 @@ class SeedStarterMngController(
 
 
     @RequestMapping(value = ["/seedstartermng"], params = ["addRow"])
-    fun addRow(seedStarter: SeedStarter, bindingResult: BindingResult?): String {
+    fun addRow(seedStarter: SeedStarter, bindingResult: BindingResult): String {
         seedStarter.rows.add(Row())
         return "seedstartermng"
     }
 
 
     @RequestMapping(value = ["/seedstartermng"], params = ["removeRow"])
-    fun removeRow(seedStarter: SeedStarter, bindingResult: BindingResult?, req: HttpServletRequest): String {
+    fun removeRow(seedStarter: SeedStarter, bindingResult: BindingResult, req: HttpServletRequest): String {
         val rowId = req.getParameter("removeRow").toInt()
         seedStarter.rows.removeAt(rowId)
         return "seedstartermng"
