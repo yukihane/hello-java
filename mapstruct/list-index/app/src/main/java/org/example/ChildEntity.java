@@ -19,4 +19,12 @@ public class ChildEntity {
     public void setName(String name) {
         this.name = name;
     }
+
+    @Override
+    public String toString() {
+        return "ChildEntity{" +
+                "index=" + index +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

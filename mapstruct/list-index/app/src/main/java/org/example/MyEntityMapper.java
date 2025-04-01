@@ -16,13 +16,15 @@ public interface MyEntityMapper {
     @Mapping(target = "children", source = "children", qualifiedByName = "addIndex")
     MyEntity toEntity(MyEntityDto dto);
 
+    @Mapping(target = "index", ignore = true)
+    ChildEntity toEntity(ChildEntityDto dto);
+
     @Named("addIndex")
     default Set<ChildEntity> addIndex(List<ChildEntityDto> dtos) {
         Set<ChildEntity> entities = new HashSet<>();
         for (int i = 0; i < dtos.size(); i++) {
             ChildEntityDto dto = dtos.get(i);
-            ChildEntity entity = new ChildEntity();
-            entity.setName(dto.getName());
+            var entity = toEntity(dto);
             entity.setIndex(i); // Add index to the child entity
             entities.add(entity);
         }

@@ -19,6 +19,6 @@ public class App {
         dto.setChildren(children);
 
         var entity = MyEntityMapper.INSTANCE.toEntity(dto);
-        System.out.println("Entity name: " + entity.getName());
+        System.out.println("Entity: " + entity.toString());
     }
 }

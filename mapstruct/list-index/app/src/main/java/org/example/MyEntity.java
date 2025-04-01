@@ -22,4 +22,12 @@ public class MyEntity {
     public void setChildren(Set<ChildEntity> children) {
         this.children = children;
     }
+
+    @Override
+    public String toString() {
+        return "MyEntity{" +
+                "name='" + name + '\'' +
+                ", children=" + children +
+                '}';
+    }
 }
