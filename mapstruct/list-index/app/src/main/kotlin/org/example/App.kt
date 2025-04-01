@@ -3,13 +3,47 @@
  */
 package org.example
 
-class App {
-    val greeting: String
-        get() {
-            return "Hello World!"
-        }
-}
+import org.mapstruct.Mapper
+import org.mapstruct.factory.Mappers
+
 
 fun main() {
-    println(App().greeting)
+    val dto = MyEntityDto(
+        name = "MyEntity",
+        childEntities = listOf(
+            ChildEntityDto(name = "Child1"),
+            ChildEntityDto(name = "Child2"),
+        )
+    )
+
+    val entity = MyEntityMapper.INSTANCE.map(dto)
+    println(entity)
+}
+
+data class MyEntity(
+    val name: String,
+    val childEntities: Set<ChildEntity>,
+)
+
+data class ChildEntity(
+    val index: Int,
+    val name: String,
+)
+
+data class MyEntityDto(
+    val name: String,
+    val childEntities: List<ChildEntityDto>,
+)
+
+data class ChildEntityDto(
+    val name: String,
+)
+
+@Mapper
+interface MyEntityMapper {
+    fun map(entity: MyEntityDto): MyEntity
+
+    companion object {
+        val INSTANCE: MyEntityMapper = Mappers.getMapper(MyEntityMapper::class.java)
+    }
 }
