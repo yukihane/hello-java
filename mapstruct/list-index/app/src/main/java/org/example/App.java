@@ -3,12 +3,22 @@
  */
 package org.example;
 
+import java.util.List;
+
 public class App {
-    public String getGreeting() {
-        return "Hello World!";
-    }
 
     public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+        var child1 = new ChildEntityDto();
+        child1.setName("child 1");
+        var child2 = new ChildEntityDto();
+        child2.setName("child 2");
+        var children = List.of(child1, child2);
+
+        var dto = new MyEntityDto();
+        dto.setName("my entity");
+        dto.setChildren(children);
+
+        var entity = MyEntityMapper.INSTANCE.toEntity(dto);
+        System.out.println("Entity name: " + entity.getName());
     }
 }
