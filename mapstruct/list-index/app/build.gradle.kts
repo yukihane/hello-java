@@ -11,6 +11,7 @@ plugins {
 
     // Apply the application plugin to add support for building a CLI application in Java.
     application
+    kotlin("kapt") version "2.1.20"
 }
 
 repositories {
@@ -29,6 +30,10 @@ dependencies {
 
     // This dependency is used by the application.
     implementation(libs.guava)
+
+    implementation("org.mapstruct:mapstruct:1.6.3")
+
+    kapt("org.mapstruct:mapstruct-processor:1.6.3")
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
