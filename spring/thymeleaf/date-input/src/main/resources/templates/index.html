@@ -1,0 +1,9 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head> </head>
+  <body>
+    <form th:object="${dto}">
+      <input type="date" th:field="*{date}" />
+    </form>
+  </body>
+</html>
