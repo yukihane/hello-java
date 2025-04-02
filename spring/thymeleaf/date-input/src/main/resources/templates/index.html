@@ -1,9 +1,10 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
-  <head> </head>
-  <body>
-    <form th:object="${dto}">
-      <input type="date" th:field="*{date}" />
-    </form>
-  </body>
+<head></head>
+<body>
+<form th:object="${dto}">
+    <input th:value="${#temporals.format(dto.date, 'yyyy-MM-dd')}" type="date"/>
+    <input th:field="*{date}" type="date"/>
+</form>
+</body>
 </html>
