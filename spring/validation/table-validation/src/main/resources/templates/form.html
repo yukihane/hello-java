@@ -151,6 +151,13 @@
               <input
                 type="number"
                 th:field="*{infoList[__${stat.index}__].age}"
+                th:attr="
+                data-bs-toggle=${#fields.hasErrors('infoList[__${stat.index}__].age')} ? 'tooltip' : '',
+                data-bs-original-title=${#fields.hasErrors('infoList[__${stat.index}__].age')} ? ${#fields.errors('infoList[__${stat.index}__].age')[0]} : '',
+                style=${#fields.hasErrors('infoList[__${stat.index}__].age')} ? 'background-color: pink;' : ''
+                "
+                data-bs-placement="bottom"
+                data-bs-custom-class="tooltip-danger"
               />
               <div
                 class="error-message"
@@ -164,6 +171,13 @@
               <input
                 type="text"
                 th:field="*{infoList[__${stat.index}__].address}"
+                th:attr="
+                data-bs-toggle=${#fields.hasErrors('infoList[__${stat.index}__].address')} ? 'tooltip' : '',
+                data-bs-original-title=${#fields.hasErrors('infoList[__${stat.index}__].address')} ? ${#fields.errors('infoList[__${stat.index}__].address')[0]} : '',
+                style=${#fields.hasErrors('infoList[__${stat.index}__].address')} ? 'background-color: pink;' : ''
+                "
+                data-bs-placement="bottom"
+                data-bs-custom-class="tooltip-danger"
               />
               <div
                 class="error-message"
