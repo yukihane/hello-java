@@ -131,6 +131,13 @@
               <input
                 type="text"
                 th:field="*{infoList[__${stat.index}__].name}"
+                th:attr="
+                data-bs-toggle=${#fields.hasErrors('infoList[__${stat.index}__].name')} ? 'tooltip' : '',
+                data-bs-original-title=${#fields.hasErrors('infoList[__${stat.index}__].name')} ? ${#fields.errors('infoList[__${stat.index}__].name')[0]} : '',
+                style=${#fields.hasErrors('infoList[__${stat.index}__].name')} ? 'background-color: pink;' : ''
+                "
+                data-bs-placement="bottom"
+                data-bs-custom-class="tooltip-danger"
               />
               <div
                 class="error-message"
