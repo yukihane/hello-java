@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>プロフィール入力</title>
+    <link
+      href="https://use.fontawesome.com/releases/v6.2.0/css/all.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <body>
+    <form th:action="${postUrl}" method="post" th:object="${profile}">
+      <div class="container d-flex flex-column gap-3 py-5">
+        <div class="form-floating">
+          <input
+            type="text"
+            class="form-control"
+            th:field="*{name}"
+            placeholder=""
+          />
+          <label th:for="*{name}">名前</label>
+          <div
+            th:if="${#fields.hasErrors('name')}"
+            th:errors="*{name}"
+            class="text-danger"
+          ></div>
+        </div>
+        <div class="form-floating">
+          <input
+            type="text"
+            class="form-control"
+            th:field="*{birthDate}"
+            placeholder=""
+          />
+          <label th:for="*{birthDate}">誕生日</label>
+          <div
+            th:if="${#fields.hasErrors('birthDate')}"
+            th:errors="*{birthDate}"
+            class="text-danger"
+          ></div>
+        </div>
+        <div class="form-floating">
+          <input
+            type="text"
+            class="form-control"
+            th:field="*{age}"
+            placeholder=""
+          />
+          <label th:for="*{age}">年齢</label>
+          <div
+            th:if="${#fields.hasErrors('age')}"
+            th:errors="*{age}"
+            class="text-danger"
+          ></div>
+        </div>
+        <div>
+          <div>
+            <label>家族</label>
+            <button
+              id="addRowButton"
+              type="button"
+              class="btn btn-outline-primary"
+            >
+              行追加
+            </button>
+          </div>
+          <div>
+            <table id="familyTable" class="table table-bordered">
+              <tbody>
+                <template id="familyRow">
+                  <tr>
+                    <td>
+                      <div class="form-floating">
+                        <input
+                          type="text"
+                          name="families[0].familyName"
+                          id="families0.familyName"
+                          class="form-control"
+                          placeholder=""
+                        />
+                        <label for="families0.familyName">名前</label>
+                      </div>
+                      <button type="button" class="btn" data-role="remove">
+                        <i class="fa-solid fa-trash"></i>
+                      </button>
+                    </td>
+                  </tr>
+                </template>
+                <tr th:each="family, iterStat : *{families}">
+                  <td>
+                    <div class="form-floating">
+                      <input
+                        type="text"
+                        th:field="*{families[__${iterStat.index}__].familyName}"
+                        class="form-control"
+                        placeholder=""
+                      />
+                      <label
+                        th:for="*{families[__${iterStat.index}__].familyName}"
+                        >名前</label
+                      >
+                    </div>
+                    <button type="button" class="btn" data-role="remove">
+                      <i class="fa-solid fa-trash"></i>
+                    </button>
+                    <div
+                      th:if="${#fields.hasErrors('families[__${iterStat.index}__].familyName')}"
+                      th:errors="*{families[__${iterStat.index}__].familyName}"
+                      class="text-danger"
+                    ></div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div><button type="submit" class="btn btn-primary">送信</button></div>
+      </div>
+    </form>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" th:src="@{/js/index.js}"></script>
+  </body>
+</html>
