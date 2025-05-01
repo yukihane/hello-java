@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "allowJs": true, // .js を受け入れる
+    "checkJs": true, // 型チェック有効化
+    "noEmit": true, // 出力はしない
+    "target": "ESNext",
+    "module": "ESNext"
+  },
+  "include": ["src/main/resources/**/*.js"]
+}
