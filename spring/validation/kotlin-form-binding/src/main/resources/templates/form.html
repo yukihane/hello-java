@@ -61,6 +61,67 @@
             class="text-danger"
           ></div>
         </div>
+        <div>
+          <div>
+            <label>家族</label>
+            <button
+              id="addRowButton"
+              type="button"
+              class="btn btn-outline-primary"
+            >
+              行追加
+            </button>
+          </div>
+          <div>
+            <table id="familyTable" class="table table-bordered">
+              <tbody>
+                <template id="familyRow">
+                  <tr>
+                    <td>
+                      <div class="form-floating">
+                        <input
+                          type="text"
+                          name="families[0].familyName"
+                          id="families0.familyName"
+                          class="form-control"
+                          placeholder=""
+                        />
+                        <label for="families0.familyName">名前</label>
+                      </div>
+                      <button type="button" class="btn" data-role="remove">
+                        <i class="fa-solid fa-trash"></i>
+                      </button>
+                    </td>
+                  </tr>
+                </template>
+                <tr th:each="family, iterStat : *{families}">
+                  <td>
+                    <div class="form-floating">
+                      <input
+                        type="text"
+                        th:field="*{families[__${iterStat.index}__].familyName}"
+                        class="form-control"
+                        placeholder=""
+                      />
+                      <label
+                        th:for="*{families[__${iterStat.index}__].familyName}"
+                        >名前</label
+                      >
+                    </div>
+                    <button type="button" class="btn" data-role="remove">
+                      <i class="fa-solid fa-trash"></i>
+                    </button>
+                    <div
+                      th:if="${#fields.hasErrors('families[__${iterStat.index}__].familyName')}"
+                      th:errors="*{families[__${iterStat.index}__].familyName}"
+                      class="text-danger"
+                    ></div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
         <div><button type="submit" class="btn btn-primary">送信</button></div>
       </div>
     </form>
