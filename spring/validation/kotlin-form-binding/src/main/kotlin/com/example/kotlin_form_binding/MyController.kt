@@ -38,4 +38,26 @@ class MyController {
         redirectAttributes.addFlashAttribute("message", "Javaフォームでのpostが成功しました")
         return "redirect:/"
     }
+
+    @GetMapping("/dataClassVal")
+    fun dataClassValForm(model: Model, @ModelAttribute("profile") form: DataClassValForm): String {
+        model.addAttribute("postUrl", "/dataClassVal")
+        return "form"
+    }
+
+    @PostMapping("/dataClassVal")
+    fun dataClassValFormPost(
+        model: Model,
+        @Valid @ModelAttribute("profile") form: DataClassValForm,
+        bindingResult: BindingResult,
+        redirectAttributes: RedirectAttributes,
+    ): String {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("postUrl", "/java")
+            return "form"
+        }
+
+        redirectAttributes.addFlashAttribute("message", "DataClassValFormでのpostが成功しました")
+        return "redirect:/"
+    }
 }
