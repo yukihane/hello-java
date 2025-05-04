@@ -106,4 +106,26 @@ class MyController {
         redirectAttributes.addFlashAttribute("message", "DataClassVarForm でのpostが成功しました")
         return "redirect:/"
     }
+
+    @GetMapping("/kotlin")
+    fun kotlinForm(model: Model, @ModelAttribute("profile") form: KotlinForm): String {
+        model.addAttribute("postUrl", "/kotlin")
+        return "form"
+    }
+
+    @PostMapping("/kotlin")
+    fun kotlinFormPost(
+        model: Model,
+        @Valid @ModelAttribute("profile") form: KotlinForm,
+        bindingResult: BindingResult,
+        redirectAttributes: RedirectAttributes,
+    ): String {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("postUrl", "/kotlin")
+            return "form"
+        }
+
+        redirectAttributes.addFlashAttribute("message", "KotlinForm でのpostが成功しました")
+        return "redirect:/"
+    }
 }
