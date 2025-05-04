@@ -83,4 +83,27 @@ class MyController {
         redirectAttributes.addFlashAttribute("message", "DataClassValNullableForm でのpostが成功しました")
         return "redirect:/"
     }
+
+
+    @GetMapping("/dataClassVar")
+    fun dataClassVarForm(model: Model, @ModelAttribute("profile") form: DataClassVarForm): String {
+        model.addAttribute("postUrl", "/dataClassValNullable")
+        return "form"
+    }
+
+    @PostMapping("/dataClassVar")
+    fun dataClassVarFormPost(
+        model: Model,
+        @Valid @ModelAttribute("profile") form: DataClassVarForm,
+        bindingResult: BindingResult,
+        redirectAttributes: RedirectAttributes,
+    ): String {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("postUrl", "/dataClassVar")
+            return "form"
+        }
+
+        redirectAttributes.addFlashAttribute("message", "DataClassVarForm でのpostが成功しました")
+        return "redirect:/"
+    }
 }
