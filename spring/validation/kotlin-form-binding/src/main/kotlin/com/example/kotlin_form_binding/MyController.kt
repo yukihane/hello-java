@@ -53,11 +53,34 @@ class MyController {
         redirectAttributes: RedirectAttributes,
     ): String {
         if (bindingResult.hasErrors()) {
-            model.addAttribute("postUrl", "/java")
+            model.addAttribute("postUrl", "/dataClassVal")
             return "form"
         }
 
         redirectAttributes.addFlashAttribute("message", "DataClassValFormでのpostが成功しました")
+        return "redirect:/"
+    }
+
+
+    @GetMapping("/dataClassValNullable")
+    fun dataClassValNullableForm(model: Model, @ModelAttribute("profile") form: DataClassValNullableForm): String {
+        model.addAttribute("postUrl", "/dataClassValNullable")
+        return "form"
+    }
+
+    @PostMapping("/dataClassValNullable")
+    fun dataClassValFormPostNullable(
+        model: Model,
+        @Valid @ModelAttribute("profile") form: DataClassValNullableForm,
+        bindingResult: BindingResult,
+        redirectAttributes: RedirectAttributes,
+    ): String {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("postUrl", "/dataClassValNullable")
+            return "form"
+        }
+
+        redirectAttributes.addFlashAttribute("message", "DataClassValNullableForm でのpostが成功しました")
         return "redirect:/"
     }
 }
