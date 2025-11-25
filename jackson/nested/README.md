@@ -22,4 +22,3 @@ type TypeBChild2 = TypeB & { skip: false; additional: string };
 2段階の `@JsonTypeInfo` はJacksonではサポートされていませんでした。
 
 - https://github.com/FasterXML/jackson-databind/issues/4542
-- 
