@@ -1,7 +1,6 @@
 package com.example.models
 
 import com.fasterxml.jackson.annotation.JsonCreator
-import com.fasterxml.jackson.annotation.JsonProperty
 
 sealed class TypeA : Root() {
     override val type: String = "type-a"
@@ -11,10 +10,10 @@ sealed class TypeA : Root() {
         @JvmStatic
         @JsonCreator
         fun create(
-            @JsonProperty("name") name: String,
-            @JsonProperty("type") type: String? = null,
-            @JsonProperty("skip") skip: Boolean,
-            @JsonProperty("additional") additional: String? = null
+            name: String,
+            type: String? = null,
+            skip: Boolean,
+            additional: String? = null
         ): TypeA {
             return if (skip) {
                 TypeAChild1(name)
